@@ -4,13 +4,13 @@ import NavLight from '@/components/NavLight'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Althia — Narrative Studio for Sleep & Reflection',
-  description: 'Althia is a narrative studio creating audio apps for sleep and reflection. Explore Mythia, our app of mythology, philosophy, and the ancient world.',
-  keywords: 'mythology apps, bedtime stories, narrative studio, sleep stories, ancient myths, audio storytelling',
+  title: 'Althia — Stories for the Ancient Mind',
+  description: 'Althia builds audio apps rooted in mythology, philosophy, and the ancient world — designed for sleep, reflection, and the contemplative mind.',
+  keywords: 'mythology apps, bedtime stories, sleep stories, ancient myths, audio storytelling, mythology sleep app',
   openGraph: {
     type: 'website',
     url: 'https://althia.org',
-    title: 'Althia — Narrative Studio',
+    title: 'Althia — Stories for the Ancient Mind',
     description: 'Stories that have survived millennia, reimagined for how you rest.',
     images: [
       {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Althia — Narrative Studio',
+    title: 'Althia — Stories for the Ancient Mind',
     description: 'Stories that have survived millennia, reimagined for how you rest.',
   },
 }
@@ -33,13 +33,9 @@ export default function Home() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Althia',
-    description: 'A narrative studio creating audio apps for sleep and reflection, drawing from mythology, philosophy, and the ancient world.',
+    description: 'Althia builds audio apps rooted in mythology, philosophy, and the ancient world — designed for sleep, reflection, and the contemplative mind.',
     url: 'https://althia.org',
     logo: 'https://althia.org/logos/althia-logo-dark.png',
-    sameAs: [
-      'https://twitter.com/althia',
-      'https://instagram.com/althia',
-    ],
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Support',
@@ -91,9 +87,6 @@ export default function Home() {
             Althia builds audio apps that draw from mythology, philosophy, and the ancient world — designed for sleep, reflection, and the contemplative mind.
           </p>
 
-          <p className="text-[0.9375rem] text-[#666666]" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}>
-            ★ Featured on the App Store
-          </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4">
             <Link

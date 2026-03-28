@@ -27,7 +27,7 @@ export default function NavLight() {
 
         <div className="flex items-center gap-8">
           <Link
-            href="#apps"
+            href="/#apps"
             className="text-sm text-[#666666] transition-colors hover:text-[#111111]"
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
           >

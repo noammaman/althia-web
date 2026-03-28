@@ -93,20 +93,6 @@ const features = [
   },
 ]
 
-const testimonials = [
-  {
-    text: 'I fall asleep within 15 minutes every time. The narration is perfect—calm and immersive without being distracting.',
-    source: 'Sarah M., App Store',
-  },
-  {
-    text: "Finally, a mythology app that respects the source material. These aren't dumbed-down versions—they're thoughtfully adapted.",
-    source: 'James H., App Store',
-  },
-  {
-    text: 'The Greek stories have become my nightly ritual. I love knowing the mythology is accurate while still being deeply relaxing.',
-    source: 'Emma T., App Store',
-  },
-]
 
 const faqs = [
   {
@@ -160,7 +146,6 @@ export default function MythiaContent() {
     applicationCategory: 'HealthAndFitnessApplication',
     operatingSystem: 'iOS',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', ratingCount: '2847' },
     author: { '@type': 'Organization', name: 'Althia', url: 'https://althia.org' },
   }
 
@@ -179,7 +164,7 @@ export default function MythiaContent() {
     '@type': 'Organization',
     name: 'Althia',
     url: 'https://althia.org',
-    description: 'A narrative studio creating audio apps for sleep and reflection.',
+    description: 'Althia builds audio apps rooted in mythology, philosophy, and the ancient world — designed for sleep and reflection.',
     contactPoint: { '@type': 'ContactPoint', email: 'support@althia.org' },
   }
 
@@ -218,7 +203,7 @@ export default function MythiaContent() {
           />
 
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C4B896]">
-            A Mythia App by Althia
+            An App by Althia
           </p>
 
           <h1
@@ -252,8 +237,6 @@ export default function MythiaContent() {
 
           <p className="text-xs text-[#C4B896] tracking-[1px]">
             <span className="inline-block mx-3">Free to download</span>
-            <span>·</span>
-            <span className="inline-block mx-3">4.8★ on the App Store</span>
             <span>·</span>
             <span className="inline-block mx-3">No ads</span>
           </p>
@@ -495,40 +478,6 @@ export default function MythiaContent() {
         </div>
       </section>
 
-      {/* Social Proof */}
-      <section className="py-24 px-6 text-center" style={{ backgroundColor: '#0A0A0A' }}>
-        <div className="max-w-5xl mx-auto">
-          <h2
-            className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-16 leading-[1.2]"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-          >
-            Loved by listeners everywhere
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl p-8 border"
-                style={{
-                  backgroundColor: 'rgba(26, 26, 26, 0.8)',
-                  borderColor: 'rgba(241, 224, 181, 0.12)',
-                }}
-                data-fade-in={`testimonial-${idx}`}
-              >
-                <p className="text-base text-[#F5F0E8] italic leading-[1.8] mb-4">
-                  &ldquo;{testimonial.text}&rdquo;
-                </p>
-                <p className="text-sm text-[#C4B896]">
-                  {testimonial.source}
-                </p>
-              </div>
-            ))}
-          </div>
-          <p className="text-base text-[#F1E0B5] font-semibold mt-12">
-            4.8 ★ on the App Store (2,847 reviews)
-          </p>
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <section className="py-24 px-6" style={{ backgroundColor: '#131110' }}>

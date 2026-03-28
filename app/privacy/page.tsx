@@ -92,7 +92,7 @@ export default function PrivacyPage() {
                 Third-party services
               </h2>
               <p>
-                We use Firebase (Google) for authentication, data storage, and analytics. We use RevenueCat for subscription management. These services have their own privacy policies. We may also use anonymized, aggregated analytics tools to understand usage patterns — this data cannot identify individual users.
+                We use third-party services for authentication, data storage, analytics, and subscription management. These services have their own privacy policies. We may also use anonymized, aggregated analytics to understand usage patterns — this data cannot identify individual users.
               </p>
             </div>
 

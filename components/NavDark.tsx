@@ -16,9 +16,9 @@ export default function NavDark() {
           <img
             src="/logos/mythia-logo.png"
             alt="Mythia"
-            width={24}
+            width={28}
             height={28}
-            className="object-contain"
+            className="object-cover rounded-lg"
           />
           <span className="text-sm font-semibold tracking-wide text-[#F1E0B5]" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>
             Mythia
