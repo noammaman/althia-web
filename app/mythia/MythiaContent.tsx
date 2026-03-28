@@ -260,7 +260,7 @@ export default function MythiaContent() {
       <section className="py-24 px-6" style={{ backgroundColor: '#131110' }}>
         <div className="max-w-5xl mx-auto">
           <div
-            className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+            className="grid grid-cols-1 gap-12"
             data-fade-in="what-is"
             style={{
               opacity: isVisible('what-is') ? 1 : 0,
@@ -295,24 +295,6 @@ export default function MythiaContent() {
               </div>
             </div>
 
-            <div className="flex items-center justify-center">
-              <div className="relative w-full aspect-square max-w-sm rounded-2xl overflow-hidden bg-gradient-to-br from-[#1A1A1A] to-[#131110] flex items-center justify-center">
-                <svg
-                  className="w-3/4 h-3/4 text-[#F1E0B5] opacity-30"
-                  viewBox="0 0 200 200"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  aria-label="Decorative concentric circles"
-                >
-                  <circle cx="100" cy="100" r="80" />
-                  <circle cx="100" cy="100" r="60" opacity="0.6" />
-                  <circle cx="100" cy="100" r="40" opacity="0.3" />
-                  <path d="M100 40 L140 80 L120 100 L140 120 L100 160 L60 120 L80 100 L60 80 Z" opacity="0.5" />
-                </svg>
-              </div>
-            </div>
           </div>
         </div>
       </section>
