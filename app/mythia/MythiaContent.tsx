@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import NavDark from '@/components/NavDark'
 import Footer from '@/components/Footer'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 
 const mythologyWorlds = [
   {
@@ -54,13 +54,21 @@ const mythologyWorlds = [
     glow: 'rgba(168, 181, 160, 0.08)',
     active: false,
   },
+  {
+    name: 'And more',
+    title: 'Many More to Come',
+    description: 'Hindu, Mesopotamian, Aztec, Aboriginal, Chinese, Polynesian — every tradition has stories worth falling asleep to.',
+    primary: '#B8A9C4',
+    glow: 'rgba(184, 169, 196, 0.08)',
+    active: false,
+  },
 ]
 
 const flowSteps = [
   {
     number: '1',
     title: 'Choose your world',
-    description: 'Start with Greek, Norse, Egyptian, or Slavic mythology. New mythologies coming soon.',
+    description: 'Start with Greek, Norse, Egyptian, or Slavic mythology — with many more traditions on the way.',
   },
   {
     number: '2',
@@ -84,8 +92,8 @@ const features = [
     description: 'Temple, Hearth, or Voice Only. Each story scores differently — choose your atmosphere.',
   },
   {
-    title: '20–35 minutes',
-    description: 'Long enough to carry you to sleep. Short enough to feel like a complete story.',
+    title: '10–15 minutes',
+    description: 'The perfect length to carry you to sleep. Short enough to feel like a complete story.',
   },
   {
     title: 'No surprises',
@@ -101,11 +109,11 @@ const faqs = [
   },
   {
     q: 'What mythologies are available?',
-    a: 'Mythia features stories from Greek, Norse, Egyptian, and Slavic traditions. Japanese and Celtic mythologies are coming soon.',
+    a: 'Mythia currently features stories from Greek, Norse, Egyptian, and Slavic traditions. Many more mythologies are on the way — we plan to cover traditions from around the world.',
   },
   {
     q: 'How long are the stories?',
-    a: 'All stories in Mythia are 20–35 minutes long, designed for a single sleep cycle. Most listeners fall asleep before the story ends.',
+    a: 'Stories in Mythia are typically 10–15 minutes long, designed for a single sleep cycle. Most listeners fall asleep before the story ends.',
   },
   {
     q: 'Do the stories have cliffhangers?',
@@ -136,6 +144,69 @@ export default function MythiaContent() {
   }, [])
 
   const isVisible = (id: string) => visible.has(id)
+
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
+
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60)
+    const sec = Math.floor(s % 60)
+    return `${m}:${sec.toString().padStart(2, '0')}`
+  }
+
+  const togglePlay = useCallback(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    if (audio.paused) {
+      audio.play()
+      setIsPlaying(true)
+    } else {
+      audio.pause()
+      setIsPlaying(false)
+    }
+  }, [])
+
+  const handlePreviewClick = useCallback(() => {
+    const el = document.getElementById('preview')
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    setTimeout(() => {
+      const audio = audioRef.current
+      if (audio && audio.paused) {
+        audio.play()
+        setIsPlaying(true)
+      }
+    }, 600)
+  }, [])
+
+  const handleSeek = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const audio = audioRef.current
+    if (!audio || !duration) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width))
+    audio.currentTime = pct * duration
+  }, [duration])
+
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    const onTime = () => {
+      setCurrentTime(audio.currentTime)
+      setProgress(audio.duration ? audio.currentTime / audio.duration : 0)
+    }
+    const onMeta = () => setDuration(audio.duration)
+    const onEnd = () => { setIsPlaying(false); setProgress(0); setCurrentTime(0) }
+    audio.addEventListener('timeupdate', onTime)
+    audio.addEventListener('loadedmetadata', onMeta)
+    audio.addEventListener('ended', onEnd)
+    return () => {
+      audio.removeEventListener('timeupdate', onTime)
+      audio.removeEventListener('loadedmetadata', onMeta)
+      audio.removeEventListener('ended', onEnd)
+    }
+  }, [])
 
   const jsonLdApp = {
     '@context': 'https://schema.org',
@@ -227,12 +298,12 @@ export default function MythiaContent() {
               </svg>
               Download on the App Store
             </a>
-            <a
-              href="#preview"
+            <button
+              onClick={handlePreviewClick}
               className="inline-flex items-center justify-center px-8 py-3 border-2 border-[#F1E0B5] text-[#F1E0B5] rounded-full font-semibold transition-all hover:bg-[rgba(241,224,181,0.1)] hover:border-[#F5F0E8]"
             >
               Listen to a preview
-            </a>
+            </button>
           </div>
 
           <p className="text-xs text-[#C4B896] tracking-[1px]">
@@ -251,6 +322,94 @@ export default function MythiaContent() {
                 className="absolute w-[2px] h-2 bg-[#F1E0B5] top-[6px] left-1/2 transform -translate-x-1/2 rounded-[1px]"
                 style={{ animation: 'scroll-dot 2s infinite' }}
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Audio Preview Section */}
+      <section id="preview" className="py-20 px-6" style={{ backgroundColor: '#0A0A0A' }}>
+        <div className="max-w-2xl mx-auto">
+          <audio ref={audioRef} src="/audio/preview.wav" preload="metadata" />
+
+          <div
+            className="rounded-2xl p-8 border"
+            style={{
+              backgroundColor: 'rgba(26, 26, 26, 0.8)',
+              borderColor: 'rgba(241, 224, 181, 0.15)',
+            }}
+          >
+            <div className="flex items-center gap-5 mb-6">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logos/mythia-logo.png"
+                alt="Mythia"
+                width={56}
+                height={56}
+                className="rounded-[14px] object-cover"
+                style={{ boxShadow: '0 4px 16px rgba(241, 224, 181, 0.12)' }}
+              />
+              <div>
+                <p
+                  className="text-lg text-[#F5F0E8]"
+                  style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
+                >
+                  Preview
+                </p>
+                <p className="text-xs text-[#C4B896] mt-0.5">
+                  A taste of how Mythia sounds
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <button
+                onClick={togglePlay}
+                className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-all hover:scale-105"
+                style={{
+                  background: 'linear-gradient(135deg, #F1E0B5 0%, #C4B49A 100%)',
+                }}
+                aria-label={isPlaying ? 'Pause' : 'Play'}
+              >
+                {isPlaying ? (
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="#0A0A0A">
+                    <rect x="4" y="3" width="3.5" height="12" rx="1" />
+                    <rect x="10.5" y="3" width="3.5" height="12" rx="1" />
+                  </svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="#0A0A0A">
+                    <path d="M5 3.5v11l10-5.5z" />
+                  </svg>
+                )}
+              </button>
+
+              <div className="flex-1">
+                <div
+                  className="w-full h-2 rounded-full cursor-pointer relative group"
+                  style={{ backgroundColor: 'rgba(241, 224, 181, 0.12)' }}
+                  onClick={handleSeek}
+                >
+                  <div
+                    className="h-full rounded-full transition-all"
+                    style={{
+                      width: `${progress * 100}%`,
+                      background: 'linear-gradient(90deg, #F1E0B5 0%, #C4B49A 100%)',
+                    }}
+                  />
+                  <div
+                    className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                    style={{
+                      left: `calc(${progress * 100}% - 7px)`,
+                      backgroundColor: '#F1E0B5',
+                      boxShadow: '0 0 8px rgba(241, 224, 181, 0.4)',
+                    }}
+                  />
+                </div>
+                <div className="flex justify-between mt-1.5 text-[11px] text-[#C4B896] tabular-nums">
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{duration ? formatTime(duration) : '--:--'}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -283,7 +442,7 @@ export default function MythiaContent() {
 
                 <div className="bg-[rgba(241,224,181,0.05)] border border-[rgba(241,224,181,0.12)] rounded-2xl p-6">
                   <p className="text-base text-[#C4B49A] leading-[1.8]">
-                    Each story is 20–35 minutes long, carefully paced to help you fall asleep. No cliffhangers, no surprises—just gentle storytelling that honors the cultural traditions it comes from.
+                    Each story is 10–15 minutes long, carefully paced to help you fall asleep. No cliffhangers, no surprises—just gentle storytelling that honors the cultural traditions it comes from.
                   </p>
                 </div>
 
@@ -444,10 +603,10 @@ export default function MythiaContent() {
             A growing library of ancient stories
           </h2>
           <p className="text-base text-[#C4B49A] mb-12 max-w-2xl mx-auto">
-            45+ Greek stories now available. Norse, Egyptian, and Slavic collections growing. New stories added regularly.
+            45+ Greek stories now available. Norse, Egyptian, and Slavic collections growing — with many more mythologies from around the world on the way.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {['45+ Greek stories', '4 mythologies', '20–35 min each', 'New stories weekly'].map((stat) => (
+            {['45+ Greek stories', '4 mythologies & growing', '10–15 min each', 'New stories weekly'].map((stat) => (
               <div
                 key={stat}
                 className="border rounded-full px-5 py-3 text-sm font-medium"
