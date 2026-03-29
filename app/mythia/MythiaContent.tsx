@@ -93,7 +93,7 @@ const features = [
   },
   {
     title: '10–15 minutes',
-    description: 'The perfect length to carry you to sleep. Short enough to feel like a complete story.',
+    description: 'The perfect length to drift off. Short enough to feel complete, long enough to carry you to sleep.',
   },
   {
     title: 'No surprises',
