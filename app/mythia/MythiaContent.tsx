@@ -119,6 +119,18 @@ const faqs = [
     q: 'Do the stories have cliffhangers?',
     a: 'No. Every story in Mythia ends in complete resolution. No cliffhangers, no jump scares — just gentle, unhurried storytelling.',
   },
+  {
+    q: 'Can mythology stories help you fall asleep?',
+    a: 'Yes. Mythology stories have a natural rhythm — slow builds, familiar archetypes, and resolved endings — that makes them ideal for sleep. Mythia\'s stories are paced specifically for bedtime, with calm narration and no sudden surprises.',
+  },
+  {
+    q: 'What makes Mythia different from other sleep story apps?',
+    a: 'Most sleep apps offer generic content — rain sounds, made-up fiction, or recycled fairy tales. Mythia is built entirely around real mythology from ancient cultures, adapted faithfully and narrated in a warm, unhurried voice designed for sleep.',
+  },
+  {
+    q: 'Is Mythia available on Android?',
+    a: 'Mythia is currently available on iOS. An Android version is planned — sign up at althia.org to be notified when it launches.',
+  },
 ]
 
 export default function MythiaContent() {
@@ -432,7 +444,7 @@ export default function MythiaContent() {
                 className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-8 leading-[1.2]"
                 style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
               >
-                What is Mythia?
+                Mythology Bedtime Stories for Sleep
               </h2>
 
               <div className="space-y-6">
@@ -465,7 +477,7 @@ export default function MythiaContent() {
             className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-16 text-center leading-[1.2]"
             style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
           >
-            Worlds to explore
+            Greek, Norse, Egyptian &amp; Slavic Mythology
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
@@ -514,7 +526,7 @@ export default function MythiaContent() {
             className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-20 text-center leading-[1.2]"
             style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
           >
-            How a Mythia night works
+            How Mythology Becomes a Sleep Story
           </h2>
 
           {/* Flow Steps */}
@@ -600,7 +612,7 @@ export default function MythiaContent() {
             className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-4 leading-[1.2]"
             style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
           >
-            A growing library of ancient stories
+            A Growing Library of Mythology Stories
           </h2>
           <p className="text-base text-[#C4B49A] mb-12 max-w-2xl mx-auto">
             45+ Greek stories now available. Norse, Egyptian, and Slavic collections growing — with many more mythologies from around the world on the way.
@@ -627,7 +639,7 @@ export default function MythiaContent() {
             className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-12 text-center leading-[1.2]"
             style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
           >
-            Questions
+            Frequently Asked Questions
           </h2>
           <div className="space-y-4">
             {faqs.map((faq, idx) => (
