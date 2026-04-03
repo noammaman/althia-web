@@ -6,7 +6,10 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'Althia Privacy Policy — how we handle your data across Mythia and other Althia apps.',
-  robots: 'index, follow',
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function PrivacyPage() {
