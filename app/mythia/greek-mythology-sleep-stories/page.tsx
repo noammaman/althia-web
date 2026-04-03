@@ -120,9 +120,9 @@ export default function GreekMythologySleepStoriesPage() {
             A library that keeps growing
           </h2>
           <p className="text-base leading-[1.8]">
-            Mythia&apos;s Greek collection is the largest in the app, with hundreds of stories spanning the full
-            tradition — from the birth of the gods to the journeys of mortals who walked among them. New stories are
-            added regularly.
+            Mythia&apos;s Greek collection spans the full tradition — from the birth of the gods to the journeys of
+            mortals who walked among them. New stories are added regularly, with the library growing toward a hundred
+            tales and beyond.
           </p>
 
           <h2
