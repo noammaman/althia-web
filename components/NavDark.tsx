@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+const APP_STORE_URL = 'https://apps.apple.com/il/app/mythia-stories/id6760155082'
+
 export default function NavDark() {
   return (
     <nav
@@ -34,7 +36,9 @@ export default function NavDark() {
             Home
           </Link>
           <a
-            href="#download"
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm px-5 py-2 border border-[#F1E0B5] text-[#F1E0B5] rounded-full font-semibold transition-all hover:bg-[rgba(241,224,181,0.1)] hover:border-[#F5F0E8]"
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
           >

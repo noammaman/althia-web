@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 
 const canonical = 'https://althia.org/mythia/greek-mythology-sleep-stories'
 const ogImage = 'https://althia.org/mythia-og.jpg'
+const APP_STORE_URL = 'https://apps.apple.com/il/app/mythia-stories/id6760155082'
 
 export const metadata: Metadata = {
   title: {
@@ -88,7 +89,7 @@ export default function GreekMythologySleepStoriesPage() {
           </h2>
           <div className="space-y-6 text-base leading-[1.8]">
             <p>
-              Each Greek story in Mythia runs 10–15 minutes. The pacing is slow and deliberate — no cliffhangers, no
+              Each Greek story in Mythia runs 11–18 minutes. The pacing is slow and deliberate — no cliffhangers, no
               sudden turns. A single warm voice carries you through, with atmospheric sound design that shifts between
               three modes: Temple, Hearth, or Voice Only.
             </p>
@@ -121,8 +122,8 @@ export default function GreekMythologySleepStoriesPage() {
           </h2>
           <p className="text-base leading-[1.8]">
             Mythia&apos;s Greek collection spans the full tradition — from the birth of the gods to the journeys of
-            mortals who walked among them. New stories are added regularly, with the library growing toward a hundred
-            tales and beyond.
+            mortals who walked among them. The library now includes 110 Greek stories, including eight epic journey
+            series.
           </p>
 
           <h2
@@ -150,8 +151,8 @@ export default function GreekMythologySleepStoriesPage() {
             Try Mythia tonight
           </h2>
           <p className="text-base leading-[1.8] mb-10">
-            Mythia is free to download on iOS. The Greek mythology collection is available now, with Norse, Egyptian,
-            and Slavic traditions growing alongside it.
+            Mythia is free to download on iOS. The Greek mythology collection is fully live alongside nine other world
+            mythologies.
           </p>
         </div>
       </article>
@@ -159,7 +160,9 @@ export default function GreekMythologySleepStoriesPage() {
       <section id="download" className="py-24 px-6 text-center" style={{ backgroundColor: '#131110' }}>
         <div className="max-w-2xl mx-auto">
           <a
-            href="/mythia#download"
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-3 bg-[#F5F0E8] text-[#0A0A0A] rounded-xl font-semibold transition-all hover:bg-[#F1E0B5] hover:translate-y-[-2px]"
           >
             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
@@ -167,7 +170,7 @@ export default function GreekMythologySleepStoriesPage() {
             </svg>
             Download on the App Store
           </a>
-          <p className="text-xs text-[#C4B896] mt-4">Requires iOS 16 or later · New stories added regularly</p>
+          <p className="text-xs text-[#C4B896] mt-4">Requires iOS 16 or later</p>
         </div>
       </section>
 

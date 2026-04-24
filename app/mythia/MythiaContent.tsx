@@ -5,6 +5,8 @@ import NavDark from '@/components/NavDark'
 import Footer from '@/components/Footer'
 import { useEffect, useRef, useState, useCallback } from 'react'
 
+const APP_STORE_URL = 'https://apps.apple.com/il/app/mythia-stories/id6760155082'
+
 const mythologyWorlds = [
   {
     name: 'Greek',
@@ -12,7 +14,6 @@ const mythologyWorlds = [
     description: 'Gods who love, scheme, and suffer like humans, only with the power to unmake the world.',
     primary: '#D6C6A5',
     glow: 'rgba(214, 198, 165, 0.08)',
-    active: true,
   },
   {
     name: 'Norse',
@@ -20,7 +21,6 @@ const mythologyWorlds = [
     description: 'Stark, fated, and shot through with a beauty that knows the ice is always coming.',
     primary: '#8FAFC1',
     glow: 'rgba(143, 175, 193, 0.08)',
-    active: true,
   },
   {
     name: 'Egyptian',
@@ -28,15 +28,13 @@ const mythologyWorlds = [
     description: 'Ancient and unhurried, where gods are natural forces and death is just another cycle of the river.',
     primary: '#E4C997',
     glow: 'rgba(228, 201, 151, 0.08)',
-    active: true,
   },
   {
     name: 'Slavic',
     title: 'Forest & Folk',
     description: 'Forest-dark and folk-warm, where magic lives in the roots of things and grandmothers know more than kings.',
-    primary: '#C7A07A',
-    glow: 'rgba(199, 160, 122, 0.08)',
-    active: true,
+    primary: '#77A388',
+    glow: 'rgba(119, 163, 136, 0.08)',
   },
   {
     name: 'Japanese',
@@ -44,7 +42,6 @@ const mythologyWorlds = [
     description: 'Precise and strange, where spirits live in silence and beauty is found in impermanence.',
     primary: '#E9E6DF',
     glow: 'rgba(233, 230, 223, 0.08)',
-    active: false,
   },
   {
     name: 'Celtic',
@@ -52,15 +49,34 @@ const mythologyWorlds = [
     description: 'A world where the veil between living and otherworld is thin enough to walk through sideways.',
     primary: '#A8B5A0',
     glow: 'rgba(168, 181, 160, 0.08)',
-    active: false,
   },
   {
-    name: 'And more',
-    title: 'Many More to Come',
-    description: 'Hindu, Mesopotamian, Aztec, Aboriginal, Chinese, Polynesian — every tradition has stories worth falling asleep to.',
-    primary: '#B8A9C4',
-    glow: 'rgba(184, 169, 196, 0.08)',
-    active: false,
+    name: 'Hindu',
+    title: 'Dharma & Devotion',
+    description: 'Cycles within cycles — gods descend, demons rise, and the world is destroyed and remade in cosmic rhythm.',
+    primary: '#D7A45B',
+    glow: 'rgba(215, 164, 91, 0.08)',
+  },
+  {
+    name: 'Mesopotamian',
+    title: 'Between the Rivers',
+    description: 'The oldest written stories — gods of clay and water, heroes seeking immortality, wisdom bought with sacrifice.',
+    primary: '#7F94C8',
+    glow: 'rgba(127, 148, 200, 0.08)',
+  },
+  {
+    name: 'Mesoamerican',
+    title: 'The Fifth Sun',
+    description: 'Blood and maize, gods who gave themselves to create the world, time measured in sacred calendar rounds.',
+    primary: '#5FAFB4',
+    glow: 'rgba(95, 175, 180, 0.08)',
+  },
+  {
+    name: 'West African',
+    title: 'Spirit & Trickster',
+    description: 'Orisha and Anansi, creation from the cosmic river, wisdom hidden in folktales, the world made through divine migration.',
+    primary: '#8D9BC7',
+    glow: 'rgba(141, 155, 199, 0.08)',
   },
 ]
 
@@ -68,7 +84,7 @@ const flowSteps = [
   {
     number: '1',
     title: 'Choose your world',
-    description: 'Start with Greek, Norse, Egyptian, or Slavic mythology — with many more traditions on the way.',
+    description: 'Explore ten world mythologies and follow the tradition that matches your evening.',
   },
   {
     number: '2',
@@ -92,8 +108,8 @@ const features = [
     description: 'Temple, Hearth, or Voice Only. Each story scores differently — choose your atmosphere.',
   },
   {
-    title: '10–15 minutes',
-    description: 'The perfect length to drift off. Short enough to feel complete, long enough to carry you to sleep.',
+    title: '11–18 minutes',
+    description: 'The perfect length to drift off. Long enough to settle in, calm enough to carry you toward sleep.',
   },
   {
     title: 'No surprises',
@@ -105,15 +121,15 @@ const features = [
 const faqs = [
   {
     q: 'Is Mythia free?',
-    a: 'Mythia is free to download with select stories. Access the full library of 45+ Greek stories and growing collections from Norse, Egyptian, and Slavic traditions with a subscription.',
+    a: 'Mythia is free to download with select stories. Access the full library of 200+ stories across ten mythologies with a subscription or one-time mythology packs.',
   },
   {
     q: 'What mythologies are available?',
-    a: 'Mythia currently features stories from Greek, Norse, Egyptian, and Slavic traditions. Many more mythologies are on the way — we plan to cover traditions from around the world.',
+    a: 'Mythia features stories from ten world mythologies: Greek, Norse, Egyptian, Slavic, Japanese, Celtic, Hindu, Mesopotamian, Mesoamerican, and West African — with more traditions planned.',
   },
   {
     q: 'How long are the stories?',
-    a: 'Stories in Mythia are typically 10–15 minutes long, designed for a single sleep cycle. Most listeners fall asleep before the story ends.',
+    a: 'Stories in Mythia are typically 11–18 minutes long, designed for a single sleep cycle. Most listeners fall asleep before the story ends.',
   },
   {
     q: 'Do the stories have cliffhangers?',
@@ -224,7 +240,7 @@ export default function MythiaContent() {
     '@context': 'https://schema.org',
     '@type': 'MobileApplication',
     name: 'Mythia',
-    description: 'A bedtime audio app featuring ancient mythology stories from Greece, the Norse world, Egypt, and the Slavic forests.',
+    description: 'A bedtime audio app featuring 200+ stories across ten world mythologies.',
     url: 'https://althia.org/mythia',
     applicationCategory: 'HealthAndFitnessApplication',
     operatingSystem: 'iOS',
@@ -297,12 +313,14 @@ export default function MythiaContent() {
           </h1>
 
           <p className="text-[18px] text-[#C4B49A] max-w-2xl leading-[1.8]">
-            Ancient stories from Greece, the Norse world, Egypt, and the Slavic forests — narrated for the end of your day.
+            Ancient stories from ten world mythologies — narrated for the end of your day.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
             <a
-              href="#download"
+              href={APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-3 bg-[#F5F0E8] text-[#0A0A0A] rounded-xl font-semibold transition-all hover:bg-[#F1E0B5] hover:translate-y-[-2px]"
             >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
@@ -454,7 +472,7 @@ export default function MythiaContent() {
 
                 <div className="bg-[rgba(241,224,181,0.05)] border border-[rgba(241,224,181,0.12)] rounded-2xl p-6">
                   <p className="text-base text-[#C4B49A] leading-[1.8]">
-                    Each story is 10–15 minutes long, carefully paced to help you fall asleep. No cliffhangers, no surprises—just gentle storytelling that honors the cultural traditions it comes from.
+                    Each story is 11–18 minutes long, carefully paced to help you fall asleep. No cliffhangers, no surprises — just gentle storytelling that honors the cultural traditions it comes from.
                   </p>
                 </div>
 
@@ -477,14 +495,14 @@ export default function MythiaContent() {
             className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-16 text-center leading-[1.2]"
             style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
           >
-            Greek, Norse, Egyptian &amp; Slavic Mythology
+            Ten World Mythologies, Fully Live
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
             {mythologyWorlds.map((world) => (
               <div
                 key={world.name}
-                className={`rounded-2xl p-8 relative overflow-hidden transition-all ${world.active ? 'hover:translate-y-[-4px]' : 'opacity-70'}`}
+                className="rounded-2xl p-8 relative overflow-hidden transition-all hover:translate-y-[-4px]"
                 style={{
                   backgroundColor: '#1A1A1A',
                   borderTop: `4px solid ${world.primary}`,
@@ -498,11 +516,6 @@ export default function MythiaContent() {
                   <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#C4B896]">
                     {world.name}
                   </p>
-                  {!world.active && (
-                    <span className="text-[10px] border border-[rgba(241,224,181,0.25)] text-[#C4B896] px-2 py-0.5 rounded-full">
-                      Coming Soon
-                    </span>
-                  )}
                 </div>
                 <h3
                   className="text-2xl text-[#F5F0E8] mb-4"
@@ -615,10 +628,10 @@ export default function MythiaContent() {
             A Growing Library of Mythology Stories
           </h2>
           <p className="text-base text-[#C4B49A] mb-12 max-w-2xl mx-auto">
-            45+ Greek stories now available. Norse, Egyptian, and Slavic collections growing — with many more mythologies from around the world on the way.
+            200+ stories across ten world mythologies, crafted as calm bedtime narrations with three listening modes.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {['45+ Greek stories', '4 mythologies & growing', '10–15 min each', 'New stories weekly'].map((stat) => (
+            {['200+ stories across 10 mythologies', '110 Greek stories including 8 epic journey series', '11–18 min each', 'Growing library'].map((stat) => (
               <div
                 key={stat}
                 className="border rounded-full px-5 py-3 text-sm font-medium"
@@ -695,10 +708,12 @@ export default function MythiaContent() {
             Begin your mythology tonight.
           </h2>
           <p className="text-base text-[#C4B49A] mb-12">
-            Free to download. No ads. Stories added every week.
+            Free to download. No ads. A growing library across ten mythologies.
           </p>
           <a
-            href="#"
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-3 bg-[#F5F0E8] text-[#0A0A0A] rounded-xl font-semibold transition-all hover:bg-[#F1E0B5] hover:translate-y-[-2px] mb-4"
           >
             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
@@ -707,7 +722,7 @@ export default function MythiaContent() {
             Download on the App Store
           </a>
           <p className="text-xs text-[#C4B896]">
-            Requires iOS 16 or later · New stories added regularly
+            Requires iOS 16 or later
           </p>
         </div>
       </section>
