@@ -3,6 +3,8 @@ import Link from 'next/link'
 import NavLight from '@/components/NavLight'
 import Footer from '@/components/Footer'
 
+const APP_STORE_URL = 'https://apps.apple.com/il/app/mythia-stories/id6760155082'
+
 export const metadata: Metadata = {
   title: 'Althia — Stories for the Ancient Mind',
   description: 'Althia builds audio apps rooted in mythology, philosophy, and the ancient world — designed for sleep, reflection, and the contemplative mind.',
@@ -163,7 +165,7 @@ export default function Home() {
               </h3>
 
               <p className="text-base text-[#444444] leading-relaxed flex-grow mb-6">
-                Bedtime stories drawn from Greek, Norse, Egyptian, and Slavic mythology. Fall asleep to the tales that shaped civilizations.
+                Bedtime stories drawn from ten world mythologies. Sleep inside a growing library of 200+ stories shaped by the oldest traditions.
               </p>
 
               <Link
@@ -315,16 +317,18 @@ export default function Home() {
             className="text-base text-[#444444] mb-8"
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
           >
-            Mythia is free to download on iOS and Android.
+            Mythia is free to download on iOS — with 200+ stories across ten world mythologies.
           </p>
 
-          <Link
-            href="/mythia"
+          <a
+            href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-3 bg-[#111111] text-white rounded-full font-semibold transition-all hover:bg-[#333333] hover:translate-y-[-2px]"
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
           >
-            Download Mythia
-          </Link>
+            Download on the App Store
+          </a>
         </div>
       </section>
 
