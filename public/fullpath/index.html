@@ -209,6 +209,32 @@ strong{font-weight:700;color:var(--navy)}
 .layer.d .letter{background:linear-gradient(135deg,var(--pink),var(--orange))}
 .layer .meta2{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 
+/* eval cone */
+.evalcone{display:grid;grid-template-columns:1.05fr 1fr;gap:34px;align-items:center;margin:8px 0 40px}
+@media(max-width:820px){.evalcone{grid-template-columns:1fr;gap:20px}}
+.cone-poly{cursor:pointer;transition:opacity .25s}
+.cone-poly.off{opacity:.4}
+.cone-cap{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:8px;font-weight:600}
+.cone-detail{border-radius:14px;border:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow);padding:24px 26px;min-height:180px}
+.cone-detail .badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;padding:5px 12px;border-radius:20px;margin-bottom:12px}
+.cone-detail h4{margin:0 0 4px;color:var(--muted)}
+.cone-detail h3{margin:2px 0 8px}
+.cone-detail p{margin:0;font-size:14.5px;color:var(--navy-soft)}
+.cone-detail .stat{display:flex;gap:20px;margin-bottom:12px;flex-wrap:wrap}
+.cone-detail .stat div{font-size:12px;color:var(--muted)}
+.cone-detail .stat b{display:block;font-size:16px;color:var(--navy);font-weight:800}
+
+/* process flow */
+.flow{display:flex;align-items:stretch;gap:6px;margin-top:16px;overflow-x:auto;padding:2px 2px 8px}
+.fnode{flex:0 0 auto;width:150px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 13px;display:flex;flex-direction:column;gap:4px}
+.fnode .step{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--purple);font-weight:500}
+.fnode b{font-size:12.5px;color:var(--navy);font-weight:700;line-height:1.25}
+.fnode span{font-size:11.5px;color:var(--muted);line-height:1.35}
+.fnode.gate{border-color:rgba(56,224,198,.5);background:linear-gradient(180deg,rgba(56,224,198,.08),transparent)}
+.fnode.block{border-color:rgba(240,86,122,.4);background:linear-gradient(180deg,rgba(240,86,122,.06),transparent)}
+.flow .ar{flex:0 0 auto;align-self:center;color:var(--purple);font-weight:800;font-size:15px}
+.flow-note{font-size:12.5px;color:var(--muted);margin-top:8px;display:flex;align-items:center;gap:8px}
+
 /* ===== matrix ===== */
 .matrix-wrap{position:relative;margin:30px 0 8px;padding-left:40px;padding-bottom:40px}
 .matrix{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px;aspect-ratio:1.5/1}
@@ -301,9 +327,12 @@ footer .fine{font-size:13px;color:#7f8db0;margin-top:26px}
   section{padding:26px 0!important;break-inside:avoid}
   .reveal{opacity:1!important;transform:none!important}
   .defense{break-inside:avoid}
-  .convo,.card,.fam,.layer,.fstage{break-inside:avoid}
+  .convo,.card,.fam,.layer,.fstage,.evalcone,.cone-detail,.flow,.matrix-wrap{break-inside:avoid}
   a{color:var(--navy);text-decoration:none}
   #hero{min-height:auto}
+  .flow{overflow:visible!important;flex-wrap:wrap}
+  .fnode{width:auto;min-width:130px;flex:1 1 130px}
+  .evalcone{grid-template-columns:1fr 1fr}
   .defense .body{display:block!important}
   .defense summary .ic{display:none}
   /* gradient-text fallback for print engines without background-clip:text */
@@ -750,15 +779,52 @@ footer .fine{font-size:13px;color:#7f8db0;margin-top:26px}
     </div>
 
     <div class="callout reveal" style="margin-bottom:30px">
-      <span class="lbl">A distinction worth saying out loud</span>
-      <strong>Discovery vs. measurement.</strong> Vectorization + clustering is <em>discovery</em> — unsupervised, "what failure modes even exist?" — used to build the taxonomy. LLM-as-judge is <em>measurement</em> — rubric-supervised, "how often does each known mode happen, and how bad?" They run on the same transcripts but are independent pipelines; the judge reads raw text, not the clustering vectors.
+      <span class="lbl">A distinction worth saying out loud · discovery comes first</span>
+      <strong>Discovery precedes measurement.</strong> Vectorization + clustering is <em>discovery</em> — unsupervised, "what failure modes even exist?" — and it's what <em>builds</em> the taxonomy. LLM-as-judge is <em>measurement</em> — it <em>applies</em> that taxonomy to score each session. A category has to be discovered and named before the judge can grade against it, so the order is always <span class="mono" style="color:var(--purple)">cluster → name → judge</span>. What makes them feel simultaneous is the flywheel in steady state: you <em>measure</em> known categories with the judge while the human loop keeps <em>discovering</em> new, unnamed modes that feed back as new categories. Both run at once — but for any single category, discover-then-measure. (And the judge reads raw transcript text, not the clustering vectors.)
+    </div>
+
+    <div class="evalcone reveal">
+      <div>
+        <div style="font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);margin-bottom:8px">▲ Broad &amp; cheap · every session</div>
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tiered evaluation stack, from broad cheap checks to deep expensive review">
+          <defs>
+            <linearGradient id="gA" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#38E0C6"/><stop offset="1" stop-color="#4D8CFF"/></linearGradient>
+            <linearGradient id="gB" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4D8CFF"/><stop offset="1" stop-color="#7B5CFF"/></linearGradient>
+            <linearGradient id="gC" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7B5CFF"/><stop offset="1" stop-color="#F0567A"/></linearGradient>
+            <linearGradient id="gD" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F0567A"/><stop offset="1" stop-color="#FF7A45"/></linearGradient>
+          </defs>
+          <polygon class="cone-poly on" data-layer="a" points="20,2 380,2 349,72 51,72" fill="url(#gA)"/>
+          <polygon class="cone-poly off" data-layer="b" points="53,78 347,78 316,148 84,148" fill="url(#gB)"/>
+          <polygon class="cone-poly off" data-layer="c" points="87,154 313,154 283,224 117,224" fill="url(#gC)"/>
+          <polygon class="cone-poly off" data-layer="d" points="120,230 280,230 250,298 150,298" fill="url(#gD)"/>
+          <g style="pointer-events:none" fill="#fff" font-family="Figtree,sans-serif" text-anchor="middle">
+            <text x="200" y="34" font-size="20" font-weight="800">A</text><text x="200" y="52" font-size="12" font-weight="600">Programmatic</text>
+            <text x="200" y="110" font-size="20" font-weight="800">B</text><text x="200" y="128" font-size="12" font-weight="600">LLM judge</text>
+            <text x="200" y="186" font-size="18" font-weight="800">C</text><text x="200" y="203" font-size="11.5" font-weight="600">Golden evals</text>
+            <text x="200" y="262" font-size="16" font-weight="800">D</text><text x="200" y="278" font-size="11" font-weight="600">Human loop</text>
+          </g>
+        </svg>
+        <div style="font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--orange);margin-top:4px">▼ Deep &amp; costly · a tiny sample</div>
+        <div class="cone-cap"><span>Coverage narrows ↓</span><span>Depth deepens ↓</span></div>
+      </div>
+      <div class="cone-detail" id="coneDetail"><div class="badge" style="background:#2C9FCB">A</div><h4>Layer A · widest</h4><h3>Programmatic metrics</h3><div class="stat"><div><b>100% of sessions</b>coverage</div><div><b>~Free</b>cost</div><div><b>Deterministic</b>method</div></div><p>Signals computed from telemetry and graph traces — activation rate, the S0–S6 funnel, exit-type split, tool-error rate, turn count. They never hallucinate, so they are the ground truth every layer above is checked against.</p></div>
     </div>
 
     <div class="stack">
-      <div class="layer reveal a"><div class="letter">A</div><div><div class="meta2">100% of sessions · ~free</div><h3 style="margin:3px 0 6px">Programmatic metrics</h3><p style="margin:0;font-size:15px;color:var(--navy-soft)">Deterministic signals from telemetry and traces, no LLM: activation rate, the S0–S6 funnel, exit-type split, tool-error rate, clarification-loop count, turn count, time-to-activate. Ground truth for outcomes — they never hallucinate.</p></div></div>
-      <div class="layer reveal b"><div class="letter">B</div><div><div class="meta2">Scaled qualitative · the craft</div><h3 style="margin:3px 0 6px">LLM-as-judge on transcripts</h3><p style="margin:0 0 10px;font-size:15px;color:var(--navy-soft)">A rubric-based judge tags each session with a taxonomy category, severity, failing stage, and whether the <em>agent</em> caused it vs. user or integration. The design choices I'd defend:</p><div style="display:flex;flex-wrap:wrap;gap:8px"><span class="chip">Closed taxonomy</span><span class="chip">Evidence before verdict</span><span class="chip">Calibrate vs. human gold set (κ≳0.8)</span><span class="chip">Split judges by axis</span><span class="chip">Run on successes too</span><span class="chip">Mitigate position/verbosity bias</span></div></div></div>
-      <div class="layer reveal c"><div class="letter">C</div><div><div class="meta2">The CI gate</div><h3 style="margin:3px 0 6px">Golden unit evals</h3><p style="margin:0;font-size:15px;color:var(--navy-soft)">A curated set of representative requests — recurring reminder, multi-step, ambiguous, out-of-scope — each with an expected behavior. Every prompt/graph change runs against it <em>before</em> shipping, catching regressions in minutes. Seeded from real failures and Task-2-style edge cases. The smallest, sharpest, most reusable asset in the system.</p></div></div>
-      <div class="layer reveal d"><div class="letter">D</div><div><div class="meta2">Calibration + discovery</div><h3 style="margin:3px 0 6px">Human review loop</h3><p style="margin:0;font-size:15px;color:var(--navy-soft)">A weekly stratified sample, hand-read, doing two jobs: calibrating the judge (feeding the gold set) and discovering novel modes the taxonomy doesn't yet name. New modes flow back into taxonomy → judge → golden set. Small effort, high leverage — it keeps the automated layers honest.</p></div></div>
+      <div class="layer reveal a"><div class="letter">A</div><div><div class="meta2">100% of sessions · ~free</div><h3 style="margin:3px 0 6px">Programmatic metrics</h3><p style="margin:0;font-size:15px;color:var(--navy-soft)">Deterministic signals from telemetry and traces, no LLM: activation rate, the S0–S6 funnel, exit-type split, tool-error rate, clarification-loop count, turn count, time-to-activate. Ground truth for outcomes — they never hallucinate.</p>
+        <div class="flow"><div class="fnode"><span class="step">01</span><b>Every session</b><span>live traffic</span></div><span class="ar">→</span><div class="fnode"><span class="step">02</span><b>Emit events</b><span>from graph traces &amp; tool calls</span></div><span class="ar">→</span><div class="fnode"><span class="step">03</span><b>Compute metrics</b><span>deterministic, no LLM</span></div><span class="ar">→</span><div class="fnode"><span class="step">04</span><b>Funnel + dashboard</b><span>where &amp; how much</span></div></div>
+      </div></div>
+      <div class="layer reveal b"><div class="letter">B</div><div><div class="meta2">Scaled qualitative · the craft</div><h3 style="margin:3px 0 6px">LLM-as-judge on transcripts</h3><p style="margin:0 0 10px;font-size:15px;color:var(--navy-soft)">A rubric-based judge tags each session with a taxonomy category, severity, failing stage, and whether the <em>agent</em> caused it vs. user or integration. The design choices I'd defend:</p><div style="display:flex;flex-wrap:wrap;gap:8px"><span class="chip">Closed taxonomy</span><span class="chip">Evidence before verdict</span><span class="chip">Calibrate vs. human gold set (κ≳0.8)</span><span class="chip">Split judges by axis</span><span class="chip">Run on successes too</span><span class="chip">Mitigate position/verbosity bias</span></div>
+        <div class="flow"><div class="fnode"><span class="step">01</span><b>Transcript in</b><span>one session</span></div><span class="ar">→</span><div class="fnode"><span class="step">02</span><b>Judge reads</b><span>quotes evidence first</span></div><span class="ar">→</span><div class="fnode"><span class="step">03</span><b>Assigns labels</b><span>category · severity · stage · cause</span></div><span class="ar">→</span><div class="fnode"><span class="step">04</span><b>Structured JSON</b><span>machine-readable</span></div><span class="ar">→</span><div class="fnode"><span class="step">05</span><b>Aggregate</b><span>across thousands</span></div></div>
+        <div class="flow-note"><span class="chip ok" style="padding:3px 9px"><span class="d"></span>calibrated</span> Scored against a human-labelled gold set (target κ ≥ 0.8) and re-checked on a schedule, so the judge itself can't quietly drift.</div>
+      </div></div>
+      <div class="layer reveal c"><div class="letter">C</div><div><div class="meta2">The CI gate</div><h3 style="margin:3px 0 6px">Golden unit evals</h3><p style="margin:0;font-size:15px;color:var(--navy-soft)">A curated set of representative requests — recurring reminder, multi-step, ambiguous, out-of-scope — each with an expected behavior. Every prompt/graph change runs against it <em>before</em> shipping, catching regressions in minutes. Seeded from real failures and Task-2-style edge cases. The smallest, sharpest, most reusable asset in the system.</p>
+        <div class="flow"><div class="fnode"><span class="step">01</span><b>Curated cases</b><span>each w/ expected behavior</span></div><span class="ar">→</span><div class="fnode"><span class="step">02</span><b>Run the change</b><span>new prompt / graph</span></div><span class="ar">→</span><div class="fnode"><span class="step">03</span><b>Compare vs expected</b><span>exact match or judge</span></div><span class="ar">→</span><div class="fnode gate"><span class="step">PASS</span><b>✓ Ships</b><span>no regressions</span></div><div class="fnode block"><span class="step">FAIL</span><b>✗ Blocked</b><span>never reaches prod</span></div></div>
+        <div class="flow-note"><span class="chip" style="padding:3px 9px"><span class="d"></span>on every change</span> Seeded from real failures and Task-2-style edge cases; runs automatically in CI, catching regressions in minutes instead of in production.</div>
+      </div></div>
+      <div class="layer reveal d"><div class="letter">D</div><div><div class="meta2">Calibration + discovery</div><h3 style="margin:3px 0 6px">Human review loop</h3><p style="margin:0;font-size:15px;color:var(--navy-soft)">A weekly stratified sample, hand-read, doing two jobs: calibrating the judge (feeding the gold set) and discovering novel modes the taxonomy doesn't yet name. New modes flow back into taxonomy → judge → golden set. Small effort, high leverage — it keeps the automated layers honest.</p>
+        <div class="flow"><div class="fnode"><span class="step">01</span><b>Weekly sample</b><span>stratified across stages</span></div><span class="ar">→</span><div class="fnode"><span class="step">02</span><b>Human reads</b><span>ground truth</span></div><span class="ar">→</span><div class="fnode"><span class="step">03</span><b>Calibrate + label</b><span>feed the gold set</span></div><span class="ar">→</span><div class="fnode"><span class="step">04</span><b>Spot new modes</b><span>taxonomy gaps</span></div><span class="ar">↩</span><div class="fnode gate"><span class="step">LOOP</span><b>Feed back</b><span>→ taxonomy → judge</span></div></div>
+      </div></div>
     </div>
 
     <div class="callout reveal" style="margin-top:30px">
@@ -840,6 +906,7 @@ footer .fine{font-size:13px;color:#7f8db0;margin-top:26px}
         <h4 style="margin-bottom:12px;color:var(--blue)">Offline · before shipping</h4>
         <p style="font-size:14.5px;margin-bottom:12px;color:var(--navy-soft)"><strong>Golden set</strong> — must improve the target category without regressing others (the CI gate). Kills most bad changes in minutes.</p>
         <p style="font-size:14.5px;margin-bottom:12px;color:var(--navy-soft)"><strong>Replay / counterfactual</strong> — re-run the new prompt against <em>real</em> historical failed sessions. If it wouldn't have saved the sessions it targets, it doesn't ship.</p>
+        <p style="font-size:14.5px;margin-bottom:12px;color:var(--navy-soft)"><strong>Held-out, not trained-on</strong> — score on a slice of sessions I <em>didn't</em> inspect while writing the fix. Grading a change on the exact sessions used to design it is training on the test set: it overfits and flatters the result. Split into a development set (inspectable) and a held-out evaluation set (scoring only) — the gate number always comes from held-out.</p>
         <p style="font-size:14.5px;margin:0;color:var(--navy-soft)"><strong>Synthetic benchmark</strong> — generated conversations grounded in the real log distribution (incl. a user-simulator for multi-turn) to stress-test coverage. Supplements replay; never replaces it, since simulated users are cleaner than real ones.</p>
       </div>
       <div class="reveal card">
@@ -954,6 +1021,23 @@ document.querySelectorAll('.quad').forEach(q=>q.addEventListener('click',()=>{
   document.querySelectorAll('.quad').forEach(x=>x.classList.remove('active'));q.classList.add('active');
   const d=detail[q.dataset.q];qd.innerHTML='<h5>'+d[0]+'</h5><p>'+d[1]+'</p>';
 }));
+
+// eval cone
+const coneData={
+  a:{c:'#2C9FCB',sub:'Layer A · widest',title:'Programmatic metrics',cov:'100% of sessions',cost:'~Free',method:'Deterministic',what:'Signals computed from telemetry and graph traces — activation rate, the S0–S6 funnel, exit-type split, tool-error rate, turn count. They never hallucinate, so they are the ground truth every layer above is checked against.'},
+  b:{c:'#7B5CFF',sub:'Layer B',title:'LLM-as-judge',cov:'Sampled at scale',cost:'LLM cost',method:'Rubric judge',what:'A rubric-based judge reads each transcript and tags it with a taxonomy category, severity, failing stage, and root cause — the scaled way to get qualitative judgment. Calibrated against a human gold set so it can’t quietly drift.'},
+  c:{c:'#F0567A',sub:'Layer C',title:'Golden unit evals',cov:'Small curated set',cost:'Cheap · fast',method:'CI gate',what:'A curated set of representative requests with expected behaviors, run against every prompt or graph change before it ships. The gate that blocks regressions in minutes — seeded from real failures.'},
+  d:{c:'#FF7A45',sub:'Layer D · narrowest',title:'Human review loop',cov:'Tiny weekly sample',cost:'Human time',method:'Human review',what:'A weekly hand-read sample doing two jobs: calibrating the judge, and discovering new failure modes the taxonomy hasn’t named yet — which flow back in and keep the whole stack honest.'}
+};
+const coneDetail=document.getElementById('coneDetail');
+const conePolys=[...document.querySelectorAll('.cone-poly')];
+function setCone(l){
+  conePolys.forEach(p=>{const on=p.dataset.layer===l;p.classList.toggle('off',!on);p.classList.toggle('on',on);});
+  const d=coneData[l];
+  coneDetail.innerHTML='<div class="badge" style="background:'+d.c+'">'+l.toUpperCase()+'</div><h4>'+d.sub+'</h4><h3>'+d.title+'</h3><div class="stat"><div><b>'+d.cov+'</b>coverage</div><div><b>'+d.cost+'</b>cost</div><div><b>'+d.method+'</b>method</div></div><p>'+d.what+'</p>';
+}
+conePolys.forEach(p=>{p.addEventListener('mouseenter',()=>setCone(p.dataset.layer));p.addEventListener('click',()=>setCone(p.dataset.layer));});
+setCone('a');
 </script>
 </body>
 </html>
