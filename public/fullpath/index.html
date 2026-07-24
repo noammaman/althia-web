@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Engineer · Home Assignment — Noam × Fullpath</title>
+<meta name="description" content="A practical response to the Fullpath Prompt Engineer home assignment: debugging Lexi's SMS sales copy, and a production plan to lift AI-workflow-builder activation from 30% to 55%.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://althia.org/fullpath">
+<meta property="og:title" content="Two agents, one evaluation mindset">
+<meta property="og:description" content="Debugging Lexi's SMS copy, and a production plan to take AI-workflow-builder activation 30% → 55%. Prepared by Noam for the Fullpath LLM Team.">
+<meta property="og:image" content="https://althia.org/fullpath/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Two agents, one evaluation mindset">
+<meta name="twitter:description" content="Debugging Lexi's SMS copy, and a production plan to take activation 30% → 55%.">
+<meta name="twitter:image" content="https://althia.org/fullpath/og.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%2338E0C6'/%3E%3Cstop%20offset='.5'%20stop-color='%237B5CFF'/%3E%3Cstop%20offset='1'%20stop-color='%23FFC24B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx='16'%20cy='16'%20r='14'%20fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1B3B;
+  --navy-soft:#16294d;
+  --ink:#0B1B3B;
+  --muted:#5a6b85;
+  --line:#e6eaf1;
+  --paper:#ffffff;
+  --mist:#f5f7fa;
+  --mist-2:#eef2f8;
+  --teal:#38E0C6;
+  --blue:#4D8CFF;
+  --purple:#7B5CFF;
+  --pink:#F0567A;
+  --orange:#FF7A45;
+  --yellow:#FFC24B;
+  --grad:linear-gradient(90deg,#38E0C6 0%,#4D8CFF 26%,#7B5CFF 48%,#F0567A 70%,#FF7A45 86%,#FFC24B 100%);
+  --grad-soft:linear-gradient(90deg,rgba(56,224,198,.14),rgba(77,140,255,.14),rgba(123,92,255,.14),rgba(240,86,122,.14),rgba(255,122,69,.14),rgba(255,194,75,.14));
+  --shadow:0 1px 2px rgba(11,27,59,.04),0 8px 30px rgba(11,27,59,.06);
+  --shadow-lg:0 2px 6px rgba(11,27,59,.05),0 20px 50px rgba(11,27,59,.10);
+  --r:16px;
+  --maxw:1080px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Figtree',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.62;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:rgba(123,92,255,.18)}
+
+/* progress bar */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad);z-index:200;transition:width .1s linear}
+
+/* top nav */
+nav.topnav{position:fixed;top:0;left:0;right:0;height:60px;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:150;display:flex;align-items:center;justify-content:space-between;padding:0 26px}
+nav.topnav .brand{font-weight:800;letter-spacing:-.02em;font-size:19px;color:var(--navy);display:flex;align-items:center;gap:9px}
+nav.topnav .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--grad)}
+nav.topnav .navlinks{display:flex;gap:4px}
+nav.topnav .navlinks a{font-size:13.5px;font-weight:500;color:var(--muted);text-decoration:none;padding:7px 12px;border-radius:9px;transition:.18s}
+nav.topnav .navlinks a:hover{color:var(--navy);background:var(--mist)}
+nav.topnav .navlinks a.active{color:var(--navy);background:var(--mist-2)}
+@media(max-width:820px){nav.topnav .navlinks{display:none}}
+
+/* layout */
+section{padding:96px 26px;position:relative}
+.wrap{max-width:var(--maxw);margin:0 auto}
+.narrow{max-width:820px;margin:0 auto}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}.scrollcue{animation:none}*{scroll-behavior:auto!important}}
+
+/* type */
+h1{font-size:clamp(38px,6vw,62px);line-height:1.03;letter-spacing:-.03em;font-weight:800}
+h2{font-size:clamp(27px,3.6vw,40px);line-height:1.1;letter-spacing:-.025em;font-weight:800}
+h3{font-size:21px;font-weight:700;letter-spacing:-.01em}
+h4{font-size:16px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--muted)}
+p{margin-bottom:16px}
+p.lead{font-size:20px;color:var(--navy-soft)}
+strong{font-weight:700;color:var(--navy)}
+.mono{font-family:'JetBrains Mono',monospace}
+
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+.eyebrow::before{content:"";width:26px;height:3px;border-radius:2px;background:var(--grad)}
+
+.kicker-num{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--purple)}
+
+/* hero */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:60px;background:
+  radial-gradient(1200px 500px at 80% -10%,rgba(77,140,255,.08),transparent 60%),
+  radial-gradient(900px 500px at 0% 110%,rgba(123,92,255,.07),transparent 55%);
+  overflow:hidden}
+#hero .swoosh{position:absolute;inset:0;pointer-events:none;opacity:.9}
+#hero .htag{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:26px;display:flex;align-items:center;gap:10px}
+#hero .htag .pill{background:var(--navy);color:#fff;padding:4px 11px;border-radius:20px;letter-spacing:.06em}
+#hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#hero .sub{font-size:21px;color:var(--navy-soft);max-width:640px;margin-top:26px}
+#hero .meta{margin-top:40px;display:flex;flex-wrap:wrap;gap:26px;align-items:center;font-size:15px;color:var(--muted)}
+#hero .meta b{color:var(--navy);font-weight:700}
+.scrollcue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px;animation:bob 2.4s ease-in-out infinite}
+.scrollcue .arrow{width:20px;height:20px;border-right:2px solid var(--purple);border-bottom:2px solid var(--purple);transform:rotate(45deg)}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* cards & callouts */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:30px 32px;box-shadow:var(--shadow)}
+.mist{background:var(--mist)}
+.callout{border-left:3px solid transparent;border-image:var(--grad) 1;background:var(--mist);border-radius:0 12px 12px 0;padding:20px 24px;margin:22px 0}
+.callout .lbl{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);margin-bottom:6px;display:block}
+
+/* chips */
+.chip{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;padding:5px 12px;border-radius:20px;background:var(--mist-2);color:var(--navy-soft);border:1px solid var(--line)}
+.chip.primary{background:rgba(123,92,255,.09);color:var(--purple);border-color:rgba(123,92,255,.22)}
+.chip.warn{background:rgba(240,86,122,.09);color:var(--pink);border-color:rgba(240,86,122,.22)}
+.chip.ok{background:rgba(56,224,198,.12);color:#0f9e8b;border-color:rgba(56,224,198,.3)}
+.chip .d{width:7px;height:7px;border-radius:50%;background:currentColor}
+
+/* section divider label */
+.secthead{margin-bottom:44px}
+
+/* ===== SMS ===== */
+.convo{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);background:var(--paper)}
+.convo .chead{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 24px;border-bottom:1px solid var(--line);background:var(--mist)}
+.convo .chead .who{display:flex;align-items:center;gap:12px}
+.convo .chead .avatar{width:38px;height:38px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px}
+.convo .chead .who b{font-size:16px;display:block;line-height:1.2}
+.convo .chead .who span{display:block;font-size:12.5px;color:var(--muted)}
+.thread{padding:26px 24px;display:flex;flex-direction:column;gap:12px;background:linear-gradient(180deg,#fbfcfe,#f7f9fc)}
+.bubble{max-width:74%;padding:11px 15px;border-radius:18px;font-size:15px;line-height:1.5;position:relative}
+.bubble.in{align-self:flex-start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:5px;color:var(--navy)}
+.bubble.out{align-self:flex-end;background:var(--navy);color:#fff;border-bottom-right-radius:5px}
+.bubble.out.bad{background:linear-gradient(180deg,#2a3350,#222c47)}
+.bubble.ideal{align-self:flex-end;border-bottom-right-radius:5px;color:#0a2a25;background:linear-gradient(135deg,rgba(56,224,198,.9),rgba(77,140,255,.85));border:1px solid rgba(56,224,198,.5)}
+.bubble .tag{position:absolute;top:-9px;font-size:9.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:10px}
+.bubble.out.bad .tag{right:8px;background:var(--pink);color:#fff}
+.bubble.ideal .tag{right:8px;background:#0f9e8b;color:#fff}
+.toggle-row{display:flex;align-items:center;gap:14px;padding:16px 24px;border-top:1px solid var(--line);background:var(--paper)}
+.switch{position:relative;width:118px;height:36px;border-radius:20px;background:var(--mist-2);border:1px solid var(--line);cursor:pointer;flex-shrink:0;display:flex;font-size:12px;font-weight:700;user-select:none}
+.switch .opt{flex:1;display:flex;align-items:center;justify-content:center;z-index:2;color:var(--muted);transition:color .2s}
+.switch .knob{position:absolute;top:3px;left:3px;width:calc(50% - 3px);height:calc(100% - 6px);border-radius:16px;background:#fff;box-shadow:0 2px 6px rgba(11,27,59,.15);transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.switch.ideal .knob{transform:translateX(100%);background:linear-gradient(135deg,var(--teal),var(--blue))}
+.switch.ideal .opt.i{color:#0a2a25}
+.switch:not(.ideal) .opt.a{color:var(--pink)}
+.toggle-row .hint{font-size:13px;color:var(--muted)}
+
+/* analysis grid */
+.analysis{display:grid;grid-template-columns:1fr;gap:0;margin-top:26px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.arow{padding:22px 26px;border-bottom:1px solid var(--line)}
+.arow:last-child{border-bottom:none}
+.arow .h{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.arow .h .n{width:22px;height:22px;border-radius:6px;background:var(--mist-2);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--purple)}
+.prompt-fix{font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:1.6;background:var(--navy);color:#dfe7f5;border-radius:12px;padding:18px 20px;margin-top:4px;white-space:pre-wrap;position:relative;overflow:hidden}
+.prompt-fix::before{content:"";position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--grad)}
+.prompt-fix b{color:#fff}
+
+/* collapsible defense */
+.defense{margin-top:20px;border:1px dashed var(--line);border-radius:12px;overflow:hidden;background:var(--mist)}
+.defense summary{cursor:pointer;list-style:none;padding:15px 20px;font-weight:700;font-size:14.5px;color:var(--navy);display:flex;align-items:center;gap:11px}
+.defense summary::-webkit-details-marker{display:none}
+.defense summary .ic{width:22px;height:22px;border-radius:6px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex-shrink:0;transition:transform .25s}
+.defense[open] summary .ic{transform:rotate(45deg)}
+.defense .body{padding:2px 20px 20px 53px;font-size:14.5px;color:var(--navy-soft)}
+.defense .body p{margin-bottom:11px}
+.defense .body em{color:var(--purple);font-style:normal;font-weight:700}
+
+/* ===== funnel ===== */
+.funnel{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.fstage{display:grid;grid-template-columns:52px minmax(0,1fr) 190px 76px;align-items:center;gap:18px;padding:15px 20px;border-radius:12px;border:1px solid var(--line);background:var(--paper);transition:.2s}
+.fstage:hover{box-shadow:var(--shadow);transform:translateX(4px)}
+.fstage.leak{border-color:rgba(240,86,122,.4);background:linear-gradient(90deg,rgba(240,86,122,.04),transparent)}
+.fstage .sid{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;padding:6px 0;text-align:center;border-radius:8px}
+.fstage.agent .sid{background:rgba(77,140,255,.1);color:var(--blue)}
+.fstage.user .sid{background:rgba(255,122,69,.12);color:var(--orange)}
+.fstage .lbl b{font-size:15.5px}
+.fstage .lbl span{display:block;font-size:13px;color:var(--muted)}
+.meter{display:flex;flex-direction:column;gap:5px}
+.meter .track{height:8px;border-radius:6px;background:var(--mist-2);overflow:hidden}
+.meter .fill{height:100%;border-radius:6px;transition:width .9s cubic-bezier(.2,.7,.2,1)}
+.fstage.agent .fill{background:linear-gradient(90deg,var(--blue),var(--purple))}
+.fstage.user .fill{background:linear-gradient(90deg,var(--orange),var(--yellow))}
+.meter .mval{font-size:12.5px;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:8px}
+.meter .drop{font-size:11px;font-weight:700;color:var(--muted)}
+.meter .drop.big{color:#fff;background:var(--pink);padding:1px 7px;border-radius:6px}
+.fstage .actor{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:20px;text-align:center}
+.fstage.agent .actor{background:rgba(77,140,255,.1);color:var(--blue)}
+.fstage.user .actor{background:rgba(255,122,69,.12);color:var(--orange)}
+.legend{display:flex;flex-wrap:wrap;gap:18px;margin:22px 0 6px;font-size:13.5px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend .sw{width:14px;height:14px;border-radius:4px}
+
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:760px){.twocol{grid-template-columns:1fr}.fstage{grid-template-columns:44px 1fr 64px;grid-template-rows:auto auto;gap:10px 12px}.fstage .meter{grid-column:2/4}.fstage .actor{grid-row:1;grid-column:3}}
+
+/* ===== stack (assessment) ===== */
+.stack{display:flex;flex-direction:column;gap:12px}
+.layer{display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:start;padding:22px 24px;border-radius:14px;border:1px solid var(--line);position:relative;overflow:hidden;background:var(--paper)}
+.layer .letter{width:52px;height:52px;border-radius:12px;background:var(--grad);color:#fff;font-weight:800;font-size:22px;display:flex;align-items:center;justify-content:center}
+.layer.b .letter{background:linear-gradient(135deg,var(--blue),var(--purple))}
+.layer.c .letter{background:linear-gradient(135deg,var(--purple),var(--pink))}
+.layer.d .letter{background:linear-gradient(135deg,var(--pink),var(--orange))}
+.layer .meta2{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+/* ===== matrix ===== */
+.matrix-wrap{position:relative;margin:30px 0 8px;padding-left:40px;padding-bottom:40px}
+.matrix{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:14px;aspect-ratio:1.5/1}
+.quad{border-radius:14px;padding:22px;cursor:pointer;border:1.5px solid var(--line);transition:.22s;display:flex;flex-direction:column;gap:8px;background:var(--paper);position:relative}
+.quad:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.quad.active{border-color:transparent;box-shadow:var(--shadow-lg)}
+.quad h5{font-size:17px;font-weight:800;letter-spacing:-.01em}
+.quad .q-sub{font-size:13px;color:var(--muted);line-height:1.45}
+.qitems{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:10px}
+.qitem{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:20px;background:rgba(255,255,255,.75);border:1px solid var(--line);color:var(--navy-soft);white-space:nowrap}
+.quad.mp .qitem{text-decoration:line-through;opacity:.7}
+.quad .q-tag{font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;align-self:flex-start}
+.quad.qw{background:linear-gradient(135deg,rgba(56,224,198,.1),rgba(77,140,255,.07))}
+.quad.qw .q-tag{background:rgba(56,224,198,.2);color:#0f9e8b}
+.quad.qw.active{border-color:var(--teal)}
+.quad.bb{background:linear-gradient(135deg,rgba(77,140,255,.08),rgba(123,92,255,.07))}
+.quad.bb .q-tag{background:rgba(77,140,255,.15);color:var(--blue)}
+.quad.bb.active{border-color:var(--blue)}
+.quad.fi .q-tag{background:var(--mist-2);color:var(--muted)}
+.quad.fi.active{border-color:var(--muted)}
+.quad.mp{background:linear-gradient(135deg,rgba(240,86,122,.06),transparent)}
+.quad.mp .q-tag{background:rgba(240,86,122,.13);color:var(--pink)}
+.quad.mp.active{border-color:var(--pink)}
+.axis-y{position:absolute;left:0;top:0;bottom:40px;width:26px;display:flex;align-items:center;justify-content:center}
+.axis-y span{transform:rotate(-90deg);white-space:nowrap;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.axis-x{position:absolute;left:40px;right:0;bottom:0;height:26px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.axis-arrow{position:absolute;background:var(--line)}
+.matrix-detail{margin-top:20px;border-radius:14px;border:1px solid var(--line);background:var(--mist);padding:22px 26px;min-height:96px}
+.matrix-detail h5{font-size:16px;margin-bottom:6px}
+.matrix-detail p{font-size:14.5px;margin:0;color:var(--navy-soft)}
+
+/* ===== taxonomy ===== */
+.filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:22px}
+.fbtn{font-size:13px;font-weight:700;padding:8px 16px;border-radius:22px;border:1px solid var(--line);background:var(--paper);color:var(--navy-soft);cursor:pointer;transition:.18s}
+.fbtn:hover{border-color:var(--purple);color:var(--purple)}
+.fbtn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tax{display:flex;flex-direction:column;gap:26px}
+.fam{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.fam .fam-head{padding:16px 24px;background:var(--navy);color:#fff;display:flex;align-items:center;gap:12px}
+.fam .fam-head .fl{width:26px;height:26px;border-radius:7px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.fam .fam-head b{font-size:16px}
+.fam .fam-head span{font-size:13px;color:#aab8d4;font-weight:500}
+.taxrow{display:grid;grid-template-columns:1.1fr 1.5fr 1fr;gap:20px;padding:18px 24px;border-bottom:1px solid var(--line)}
+.taxrow:last-child{border-bottom:none}
+.taxrow .cat{font-weight:700;font-size:15px}
+.taxrow .cat .sub{display:block;font-size:12.5px;font-weight:600;color:var(--pink);margin-top:2px}
+.taxrow .cat .sub.under{color:var(--orange)}
+.taxrow .what{font-size:14px;color:var(--navy-soft)}
+.taxrow .det{font-size:12.5px}
+.taxrow .det .where{color:var(--muted);display:block;margin-bottom:6px}
+.det-badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px}
+.det-badge.deng{background:rgba(56,224,198,.14);color:#0f9e8b}
+.det-badge.judge{background:rgba(123,92,255,.1);color:var(--purple)}
+.det-badge.tel{background:rgba(255,122,69,.12);color:var(--orange)}
+.calib-banner{background:var(--grad-soft);border:1px solid var(--line);border-radius:var(--r);padding:24px 28px;margin-bottom:26px;display:flex;gap:20px;align-items:center}
+.calib-banner .big{font-size:40px;line-height:1}
+@media(max-width:760px){.taxrow{grid-template-columns:1fr;gap:10px}.calib-banner{flex-direction:column;text-align:center}}
+
+/* pull quote */
+.pull{font-size:clamp(22px,3vw,30px);line-height:1.35;font-weight:700;letter-spacing:-.02em;color:var(--navy)}
+.pull .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* assumptions list */
+.alist{list-style:none;display:flex;flex-direction:column;gap:2px}
+.alist li{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:15px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.alist li:last-child{border-bottom:none}
+.alist .k{font-weight:800;color:var(--navy);font-size:14px;letter-spacing:.02em;min-width:120px}
+.alist .v{font-size:14.5px;color:var(--navy-soft)}
+
+/* footer */
+footer{background:var(--navy);color:#c9d4ea;padding:70px 26px 46px;text-align:center}
+footer .fbrand{font-weight:800;font-size:24px;color:#fff;display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
+footer .fbrand .dot{width:14px;height:14px;border-radius:50%;background:var(--grad)}
+footer a{color:#fff}
+footer .fine{font-size:13px;color:#7f8db0;margin-top:26px}
+
+/* number tag section */
+.stepnum{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--purple);font-weight:500;margin-bottom:8px;display:block}
+
+/* expand-all notes control */
+.notes-toggle{position:fixed;right:20px;bottom:20px;z-index:120;background:var(--navy);color:#fff;border:none;font-family:inherit;font-size:13px;font-weight:700;padding:11px 17px;border-radius:24px;cursor:pointer;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:8px;transition:transform .2s}
+.notes-toggle:hover{transform:translateY(-2px)}
+.notes-toggle .g{width:9px;height:9px;border-radius:50%;background:var(--grad)}
+@media(max-width:820px){.notes-toggle{font-size:12px;padding:9px 13px}}
+
+/* print / PDF */
+@media print{
+  .notes-toggle,.topnav,#progress,.scrollcue{display:none!important}
+  body{font-size:12pt}
+  section{padding:26px 0!important;break-inside:avoid}
+  .reveal{opacity:1!important;transform:none!important}
+  .defense{break-inside:avoid}
+  .convo,.card,.fam,.layer,.fstage{break-inside:avoid}
+  a{color:var(--navy);text-decoration:none}
+  #hero{min-height:auto}
+  .defense .body{display:block!important}
+  .defense summary .ic{display:none}
+  /* gradient-text fallback for print engines without background-clip:text */
+  #hero h1 .grad,.pull .g,.calib-banner .big{-webkit-text-fill-color:var(--navy)!important;color:var(--navy)!important;background:none!important}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<button class="notes-toggle" id="notesToggle"><span class="g"></span>Expand all notes</button>
+
+<nav class="topnav">
+  <div class="brand"><span class="dot"></span>fullpath</div>
+  <div class="navlinks">
+    <a href="#overview">Overview</a>
+    <a href="#task2">Task 2 · Lexi</a>
+    <a href="#taxonomy">Taxonomy</a>
+    <a href="#task1">Task 1 · Builder</a>
+    <a href="#diagnose">Diagnose</a>
+    <a href="#assess">Assess</a>
+    <a href="#prioritize">Prioritize</a>
+    <a href="#validate">Validate</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <svg class="swoosh" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#38E0C6"/><stop offset=".26" stop-color="#4D8CFF"/><stop offset=".48" stop-color="#7B5CFF"/><stop offset=".7" stop-color="#F0567A"/><stop offset=".86" stop-color="#FF7A45"/><stop offset="1" stop-color="#FFC24B"/>
+      </linearGradient>
+    </defs>
+    <path d="M-50,720 C300,560 480,880 760,700 C1020,540 1180,760 1520,560" fill="none" stroke="url(#g1)" stroke-width="4" opacity=".55"/>
+    <path d="M-50,780 C320,640 520,900 820,720 C1080,570 1240,800 1520,620" fill="none" stroke="url(#g1)" stroke-width="2" opacity=".3"/>
+  </svg>
+  <div class="wrap">
+    <div class="htag reveal"><span class="pill">Prompt Engineer</span> Home Assignment · Q2 2026</div>
+    <h1 class="reveal">Two agents,<br>one <span class="grad">evaluation mindset</span>.</h1>
+    <p class="sub reveal">A practical response to the Fullpath home assignment: debugging Lexi's SMS sales copy, and a production plan to lift AI-workflow-builder activation from 30% to 55% in a quarter — built on a single, shared way of thinking about failure.</p>
+    <div class="meta reveal">
+      <div>Prepared by <b>Noam</b></div>
+      <div>For the <b>LLM Team</b> · c/o Merav</div>
+      <div><b>Scroll</b> to walk through ↓</div>
+    </div>
+  </div>
+  <div class="scrollcue"><span>Scroll</span><span class="arrow"></span></div>
+</section>
+
+<!-- ================= OVERVIEW ================= -->
+<section id="overview" class="mist">
+  <div class="narrow">
+    <div class="secthead reveal">
+      <div class="eyebrow">How to read this</div>
+      <h2>One thesis runs through both tasks.</h2>
+    </div>
+    <p class="lead reveal">The assignment is two problems — a hands-on copy debug and a strategic activation plan. I've treated them as one discipline: <strong>reason backward from a behavior to the rule that would prevent it, then build a system that measures that rule at scale.</strong></p>
+    <p class="reveal">Task 2 is where the mindset is concrete — four Lexi conversations, four precise fixes. Task 1 is where it scales — the same error-classification instinct becomes a diagnostic funnel, an evaluation stack, and a way to know whether a change actually worked. The connective tissue is a <strong>single evaluator taxonomy</strong> that grades both agents.</p>
+    <div class="callout reveal">
+      <span class="lbl">The through-line</span>
+      Most agent failures are a <strong>miscalibrated dial with two tails</strong>: doing too little (violating a user's stated limit) and doing too much (refusing safe, helpful ground). You'll see both tails in Lexi — and the whole point is that an evaluation system has to watch for both at once, because over-correcting one silently creates the other.
+    </div>
+    <div class="twocol reveal" style="margin-top:34px">
+      <div class="card">
+        <div class="kicker-num">TASK 2</div>
+        <h3 style="margin:6px 0 8px">Lexi — SMS copy debug</h3>
+        <p style="font-size:15px;margin:0;color:var(--navy-soft)">Four inbound-sales conversations, each with a distinct failure. For each: root cause, an evaluator category, the exact prompt rule to add, and a rewritten ideal response.</p>
+      </div>
+      <div class="card">
+        <div class="kicker-num">TASK 1</div>
+        <h3 style="margin:6px 0 8px">Builder — 30% → 55%</h3>
+        <p style="font-size:15px;margin:0;color:var(--navy-soft)">Diagnose where users drop, assess usage at scale, decide what to fix first, and prove the change moved the number — without fooling ourselves.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TASK 2 INTRO ================= -->
+<section id="task2">
+  <div class="narrow">
+    <div class="secthead reveal">
+      <div class="eyebrow">Task 2 · Riverline Auto · Denver, CO</div>
+      <h2>Debugging Lexi, one conversation at a time.</h2>
+    </div>
+    <p class="lead reveal">Lexi handles inbound leads over SMS and speaks for the dealership, so tone, wording, and judgment decide whether a lead converts. Below, each conversation carries a <strong>before → ideal</strong> toggle — flip it to see the rewrite in context — followed by the analysis and a collapsible defense note.</p>
+    <div class="reveal" style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+      <span class="chip"><span class="d"></span>Root cause</span>
+      <span class="chip primary"><span class="d"></span>Evaluator category</span>
+      <span class="chip"><span class="d"></span>Prompt remediation</span>
+      <span class="chip ok"><span class="d"></span>Ideal response</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONV 1 ===== -->
+<section id="conv1" style="padding-top:20px">
+  <div class="narrow">
+    <div class="reveal" style="display:flex;align-items:baseline;gap:14px;margin-bottom:22px">
+      <span class="stepnum">01</span>
+      <h3>The British car salesperson in Denver</h3>
+    </div>
+    <div class="convo reveal">
+      <div class="chead"><div class="who"><div class="avatar">L</div><div><b>Lexi</b><span>Conversation 1 · 2026 Chevy Equinox</span></div></div><span class="chip warn"><span class="d"></span>Localization</span></div>
+      <div class="thread">
+        <div class="bubble in">Hi, are you still selling the 2026 Chevy Equinox? Hoping to come see it this week.</div>
+        <div class="bubble out">Hi there! Yes, the 2026 Chevrolet Equinox is still available. It's a great pick if you need a roomy vehicle, with plenty of <b>boot space</b> for longer trips. Would you like to <b>organise</b> a time to come visit?</div>
+        <div class="bubble in">What about saturday morning?</div>
+        <div class="bubble out">Saturday morning works well. Shall I <b>book you in</b> around 10? I'll make sure it's ready for when you arrive.</div>
+        <div class="bubble in">Actually something came up, I might need to move it. Can I let you know tomorrow?</div>
+        <div class="bubble out bad" data-final><span class="tag">actual</span>Of course, not a problem. If your plans change I can always get the Saturday slot cancelled and we'll find another time that suits. Just let me know and I'll <b>sort it</b> for you. Happy to help with any <b>colour</b> or finance questions in the meantime.</div>
+        <div class="bubble ideal" data-ideal hidden><span class="tag">ideal</span>No problem at all — I'll pencil you in for Saturday at 10 and hold it. Just text me when you know, and if Saturday doesn't work we'll find another time that fits. Anything you'd like me to have ready on the Equinox in the meantime?</div>
+      </div>
+      <div class="toggle-row">
+        <div class="switch" data-switch><div class="knob"></div><div class="opt a">Actual</div><div class="opt i">Ideal</div></div>
+        <span class="hint">Toggle the final message. Same American register, shorter, keeps the appointment warm.</span>
+      </div>
+    </div>
+
+    <div class="analysis reveal">
+      <div class="arow"><div class="h"><span class="n">1</span>Root cause</div>
+        <p style="margin:0">Lexi speaks <strong>British English</strong> to a Denver shopper: "boot space," "organise," "book you in," "sort it," "colour." An American car buyer reads this as off — at best quirky, at worst a signal they're texting a foreign call center or a bot, which erodes the local-dealership trust that is Lexi's entire job. The base model is defaulting to its training-distribution register because nothing in the prompt pins the locale. A softer secondary issue: the final message drifts into over-promising and clutter.</p>
+      </div>
+      <div class="arow"><div class="h"><span class="n">2</span>Evaluator category</div>
+        <div style="display:flex;gap:9px;flex-wrap:wrap;margin-bottom:6px"><span class="chip warn"><span class="d"></span>Localization / Dialect Consistency</span><span class="chip"><span class="d"></span>Tone &amp; Verbosity Drift <em style="font-style:normal;opacity:.7">·secondary</em></span></div>
+        <p style="margin:6px 0 0;font-size:14.5px;color:var(--navy-soft)">Locale earns its own axis because it's cheap to detect — a lexicon/spelling check, no LLM needed — and high-signal for a US retail brand.</p>
+      </div>
+      <div class="arow"><div class="h"><span class="n">3</span>Prompt remediation</div>
+        <div class="prompt-fix"><b>Locale — US English only.</b> You represent a dealership in the United States. Always use American English spelling and vocabulary; never British/Commonwealth terms. Say <b>trunk</b> not boot, <b>color</b> not colour, <b>schedule/set up</b> not organise, <b>get you booked</b> not book you in, <b>take care of it</b> not sort it. Prices in USD; US date format.</div>
+        <p style="margin:12px 0 0;font-size:14px;color:var(--muted)">Pair with a deterministic banned-term lexicon in the eval pipeline so locale regressions are caught for free.</p>
+      </div>
+      <div class="arow"><div class="h"><span class="n">4</span>Ideal response</div>
+        <p style="margin:0;font-size:15px">Flip the toggle above to read it in context — American register, no over-promising, one forward-moving question to keep the visit alive.</p>
+      </div>
+    </div>
+
+    <details class="defense reveal">
+      <summary><span class="ic">+</span>Interview defense note</summary>
+      <div class="body">
+        <p><em>Why locale as its own category, not just "tone"?</em> Because the fix and the detector differ: tone drift needs an LLM judge and a rubric; locale is a closed lexical set you catch with a word-list at near-zero cost and 100% recall on known terms. Separating them keeps the eval stack cheap where it can be.</p>
+        <p><em>Edge case to prep for:</em> a dealership near the Canadian border, or a bilingual market — locale rules should be configurable per dealer, not globally hardcoded. That foreshadows the "config over prompt-forking" theme in Task 1.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== CONV 2 ===== -->
+<section id="conv2" class="mist">
+  <div class="narrow">
+    <div class="reveal" style="display:flex;align-items:baseline;gap:14px;margin-bottom:22px">
+      <span class="stepnum">02</span>
+      <h3>A $36,809 answer to a $7,000 question</h3>
+    </div>
+    <div class="convo reveal">
+      <div class="chead"><div class="who"><div class="avatar">L</div><div><b>Lexi</b><span>Conversation 2 · Trade-in + budget SUV</span></div></div><span class="chip warn"><span class="d"></span>Constraint violation</span></div>
+      <div class="thread">
+        <div class="bubble in">I've got a Civic I'd want to put toward the new car. Looking for a 2011-2013 SUV, looking to spend $5,000, max $6,000.</div>
+        <div class="bubble out">We don't have SUVs from 2011-2013 in your $5,000-$6,000 range. Are you open to considering newer or different budget options?</div>
+        <div class="bubble in">Newer is ok but can't go over $7,000. I need all wheel drive.</div>
+        <div class="bubble out bad" data-final><span class="tag">actual</span>I couldn't find any AWD SUVs priced under $7,000. Would you consider a new AWD pickup like the 2026 Chevrolet Colorado WT for <b>$36,809</b>?</div>
+        <div class="bubble ideal" data-ideal hidden><span class="tag">ideal</span>Thanks for the details — with AWD and a $7,000 cap, I'm not seeing a match in our used SUVs right now (most AWD SUVs on our lot start higher). Two ways I can help: I can flag you the moment something AWD comes in under $7k, and I can get your Civic appraised — a trade-in could stretch your budget and open up more options. Want me to start with the trade value?</div>
+      </div>
+      <div class="toggle-row">
+        <div class="switch" data-switch><div class="knob"></div><div class="opt a">Actual</div><div class="opt i">Ideal</div></div>
+        <span class="hint">The ideal respects both hard constraints and revives the trade-in as the path forward.</span>
+      </div>
+    </div>
+
+    <div class="analysis reveal">
+      <div class="arow"><div class="h"><span class="n">1</span>Root cause · three compounding failures</div>
+        <p style="margin:0 0 8px"><strong>1. Hard-constraint violation (budget).</strong> The shopper set an explicit ceiling — max $7,000 — and Lexi recommended a vehicle <strong>5.3× over budget</strong>. This is the cardinal sin: it says she isn't listening, and reads as a bait-and-switch. One message like this can end the conversation.</p>
+        <p style="margin:0 0 8px"><strong>2. Body-style violation.</strong> They asked for an SUV; she offered a pickup. Two ignored constraints in one message.</p>
+        <p style="margin:0"><strong>3. Dropped context.</strong> The Civic trade-in — a material fact that changes their budget and is a conversion hook — is never acknowledged. Root cause: a missing constraint-handling and graceful-fallback policy.</p>
+      </div>
+      <div class="arow"><div class="h"><span class="n">2</span>Evaluator category</div>
+        <div style="display:flex;gap:9px;flex-wrap:wrap"><span class="chip warn"><span class="d"></span>Constraint Handling Failure</span><span class="chip"><span class="d"></span>Context Retention</span><span class="chip"><span class="d"></span>Recommendation Relevance</span></div>
+        <p style="margin:8px 0 0;font-size:14.5px;color:var(--navy-soft)">"Recommended price ≤ stated max" is programmatically verifiable — a <strong>deterministic, high-severity check</strong>. Any violation is an automatic fail, no LLM judge required.</p>
+      </div>
+      <div class="arow"><div class="h"><span class="n">3</span>Prompt remediation</div>
+        <div class="prompt-fix"><b>Respect the shopper's stated constraints.</b> Treat explicit limits — budget ceiling, body style, drivetrain, year — as hard requirements. Never recommend a vehicle that violates one. A price ceiling is absolute.
+
+<b>When nothing matches:</b> (1) say so plainly; (2) offer the closest in-constraint option, or one nearest out-of-constraint option <b>only if you name the gap and ask permission</b>; (3) never jump categories (SUV→pickup) without asking; (4) use known context — if they have a trade-in, factor it in.</div>
+      </div>
+      <div class="arow"><div class="h"><span class="n">4</span>Ideal response</div>
+        <p style="margin:0;font-size:15px">Toggle above: honest about the miss, respects both limits, and turns the trade-in into the next step instead of pushing an absurd upsell.</p>
+      </div>
+    </div>
+
+    <details class="defense reveal">
+      <summary><span class="ic">+</span>Interview defense note</summary>
+      <div class="body">
+        <p><em>Why deterministic, not an LLM judge, for the budget check?</em> "Price ≤ stated max" is a fact, not a judgment — cheaper, faster, 100% precision, and it can gate deploys in CI. Reserve the judge for the fuzzier question of whether she degraded <em>gracefully</em>.</p>
+        <p><em>Trade-off considered:</em> you could argue an over-budget car is legitimate "anchor high" selling. Over SMS with an explicit stated cap, the trust cost outweighs it — and the rule already allows a stretch option <em>with permission</em>.</p>
+        <p><em>Edge case:</em> soft vs. hard constraints — "around $6k" is negotiable, "max $6,000" is not. The policy has to read the modifier, which is exactly the nuance I'd put in the Task 1 golden set.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== CONV 3 ===== -->
+<section id="conv3">
+  <div class="narrow">
+    <div class="reveal" style="display:flex;align-items:baseline;gap:14px;margin-bottom:22px">
+      <span class="stepnum">03</span>
+      <h3>Sixty words of praise, zero answers</h3>
+    </div>
+    <div class="convo reveal">
+      <div class="chead"><div class="who"><div class="avatar">L</div><div><b>Lexi</b><span>Conversation 3 · 2024 RAV4 in stock?</span></div></div><span class="chip warn"><span class="d"></span>Verbosity + Dead-end</span></div>
+      <div class="thread">
+        <div class="bubble in">Do you have the 2024 RAV4 in stock?</div>
+        <div class="bubble out bad" data-final><span class="tag">actual</span>Thank you so much for reaching out, and what a fantastic choice the 2024 Toyota RAV4 is! It's an incredibly popular, versatile, and reliable vehicle that continues to be a favorite among drivers for its impressive blend of style, comfort, capability, and outstanding value, making it a truly excellent option to consider for your next vehicle. I would be absolutely delighted to assist you on this exciting journey!</div>
+        <div class="bubble ideal" data-ideal hidden><span class="tag">ideal</span>Let me check our current RAV4 inventory — one sec. ✅ Yes: we've got two 2024 RAV4s on the lot right now, an LE and an XLE. Want me to set up a time this week to see them?</div>
+        <div class="bubble in">Do you have it in stock?</div>
+        <div class="bubble out">That's a great question! Let me look into the current availability of this wonderful vehicle for you right away, please hold on just a moment while I check on that for you.</div>
+      </div>
+      <div class="toggle-row">
+        <div class="switch" data-switch><div class="knob"></div><div class="opt a">Actual</div><div class="opt i">Ideal</div></div>
+        <span class="hint">Toggle the first reply: answer the actual question, act don't narrate, one question back.</span>
+      </div>
+    </div>
+
+    <div class="analysis reveal">
+      <div class="arow"><div class="h"><span class="n">1</span>Root cause · two linked failures</div>
+        <p style="margin:0 0 8px"><strong>Verbosity / sycophancy drift.</strong> The first reply is pure filler and, over SMS where replies should be a sentence or two, reads unmistakably as a bot — while burying the fact that she never answered.</p>
+        <p style="margin:0"><strong>Silent dead-end / false async promise.</strong> "Let me check… please hold on" implies a synchronous lookup that never resolves — there's no human pausing, and she never calls the inventory tool. This is the costlier failure: verbosity annoys, but the dead-end loses the lead. Root cause: no SMS brevity constraint, plus a missing "act, don't narrate" rule.</p>
+      </div>
+      <div class="arow"><div class="h"><span class="n">2</span>Evaluator category</div>
+        <div style="display:flex;gap:9px;flex-wrap:wrap"><span class="chip warn"><span class="d"></span>Tone &amp; Verbosity Drift</span><span class="chip warn"><span class="d"></span>Dead-End Deflection</span><span class="chip"><span class="d"></span>Tool-Use Failure</span></div>
+        <p style="margin:8px 0 0;font-size:14.5px;color:var(--navy-soft)">Both are tagged <strong>co-primary</strong>. Verbosity is what a human notices first; the dead-end is what actually kills the conversion — and they need different detectors.</p>
+      </div>
+      <div class="arow"><div class="h"><span class="n">3</span>Prompt remediation</div>
+        <div class="prompt-fix"><b>Keep it short (SMS).</b> Reply in 1–2 sentences, under ~30 words. Answer the shopper's actual question first. No filler praise, no stacked adjectives, one question back max.
+
+<b>Act, don't narrate.</b> If a tool can look something up, call it and give the result — don't say "let me check" and stop. If you truly can't get the answer in this channel, say so plainly and give the next step. Never promise a check you won't complete in the same turn.</div>
+      </div>
+      <div class="arow"><div class="h"><span class="n">4</span>Ideal response</div>
+        <p style="margin:0;font-size:15px">Toggle above: checks inventory, gives the real answer, moves to booking — in a fraction of the words.</p>
+      </div>
+    </div>
+
+    <details class="defense reveal">
+      <summary><span class="ic">+</span>Interview defense note</summary>
+      <div class="body">
+        <p><em>Why split one bad message into two categories?</em> Different fixes, different detectors: verbosity is catchable with a cheap word/adjective heuristic; the dead-end needs a judge checking "did the agent answer or advance the task?" Tagging both lets prioritization see the dead-end is the conversion-killer even though verbosity is more visible.</p>
+        <p><em>Trade-off:</em> a hard word cap risks clipping legitimately complex answers (financing math, multi-vehicle comparisons) — so it's a strong default, not an absolute; the golden set should include cases where a longer reply is correct.</p>
+        <p><em>Edge case:</em> real tool latency — a genuine "checking now" message is fine <em>only</em> when a call is actually in flight, never as a substitute for it.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ===== CONV 4 ===== -->
+<section id="conv4" class="mist">
+  <div class="narrow">
+    <div class="reveal" style="display:flex;align-items:baseline;gap:14px;margin-bottom:22px">
+      <span class="stepnum">04</span>
+      <h3>Refusing the one thing the buyer needed to hear</h3>
+    </div>
+    <div class="convo reveal">
+      <div class="chead"><div class="who"><div class="avatar">L</div><div><b>Lexi</b><span>Conversation 4 · 2021 Honda Passport + financing</span></div></div><span class="chip warn"><span class="d"></span>Over-refusal</span></div>
+      <div class="thread">
+        <div class="bubble in">Hi! I saw the 2021 Honda Passport on your site and I'm really interested. Hoping to get something sorted this month.</div>
+        <div class="bubble out">I can't confirm specific vehicle availability over text, but I can pass your details to a sales rep. Would you like me to do that?</div>
+        <div class="bubble in">Yes please. I'm a little tight on a down payment right now, is that something you can work with?</div>
+        <div class="bubble out">I can't assist with down payment or financing details. Would you like me to connect you to a specialist?</div>
+        <div class="bubble in">Ok but that's kind of the main thing I need to know before I come in.</div>
+        <div class="bubble out bad" data-final><span class="tag">actual</span>I'm not able to share financing or program information. A specialist would need to go over that with you. When would be a good time for them to reach out?</div>
+        <div class="bubble ideal" data-ideal hidden><span class="tag">ideal</span>Totally get it — you don't want to come in without knowing that. Good news: our finance team works with all kinds of budgets and down payments, and there's usually more flexibility than people expect, so a tight down payment doesn't rule you out. I'll have a finance specialist put together some real options on the Passport for you — are mornings or afternoons better for a quick call?</div>
+      </div>
+      <div class="toggle-row">
+        <div class="switch" data-switch><div class="knob"></div><div class="opt a">Actual</div><div class="opt i">Ideal</div></div>
+        <span class="hint">Reassure within safe bounds, keep the car in play, make the hand-off feel like progress.</span>
+      </div>
+    </div>
+
+    <div class="analysis reveal">
+      <div class="arow"><div class="h"><span class="n">1</span>Root cause</div>
+        <p style="margin:0 0 8px"><strong>Over-refusal / guardrail over-application.</strong> There's a legitimate guardrail — Lexi shouldn't quote rates or approve financing — but she applies it to the <strong>entire topic</strong> rather than the specific commitments. A high-intent, time-bound lead ("this month") gets a cold brush-off on the exact concern blocking the sale.</p>
+        <p style="margin:0">Compounded by <strong>no empathy or bridging</strong>: she never acknowledges the concern, never reassures at the safe general level, never gives a reason to still come in. Note the deliberate mirror to Conv 2 — that was <strong>under-</strong>respecting a constraint; this is <strong>over-</strong>respecting one. You can't fix one by cranking the other.</p>
+      </div>
+      <div class="arow"><div class="h"><span class="n">2</span>Evaluator category</div>
+        <div style="display:flex;gap:9px;flex-wrap:wrap"><span class="chip warn"><span class="d"></span>Over-Refusal / Guardrail Over-Application</span><span class="chip"><span class="d"></span>Empathy &amp; Rapport Miss</span><span class="chip"><span class="d"></span>Lost Conversion</span></div>
+        <p style="margin:8px 0 0;font-size:14.5px;color:var(--navy-soft)">Tracked as a distinct axis from constraint-violation precisely because they're opposite tails of the same calibration dial.</p>
+      </div>
+      <div class="arow"><div class="h"><span class="n">3</span>Prompt remediation</div>
+        <div class="prompt-fix"><b>Financing — reassure and route, don't quote or refuse the topic.</b> You may not quote specific rates, APRs, payments, or approval decisions, and must not promise terms. But financing is a welcome topic — never shut it down. When a shopper raises it: (1) acknowledge warmly; (2) reassure generally — the dealership works with a wide range of budgets, down payments, and credit situations; (3) collect any context they offer; (4) route to a specialist as a <b>positive next step</b>, framed as getting real numbers. Never reply only "I can't help with that."</div>
+      </div>
+      <div class="arow"><div class="h"><span class="n">4</span>Ideal response</div>
+        <p style="margin:0;font-size:15px">Toggle above: validates the concern, reassures inside safe bounds, keeps the Passport alive, converts the hand-off into momentum.</p>
+      </div>
+    </div>
+
+    <details class="defense reveal">
+      <summary><span class="ic">+</span>Interview defense note</summary>
+      <div class="body">
+        <p><em>Isn't this encouraging the agent to give financial advice?</em> No — the rule <em>tightens</em> what's forbidden (specific numbers, approvals, promises) while <em>permitting</em> the general reassurance any good salesperson gives. The failure wasn't too little caution; it was caution aimed at the wrong target.</p>
+        <p><em>Why pair it with Conv 2?</em> To show the taxonomy is calibrated in both directions — over- and under-application are separate categories with separate fixes, and a system that watches only one silently creates the other.</p>
+        <p><em>Edge case:</em> jurisdiction — some financing statements carry regulatory weight, so the "safe reassurance" language should itself be reviewed by compliance and pinned, not improvised by the model.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ================= TAXONOMY BRIDGE ================= -->
+<section id="taxonomy">
+  <div class="wrap">
+    <div class="secthead reveal">
+      <div class="eyebrow">The bridge · Task 2 → Task 1</div>
+      <h2>One evaluator taxonomy, both agents.</h2>
+    </div>
+    <div class="calib-banner reveal">
+      <div class="big">⚖️</div>
+      <div>
+        <strong>Family A is the core insight.</strong> Most failures are a miscalibrated dial with two tails — <span style="color:var(--orange);font-weight:700">under-application</span> (violating a stated limit) and <span style="color:var(--pink);font-weight:700">over-refusal</span> (refusing safe ground). An eval system has to watch both, because tuning one tail silently breaks the other.
+      </div>
+    </div>
+
+    <div class="filters reveal">
+      <button class="fbtn active" data-fam="all">All families</button>
+      <button class="fbtn" data-fam="a">A · Calibration</button>
+      <button class="fbtn" data-fam="b">B · Communication</button>
+      <button class="fbtn" data-fam="c">C · Task completion</button>
+      <button class="fbtn" data-fam="d">D · State &amp; trust</button>
+    </div>
+
+    <div class="tax">
+      <div class="fam reveal" data-fam="a">
+        <div class="fam-head"><span class="fl">A</span><b>Calibration</b><span>· the dial with two tails</span></div>
+        <div class="taxrow"><div class="cat">Constraint Under-Application<span class="sub under">↓ the "too little" tail</span></div><div class="what">Ignores a stated hard limit — budget, drivetrain, "weekdays only."</div><div class="det"><span class="where">Lexi Conv 2 · Builder: ignored condition</span><span class="det-badge deng">Deterministic where numeric</span></div></div>
+        <div class="taxrow"><div class="cat">Over-Refusal / Guardrail Over-Application<span class="sub">↑ the "too much" tail</span></div><div class="what">Refuses safe, helpful territory instead of engaging within bounds.</div><div class="det"><span class="where">Lexi Conv 4 · Builder: flat "can't do that"</span><span class="det-badge judge">LLM judge</span></div></div>
+      </div>
+      <div class="fam reveal" data-fam="b">
+        <div class="fam-head"><span class="fl">B</span><b>Communication</b><span>· how it says things</span></div>
+        <div class="taxrow"><div class="cat">Localization / Dialect Consistency</div><div class="what">Wrong regional register — spelling, vocabulary, formatting.</div><div class="det"><span class="where">Lexi Conv 1</span><span class="det-badge deng">Deterministic lexicon</span></div></div>
+        <div class="taxrow"><div class="cat">Tone &amp; Verbosity Drift</div><div class="what">Too long, too effusive, or off-register for the channel.</div><div class="det"><span class="where">Lexi Conv 3</span><span class="det-badge deng">Heuristic</span> <span class="det-badge judge">+ judge</span></div></div>
+        <div class="taxrow"><div class="cat">Clarification Failure</div><div class="what">Doesn't ask when ambiguous — or over-asks until the user fatigues out.</div><div class="det"><span class="where">Builder: ambiguous requests</span><span class="det-badge judge">Judge + turn-count</span></div></div>
+      </div>
+      <div class="fam reveal" data-fam="c">
+        <div class="fam-head"><span class="fl">C</span><b>Task completion</b><span>· did it get the job done</span></div>
+        <div class="taxrow"><div class="cat">Dead-End Deflection / Non-Answer</div><div class="what">Implies progress and stalls; leaves the user with no next step.</div><div class="det"><span class="where">Lexi Conv 3</span><span class="det-badge judge">LLM judge</span></div></div>
+        <div class="taxrow"><div class="cat">Tool-Use Failure</div><div class="what">Narrates instead of acting, or malformed / failed tool call.</div><div class="det"><span class="where">Lexi Conv 3 · Builder S3</span><span class="det-badge deng">Deterministic on traces</span></div></div>
+        <div class="taxrow"><div class="cat">Intent Misunderstanding (NLU)</div><div class="what">Builds or answers the wrong thing entirely.</div><div class="det"><span class="where">Builder: wrong automation</span><span class="det-badge judge">Judge + outcome</span></div></div>
+        <div class="taxrow"><div class="cat">Capability / Grounding Gap</div><div class="what">Hallucinates a capability, or flatly refuses instead of offering the closest real option.</div><div class="det"><span class="where">Builder: out-of-scope asks</span><span class="det-badge judge">LLM judge</span></div></div>
+      </div>
+      <div class="fam reveal" data-fam="d">
+        <div class="fam-head"><span class="fl">D</span><b>State &amp; trust</b><span>· memory and confidence</span></div>
+        <div class="taxrow"><div class="cat">Context Retention Failure</div><div class="what">Drops information the user already gave.</div><div class="det"><span class="where">Lexi Conv 2 · the trade-in</span><span class="det-badge judge">LLM judge</span></div></div>
+        <div class="taxrow"><div class="cat">Validation / Activation Failure</div><div class="what">Built, but won't validate or won't turn on.</div><div class="det"><span class="where">Builder S4–S6</span><span class="det-badge deng">Deterministic</span></div></div>
+        <div class="taxrow"><div class="cat">Trust Drop / Fallback-to-UI</div><div class="what">Abandons to the legacy UI despite a working draft.</div><div class="det"><span class="where">Builder: exit type</span><span class="det-badge tel">Telemetry</span></div></div>
+      </div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:34px">
+      <span class="lbl">The one-liner that sells it</span>
+      "The same discipline that catches Lexi recommending a $36k truck on a $7k budget catches the builder ignoring 'weekdays only' — and the same taxonomy that flags a violation also flags its opposite, over-refusal, so tuning one tail never silently breaks the other."
+    </div>
+  </div>
+</section>
+
+<!-- ================= TASK 1 INTRO + ASSUMPTIONS ================= -->
+<section id="task1" class="mist">
+  <div class="narrow">
+    <div class="secthead reveal">
+      <div class="eyebrow">Task 1 · AI Workflow Builder</div>
+      <h2>From 30% to 55% activation in a quarter.</h2>
+    </div>
+    <p class="lead reveal">The builder lets small-business users describe an automation in plain language; today 30% end up saving and activating something that works. Getting to 55% is four moves: <strong>diagnose, assess at scale, prioritize, validate.</strong> First, the assumptions I'd confirm on day one — so every decision is traceable to one.</p>
+    <div class="card reveal" style="margin-top:8px">
+      <h4 style="margin-bottom:14px">Stated assumptions</h4>
+      <ul class="alist">
+        <li><span class="k">Volume</span><span class="v">~8,000 builder sessions / quarter. Enough to A/B large effects, not to slice thin segments — this shapes the whole measurement approach.</span></li>
+        <li><span class="k">Architecture</span><span class="v">A graph of nodes: intake/NLU → clarification → plan/spec → tool-calling (trigger, actions, field mapping) → validation/preview → save &amp; activate. I can read graph traces, not just chat text.</span></li>
+        <li><span class="k">Outcome label</span><span class="v">"Saved &amp; activated a working automation" is a clean binary, plus a "fell back to the UI" signal. This is ground truth.</span></li>
+        <li><span class="k">"Working"</span><span class="v">Passes validation <em>and</em> runs/enables — not merely "saved."</span></li>
+        <li><span class="k">Bandwidth</span><span class="v">Some eng time for instrumentation, an eval harness, and feature-flagged A/B. No full graph re-architecture this quarter.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 1.1 DIAGNOSE ================= -->
+<section id="diagnose">
+  <div class="wrap">
+    <div class="secthead reveal">
+      <span class="stepnum">1.1</span>
+      <h2>Diagnosing what's not landing.</h2>
+      <p class="lead" style="margin-top:16px">Two questions, two methods. <strong>Where</strong> users drop is quantitative (telemetry). <strong>Why</strong> they drop is qualitative (log clustering). Most teams do only the first and optimize blind.</p>
+    </div>
+
+    <div class="reveal">
+      <h4 style="margin-bottom:6px">Where · instrument the graph as a funnel</h4>
+      <p style="max-width:760px">Turn the graph into a measurable funnel and emit an event at each stage. Drop-off per stage tells you where the 70% leaks — and a leak at S1 (never understood them) needs a completely different fix than one at S3 (tool failed) or S5→S6 (built it but didn't trust it enough to activate).</p>
+      <div class="legend">
+        <span><span class="sw" style="background:rgba(77,140,255,.6)"></span><b style="color:var(--blue)">Agent stages</b> — a prompt/architecture fix</span>
+        <span><span class="sw" style="background:rgba(255,122,69,.7)"></span><b style="color:var(--orange)">User-decision stages</b> — a trust / UX fix</span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:4px 0 12px">
+        <span class="chip"><span class="d"></span>Illustrative data — hypothetical, per the brief</span>
+        <span style="font-size:13.5px;color:var(--muted)">Biggest single leak highlighted: <b style="color:var(--pink)">tool-calling (S2→S3)</b></span>
+      </div>
+      <div class="funnel">
+        <div class="fstage agent"><div class="sid">S0</div><div class="lbl"><b>Session start</b><span>User opens the builder</span></div><div class="meter"><div class="track"><div class="fill" style="width:100%"></div></div><div class="mval">100%<span class="drop">baseline</span></div></div><div class="actor">Entry</div></div>
+        <div class="fstage agent"><div class="sid">S1</div><div class="lbl"><b>Intent captured</b><span>Agent understood what to build</span></div><div class="meter"><div class="track"><div class="fill" style="width:88%"></div></div><div class="mval">88%<span class="drop">−12</span></div></div><div class="actor">Agent</div></div>
+        <div class="fstage agent"><div class="sid">S2</div><div class="lbl"><b>Spec / plan drafted</b><span>Agent proposes the automation</span></div><div class="meter"><div class="track"><div class="fill" style="width:76%"></div></div><div class="mval">76%<span class="drop">−12</span></div></div><div class="actor">Agent</div></div>
+        <div class="fstage agent leak"><div class="sid">S3</div><div class="lbl"><b>Tool calls succeed</b><span>Trigger + actions + field mapping built</span></div><div class="meter"><div class="track"><div class="fill" style="width:58%"></div></div><div class="mval">58%<span class="drop big">−18</span></div></div><div class="actor">Agent</div></div>
+        <div class="fstage agent"><div class="sid">S4</div><div class="lbl"><b>Validation / preview passes</b><span>The build is well-formed</span></div><div class="meter"><div class="track"><div class="fill" style="width:49%"></div></div><div class="mval">49%<span class="drop">−9</span></div></div><div class="actor">Agent</div></div>
+        <div class="fstage user"><div class="sid">S5</div><div class="lbl"><b>Saved</b><span>User commits the automation</span></div><div class="meter"><div class="track"><div class="fill" style="width:41%"></div></div><div class="mval">41%<span class="drop">−8</span></div></div><div class="actor">User</div></div>
+        <div class="fstage user"><div class="sid">S6</div><div class="lbl"><b>Activated &amp; working</b><span>Turned on and running</span></div><div class="meter"><div class="track"><div class="fill" style="width:30%"></div></div><div class="mval">30%<span class="drop big">−11</span></div></div><div class="actor">User</div></div>
+      </div>
+      <p style="font-size:13.5px;color:var(--muted);margin-top:14px">Two stages carry most of the loss: the <b style="color:var(--blue)">agent-side tool-calling leak at S3</b> (a prompt/architecture fix) and the <b style="color:var(--orange)">user-side trust drop at S5→S6</b> — built it, didn't activate it (a trust/UX fix). Same funnel, two very different remedies — which is the whole point of labeling by actor.</p>
+      <div class="callout" style="margin-top:24px">
+        <span class="lbl">Two refinements that change what you learn</span>
+        <strong>1 · Capture the exit type, not just the exit stage.</strong> Abandon, built-something-broken, and fell-back-to-UI demand opposite fixes — fallback is usually a <em>trust</em> problem, abandon a <em>friction</em> one. <strong>2 · Label each stage by actor.</strong> Agent-stage leaks point to prompt/architecture; user-stage leaks point to trust and UX. Same drop, different remedy. <span style="color:var(--muted)">(And it's a "furthest-stage-reached" funnel — real sessions loop.)</span>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:44px">
+      <h4 style="margin-bottom:6px">Why · cluster the failing sessions</h4>
+      <p style="max-width:760px">Telemetry says S3 is bleeding; it can't say why. For the leaking stages: <strong>embed → cluster → label → human-verify.</strong> Group similar failures automatically, name the clusters, and hand-read a stratified sample so you trust them rather than taking the machine's word. That produces a failure taxonomy for the builder — the same category set from Task 2, reused.</p>
+      <div class="twocol" style="margin-top:18px">
+        <div class="card"><h4 style="margin-bottom:10px;color:var(--purple)">Reused from Lexi</h4><p style="font-size:14.5px;margin:0;color:var(--navy-soft)">Intent misunderstanding · clarification failure (over/under) · capability &amp; grounding gap · constraint violation · silent dead-end — each maps straight onto a Lexi conversation.</p></div>
+        <div class="card"><h4 style="margin-bottom:10px;color:var(--blue)">Builder-specific</h4><p style="font-size:14.5px;margin:0;color:var(--navy-soft)">Tool-calling errors (malformed args, field mapping, auth) · validation/activation failure · trust drop / fallback-to-UI.</p></div>
+      </div>
+    </div>
+
+    <details class="defense reveal" style="margin-top:32px">
+      <summary><span class="ic">+</span>Interview defense note</summary>
+      <div class="body">
+        <p><em>Why a funnel before reading logs?</em> Reading logs without a funnel is fishing — you find vivid anecdotes and mistake them for the main leak. The funnel tells you where to spend expensive human/LLM attention.</p>
+        <p><em>Why both clustering and a fixed taxonomy?</em> Clustering catches modes you didn't anticipate (open-world); the taxonomy makes results comparable over time (closed-world). Running only one blinds you in one direction — the same over/under lesson from Task 2.</p>
+        <p><em>Edge case:</em> attribution — an S3 auth failure may be the partner's outage, not the agent's fault. The taxonomy must separate "agent caused" from "environment caused" or you'll spend a quarter tuning prompts against a broken integration.</p>
+        <p><em>If pressed on clustering mechanics:</em> embeddings → UMAP → HDBSCAN is the standard stack; PCA is a fast linear alternative for the reduction step, but UMAP preserves the local structure semantic clusters live in. That's an ML-team implementation detail — my job is defining what a "failure cluster" means and validating it's real.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ================= 1.2 ASSESS ================= -->
+<section id="assess" class="mist">
+  <div class="wrap">
+    <div class="secthead reveal">
+      <span class="stepnum">1.2</span>
+      <h2>Assessing usage at scale.</h2>
+      <p class="lead" style="margin-top:16px">You can't hand-read thousands of sessions, and you can't fly blind on metrics. So the framework is a <strong>tiered eval stack</strong> — cheap-and-broad at the bottom, expensive-and-deep at the top — where each layer catches what the one below can't.</p>
+    </div>
+
+    <div class="callout reveal" style="margin-bottom:30px">
+      <span class="lbl">A distinction worth saying out loud</span>
+      <strong>Discovery vs. measurement.</strong> Vectorization + clustering is <em>discovery</em> — unsupervised, "what failure modes even exist?" — used to build the taxonomy. LLM-as-judge is <em>measurement</em> — rubric-supervised, "how often does each known mode happen, and how bad?" They run on the same transcripts but are independent pipelines; the judge reads raw text, not the clustering vectors.
+    </div>
+
+    <div class="stack">
+      <div class="layer reveal a"><div class="letter">A</div><div><div class="meta2">100% of sessions · ~free</div><h3 style="margin:3px 0 6px">Programmatic metrics</h3><p style="margin:0;font-size:15px;color:var(--navy-soft)">Deterministic signals from telemetry and traces, no LLM: activation rate, the S0–S6 funnel, exit-type split, tool-error rate, clarification-loop count, turn count, time-to-activate. Ground truth for outcomes — they never hallucinate.</p></div></div>
+      <div class="layer reveal b"><div class="letter">B</div><div><div class="meta2">Scaled qualitative · the craft</div><h3 style="margin:3px 0 6px">LLM-as-judge on transcripts</h3><p style="margin:0 0 10px;font-size:15px;color:var(--navy-soft)">A rubric-based judge tags each session with a taxonomy category, severity, failing stage, and whether the <em>agent</em> caused it vs. user or integration. The design choices I'd defend:</p><div style="display:flex;flex-wrap:wrap;gap:8px"><span class="chip">Closed taxonomy</span><span class="chip">Evidence before verdict</span><span class="chip">Calibrate vs. human gold set (κ≳0.8)</span><span class="chip">Split judges by axis</span><span class="chip">Run on successes too</span><span class="chip">Mitigate position/verbosity bias</span></div></div></div>
+      <div class="layer reveal c"><div class="letter">C</div><div><div class="meta2">The CI gate</div><h3 style="margin:3px 0 6px">Golden unit evals</h3><p style="margin:0;font-size:15px;color:var(--navy-soft)">A curated set of representative requests — recurring reminder, multi-step, ambiguous, out-of-scope — each with an expected behavior. Every prompt/graph change runs against it <em>before</em> shipping, catching regressions in minutes. Seeded from real failures and Task-2-style edge cases. The smallest, sharpest, most reusable asset in the system.</p></div></div>
+      <div class="layer reveal d"><div class="letter">D</div><div><div class="meta2">Calibration + discovery</div><h3 style="margin:3px 0 6px">Human review loop</h3><p style="margin:0;font-size:15px;color:var(--navy-soft)">A weekly stratified sample, hand-read, doing two jobs: calibrating the judge (feeding the gold set) and discovering novel modes the taxonomy doesn't yet name. New modes flow back into taxonomy → judge → golden set. Small effort, high leverage — it keeps the automated layers honest.</p></div></div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:30px">
+      <span class="lbl">The flywheel</span>
+      Telemetry <b>(A)</b> finds the leak → judge + clustering <b>(B)</b> explain it → golden set <b>(C)</b> encodes it → changes get gated offline and A/B'd live → the human loop <b>(D)</b> surfaces new failures back into the taxonomy. Each turn, the eval system sharpens — which is what lets a 30→55 push keep compounding instead of stalling after the easy wins.
+    </div>
+
+    <details class="defense reveal" style="margin-top:26px">
+      <summary><span class="ic">+</span>Interview defense note</summary>
+      <div class="body">
+        <p><em>Why not one great LLM judge?</em> Cost, latency, trust. Anything programmable (locale lexicon, price ≤ max, turn count) should never touch an LLM. The judge is reserved for genuine judgment.</p>
+        <p><em>Why the gold-set / κ obsession?</em> The judge is itself a model that can drift or be wrong. Tune the agent against an unvalidated judge and you optimize toward its blind spots — you need a human anchor.</p>
+        <p><em>Trade-off:</em> this is more infra than "read some logs," so I'd sequence it — Layer A + a small gold set in week one, judge and clustering as they earn their keep — not all four layers before the first fix ships.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ================= 1.3 PRIORITIZE ================= -->
+<section id="prioritize">
+  <div class="wrap">
+    <div class="secthead reveal">
+      <span class="stepnum">1.3</span>
+      <h2>Deciding what to fix or test first.</h2>
+      <p class="lead" style="margin-top:16px">Diagnosis says where the leaks are; the eval stack says how big. Prioritization turns that into a queue: <strong>Impact × Confidence ÷ Effort</strong> — with each term computed from real data, not gut feel. <span style="color:var(--muted)">Click a quadrant.</span></p>
+    </div>
+
+    <div class="twocol" style="align-items:start;gap:34px">
+      <div class="reveal">
+        <div class="matrix-wrap">
+          <div class="matrix">
+            <div class="quad qw active" data-q="qw"><span class="q-tag">Do first</span><h5>Quick wins</h5><div class="q-sub">Prompt &amp; clarification-policy fixes</div><div class="qitems"><span class="qitem">S3 tool-call prompt</span><span class="qitem">Constraint-respect rule</span><span class="qitem">Clarification policy</span><span class="qitem">"Act, don't narrate"</span></div></div>
+            <div class="quad bb" data-q="bb"><span class="q-tag">Fund 1–2</span><h5>Big bets</h5><div class="q-sub">Structural, high-payoff</div><div class="qitems"><span class="qitem">New integration</span><span class="qitem">Field-mapping node v2</span><span class="qitem">Validation-repair step</span></div></div>
+            <div class="quad fi" data-q="fi"><span class="q-tag">Batch</span><h5>Fill-ins</h5><div class="q-sub">Nice polish, low stakes</div><div class="qitems"><span class="qitem">Preview copy polish</span><span class="qitem">Onboarding tips</span></div></div>
+            <div class="quad mp" data-q="mp"><span class="q-tag">Avoid</span><h5>Money pits</h5><div class="q-sub">Say no out loud</div><div class="qitems"><span class="qitem">Full graph rebuild</span><span class="qitem">Fine-tune model (now)</span></div></div>
+          </div>
+          <div class="axis-y"><span>Impact →</span></div>
+          <div class="axis-x">Effort →</div>
+        </div>
+        <div class="matrix-detail" id="qdetail">
+          <h5>Quick wins · high impact, low effort</h5>
+          <p>Prompt + clarification-policy fixes: intent-capture phrasing, "act don't narrate," constraint-respect, over-refusal calibration. Cheap, fast, reversible — and exactly the Task 2 lessons applied to the builder. <strong>Do these first.</strong></p>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="card" style="margin-bottom:16px"><h4 style="margin-bottom:8px;color:var(--purple)">Impact</h4><p style="margin:0;font-size:14.5px;color:var(--navy-soft)">Share of sessions hitting the failure × estimated lift × <strong>stage weight</strong>. Earlier leaks compound — a 10-pt fix at S1 can beat a 20-pt fix at S5, because everyone downstream had to survive S1 first. This weighting is the non-obvious move.</p></div>
+        <div class="card" style="margin-bottom:16px"><h4 style="margin-bottom:8px;color:var(--blue)">Confidence</h4><p style="margin:0;font-size:14.5px;color:var(--navy-soft)">How sure the fix works <em>and</em> how cleanly it's measurable. A prompt tweak validated on the golden set + A/B is high-confidence; "improve trust" is low until it has a metric.</p></div>
+        <div class="card"><h4 style="margin-bottom:8px;color:var(--orange)">Effort</h4><p style="margin:0;font-size:14.5px;color:var(--navy-soft)">The real tell: <strong>prompt (hours) &lt; graph tweak (days) &lt; new tool/integration (weeks)</strong>. Most activation problems are reachable in the prompt before touching architecture.</p></div>
+      </div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:34px">
+      <span class="lbl">My actual sequencing logic</span>
+      Attack the <strong>biggest early-funnel leak that's prompt-addressable</strong> first — highest impact, lowest effort, fastest to measure. Ship behind a flag, read the result, reinvest. Resist opening with a glamorous architectural fix: prompt iterations teach you faster and cheaper, and each one sharpens the eval stack for the harder bets.
+    </div>
+
+    <details class="defense reveal" style="margin-top:26px">
+      <summary><span class="ic">+</span>Interview defense note</summary>
+      <div class="body">
+        <p><em>Why stage-weight impact instead of raw frequency?</em> A funnel is multiplicative — fixing an early stage feeds every later one, so the same point-lift is worth more the earlier it sits.</p>
+        <p><em>Isn't prompt-first just easy-mode?</em> It's expected-value: prompt fixes are cheap, reversible, and fast to A/B, so they have the best information-per-day return — and they de-risk expensive bets by revealing the true ceiling first.</p>
+        <p><em>Edge case:</em> some leaks genuinely aren't prompt-fixable (missing integration, broken auth). The matrix has to be honest about those so you don't burn three prompt iterations on a problem the prompt can't reach — the builder-side echo of Conv 2's "closest real option" honesty.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ================= 1.4 VALIDATE ================= -->
+<section id="validate" class="mist">
+  <div class="wrap">
+    <div class="secthead reveal">
+      <span class="stepnum">1.4</span>
+      <h2>Knowing whether it actually worked.</h2>
+      <p class="lead" style="margin-top:16px">The north-star is unambiguous — <strong>activation 30% → 55% on comparable cohorts</strong> — but a single top-line number is how teams fool themselves. Validation runs offline before shipping, online after, with guardrails built to catch fake wins.</p>
+    </div>
+
+    <div class="twocol" style="align-items:start">
+      <div class="reveal card">
+        <h4 style="margin-bottom:12px;color:var(--blue)">Offline · before shipping</h4>
+        <p style="font-size:14.5px;margin-bottom:12px;color:var(--navy-soft)"><strong>Golden set</strong> — must improve the target category without regressing others (the CI gate). Kills most bad changes in minutes.</p>
+        <p style="font-size:14.5px;margin-bottom:12px;color:var(--navy-soft)"><strong>Replay / counterfactual</strong> — re-run the new prompt against <em>real</em> historical failed sessions. If it wouldn't have saved the sessions it targets, it doesn't ship.</p>
+        <p style="font-size:14.5px;margin:0;color:var(--navy-soft)"><strong>Synthetic benchmark</strong> — generated conversations grounded in the real log distribution (incl. a user-simulator for multi-turn) to stress-test coverage. Supplements replay; never replaces it, since simulated users are cleaner than real ones.</p>
+      </div>
+      <div class="reveal card">
+        <h4 style="margin-bottom:12px;color:var(--orange)">Online · the real verdict</h4>
+        <p style="font-size:14.5px;margin-bottom:12px;color:var(--navy-soft)"><strong>Feature-flagged A/B</strong>, randomized by account — the only thing that proves causation on the live metric.</p>
+        <p style="font-size:14.5px;margin-bottom:12px;color:var(--navy-soft)"><strong>Primary:</strong> activation rate, control vs. treatment. <strong>Guardrails (fake-win detectors):</strong> turn count &amp; time-to-activate, fallback-to-UI rate, and <em>downstream retention</em> — is the automation still active two weeks later?</p>
+        <p style="font-size:14.5px;margin:0;color:var(--navy-soft)"><strong>Rigor:</strong> pre-register the hypothesis, compute sample size / MDE first (8k/quarter detects large effects, not 1-pt moves), run to significance, watch novelty effects.</p>
+      </div>
+    </div>
+
+    <div class="twocol reveal" style="margin-top:22px">
+      <div class="callout" style="margin:0">
+        <span class="lbl">Guarding against Goodhart</span>
+        The moment "activation" is the target, there's pressure to game it — nudging users to save a half-broken automation. That's why "<strong>working &amp; still-active after N days</strong>" is baked into the definition and guardrails. Measure the outcome you want, not the proxy that's easy to inflate.
+      </div>
+      <div class="callout" style="margin:0">
+        <span class="lbl">Attribution honesty</span>
+        55% may not be reachable by prompt changes alone — some of the gap could be missing integrations or the legacy-UI pull. Tracking must separate "agent got better" from "we shipped a connector," so leadership reads the right lever.
+      </div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:22px">
+      <span class="lbl">Validation isn't an event — it's the flywheel's steady state</span>
+      Post-ship, the eval stack keeps running as a regression monitor: funnel, judge tags, and guardrails on a live dashboard, so a later change that quietly re-breaks constraint-handling gets caught by the same system that measured the win.
+    </div>
+
+    <details class="defense reveal" style="margin-top:26px">
+      <summary><span class="ic">+</span>Interview defense note</summary>
+      <div class="body">
+        <p><em>Why offline replay before A/B?</em> Live traffic is scarce and slow (8k/quarter); you can't A/B every idea. Offline replay is the cheap filter that earns a change its spot in the limited A/B pipeline.</p>
+        <p><em>Why obsess over retention?</em> Activation is a proxy, and every proxy is gameable. The two-week-active check re-anchors on the true goal and defuses Goodhart.</p>
+        <p><em>Edge case:</em> interference and segments — account-level randomization avoids within-team contamination; I'd pre-commit to a couple of segment cuts (new vs. returning, simple vs. complex) while resisting slicing until something looks significant by chance.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ================= CLOSE ================= -->
+<section id="close">
+  <div class="narrow" style="text-align:center">
+    <div class="eyebrow reveal" style="justify-content:center">The through-line, once more</div>
+    <p class="pull reveal">Debug the <span class="g">one conversation</span>. Build the <span class="g">system</span> that measures it across ten thousand. <br>Same discipline, different scale.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="fbrand"><span class="dot"></span>fullpath</div>
+  <p style="max-width:520px;margin:0 auto;color:#9fb0d0">Prompt Engineer · Home Assignment · Q2 2026<br>Prepared by Noam for the LLM Team.</p>
+  <p class="fine">Hypothetical data and stated assumptions throughout, per the brief. Automotive (Lexi) and B2B SaaS (builder) domains kept deliberately separate; only the evaluation mindset crosses between them.</p>
+</footer>
+
+<script>
+// progress + active nav
+const progress=document.getElementById('progress');
+const navlinks=[...document.querySelectorAll('.navlinks a')];
+const secs=navlinks.map(a=>document.querySelector(a.getAttribute('href')));
+function onScroll(){
+  const h=document.documentElement.scrollHeight-innerHeight;
+  progress.style.width=(scrollY/h*100)+'%';
+  let idx=0;
+  secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<=120)idx=i;});
+  navlinks.forEach((a,i)=>a.classList.toggle('active',i===idx));
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+// reveal on scroll
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// SMS before/ideal toggles
+document.querySelectorAll('.convo').forEach(c=>{
+  const sw=c.querySelector('[data-switch]');
+  const finals=[...c.querySelectorAll('[data-final]')];
+  const ideals=[...c.querySelectorAll('[data-ideal]')];
+  if(!sw)return;
+  sw.addEventListener('click',()=>{
+    const on=sw.classList.toggle('ideal');
+    finals.forEach(f=>f.hidden=on);
+    ideals.forEach(i=>i.hidden=!on);
+  });
+});
+
+// expand / collapse all defense notes (+ auto-open for print)
+const notesBtn=document.getElementById('notesToggle');
+const allNotes=[...document.querySelectorAll('details.defense')];
+let notesOpen=false;
+notesBtn.addEventListener('click',()=>{
+  notesOpen=!notesOpen;
+  allNotes.forEach(d=>d.open=notesOpen);
+  notesBtn.innerHTML='<span class="g"></span>'+(notesOpen?'Collapse notes':'Expand all notes');
+});
+addEventListener('beforeprint',()=>allNotes.forEach(d=>d.open=true));
+
+// taxonomy filter
+const fbtns=[...document.querySelectorAll('.fbtn')];
+const fams=[...document.querySelectorAll('.fam')];
+fbtns.forEach(b=>b.addEventListener('click',()=>{
+  fbtns.forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  const f=b.dataset.fam;
+  fams.forEach(fam=>fam.style.display=(f==='all'||fam.dataset.fam===f)?'':'none');
+}));
+
+// matrix
+const detail={
+  qw:['Quick wins · high impact, low effort','Prompt + clarification-policy fixes: intent-capture phrasing, "act don\'t narrate," constraint-respect, over-refusal calibration. Cheap, fast, reversible — the Task 2 lessons applied to the builder. <b>Do these first.</b>'],
+  bb:['Big bets · high impact, high effort','A new integration, a better field-mapping node, a validation-repair step. Fund one or two deliberately with the eng bandwidth — <b>after</b> quick wins reveal where the real ceiling is.'],
+  fi:['Fill-ins · low impact, low effort','Nice polish — copy tweaks, minor UX. Batch them when convenient; don\'t let them jump the queue ahead of quick wins.'],
+  mp:['Money pits · low impact, high effort','Expensive work that won\'t move activation much. The discipline is saying no out loud — naming what you <b>won\'t</b> do is part of the answer.']
+};
+const qd=document.getElementById('qdetail');
+document.querySelectorAll('.quad').forEach(q=>q.addEventListener('click',()=>{
+  document.querySelectorAll('.quad').forEach(x=>x.classList.remove('active'));q.classList.add('active');
+  const d=detail[q.dataset.q];qd.innerHTML='<h5>'+d[0]+'</h5><p>'+d[1]+'</p>';
+}));
+</script>
+</body>
+</html>
