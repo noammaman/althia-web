@@ -35,7 +35,7 @@ export default function TermsPage() {
             className="text-sm text-[#999999] mb-12"
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
           >
-            Last updated: March 30, 2026
+            Last updated: August 17, 2026
           </p>
 
           <div
@@ -102,6 +102,9 @@ export default function TermsPage() {
               </p>
               <p className="mb-3">
                 Mythology Packs are non-consumable, one-time purchases. Once purchased, a Pack remains available to you on any device signed into the same Apple ID, including after reinstallation.
+              </p>
+              <p className="mb-3">
+                In addition to Mythology Packs, the App offers optional auto-renewing subscription plans (&ldquo;Full Access&rdquo;), available on a monthly or annual basis at the price shown in the App at the time of purchase. Subscriptions automatically renew for the same term unless canceled at least 24 hours before the end of the current billing period. Your Apple ID account will be charged for renewal within 24 hours prior to the end of the current period, at the then-current price. You can manage or cancel your subscription at any time in your device Settings, under your name &rarr; Subscriptions, or via the App Store.
               </p>
               <p className="mb-3">
                 All sales are final. Refund requests are handled by Apple in accordance with their refund policy. We do not process refunds directly.
