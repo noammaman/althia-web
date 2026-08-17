@@ -119,6 +119,21 @@ export default function TermsPage() {
                 className="text-xl text-[#111111] mb-3"
                 style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
               >
+                Your Consumer Rights
+              </h2>
+              <p className="mb-3">
+                Nothing in these Terms excludes, restricts, or modifies any guarantee, right, or remedy conferred on you by the Australian Consumer Law, or any other applicable consumer protection law, that cannot lawfully be excluded, restricted, or modified.
+              </p>
+              <p>
+                If you are located in the European Union, you may have a statutory right to withdraw from a purchase within 14 days under EU consumer protection law. This right may not apply once access to digital content or a digital service has begun with your consent and acknowledgment. All purchases are processed by Apple; to request a refund or exercise a withdrawal right, contact Apple directly at <a href="https://reportaproblem.apple.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">reportaproblem.apple.com</a> or through your Apple ID purchase history.
+              </p>
+            </div>
+
+            <div>
+              <h2
+                className="text-xl text-[#111111] mb-3"
+                style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
+              >
                 Intellectual Property
               </h2>
               <p className="mb-3">
