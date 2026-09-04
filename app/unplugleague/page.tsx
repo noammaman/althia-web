@@ -102,8 +102,8 @@ export default function UnplugLeaguePage() {
               </p>
               <p>
                 Support:{' '}
-                <a href="mailto:support@althia.org" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">
-                  support@althia.org
+                <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">
+                  althiastudios@gmail.com
                 </a>
               </p>
             </div>

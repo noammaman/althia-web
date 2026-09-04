@@ -65,7 +65,7 @@ export default function UnplugLeagueJoinPage() {
           </p>
 
           <a
-            href="mailto:hello@althia.org?subject=Unplug%20League%20beta"
+            href="mailto:althiastudios@gmail.com?subject=Unplug%20League%20beta"
             className="inline-block font-bold text-black px-8 py-4 rounded-2xl transition-transform hover:scale-105"
             style={{ ...sans, backgroundColor: MINT }}
           >
@@ -147,7 +147,7 @@ export default function UnplugLeagueJoinPage() {
             Grab your friends. Set your baselines. Play for the week.
           </p>
           <a
-            href="mailto:hello@althia.org?subject=Unplug%20League%20beta"
+            href="mailto:althiastudios@gmail.com?subject=Unplug%20League%20beta"
             className="inline-block font-bold text-black px-8 py-4 rounded-2xl transition-transform hover:scale-105"
             style={{ ...sans, backgroundColor: ORANGE }}
           >

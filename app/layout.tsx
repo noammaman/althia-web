@@ -56,7 +56,7 @@ export default function RootLayout({
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Support',
-      email: 'support@althia.org',
+      email: 'althiastudios@gmail.com',
     },
     foundingDate: '2024',
     areaServed: 'Worldwide',

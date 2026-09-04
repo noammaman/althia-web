@@ -49,8 +49,8 @@ export default function Footer({ variant, showMythiaNote = false }: FooterProps)
               fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif',
             }}
           >
-            <a href="mailto:support@althia.org" className="transition-colors hover:opacity-80">
-              support@althia.org
+            <a href="mailto:althiastudios@gmail.com" className="transition-colors hover:opacity-80">
+              althiastudios@gmail.com
             </a>
             <span>·</span>
             <a href="/privacy" className="transition-colors hover:opacity-80">

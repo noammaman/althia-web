@@ -264,7 +264,7 @@ export default function MythiaContent() {
     name: 'Althia',
     url: 'https://althia.org',
     description: 'Althia builds audio apps rooted in mythology, philosophy, and the ancient world — designed for sleep and reflection.',
-    contactPoint: { '@type': 'ContactPoint', email: 'support@althia.org' },
+    contactPoint: { '@type': 'ContactPoint', email: 'althiastudios@gmail.com' },
   }
 
   return (

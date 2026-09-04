@@ -41,7 +41,7 @@ export default function Home() {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'Customer Support',
-      email: 'support@althia.org',
+      email: 'althiastudios@gmail.com',
     },
   }
 

@@ -227,7 +227,7 @@ export default function TermsPage() {
                 Contact Us
               </h2>
               <p>
-                If you have any questions about these Terms, contact us at <a href="mailto:support@althia.org" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">support@althia.org</a>.
+                If you have any questions about these Terms, contact us at <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">althiastudios@gmail.com</a>.
               </p>
             </div>
           </div>

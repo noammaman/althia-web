@@ -107,7 +107,7 @@ export default function PrivacyPage() {
                 Data retention and deletion
               </h2>
               <p>
-                We retain your account data for as long as your account is active. You can request deletion of your account and all associated data at any time by emailing support@althia.org. We will process deletion requests within 30 days.
+                We retain your account data for as long as your account is active. You can request deletion of your account and all associated data at any time by emailing althiastudios@gmail.com. We will process deletion requests within 30 days.
               </p>
             </div>
 
@@ -131,7 +131,7 @@ export default function PrivacyPage() {
                 Your rights
               </h2>
               <p>
-                Depending on your jurisdiction, you may have the right to access, correct, or delete your personal data, object to processing, request data portability, or withdraw consent. To exercise any of these rights, contact us at support@althia.org.
+                Depending on your jurisdiction, you may have the right to access, correct, or delete your personal data, object to processing, request data portability, or withdraw consent. To exercise any of these rights, contact us at althiastudios@gmail.com.
               </p>
             </div>
 
@@ -155,7 +155,7 @@ export default function PrivacyPage() {
                 Contact us
               </h2>
               <p>
-                If you have any questions about this Privacy Policy or our data practices, contact us at <a href="mailto:support@althia.org" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">support@althia.org</a>.
+                If you have any questions about this Privacy Policy or our data practices, contact us at <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">althiastudios@gmail.com</a>.
               </p>
             </div>
           </div>

@@ -101,7 +101,7 @@ export default function UnplugLeaguePrivacyPage() {
                 Squad data is retained while your account is active. You can delete your account and all associated server data at any time directly in the App: <strong className="text-[#111111]">Profile &rarr; Edit &rarr; Account &amp; data &rarr; Delete account &amp; data</strong>. This removes your squad membership, your synced scores, and your account.
               </p>
               <p>
-                You can also email <a href="mailto:support@althia.org" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">support@althia.org</a> and we will process your deletion request within 30 days.
+                You can also email <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">althiastudios@gmail.com</a> and we will process your deletion request within 30 days.
               </p>
             </div>
 
@@ -119,7 +119,7 @@ export default function UnplugLeaguePrivacyPage() {
                 Your rights
               </h2>
               <p>
-                Depending on your jurisdiction, you may have the right to access, correct, or delete your personal data, object to processing, request data portability, or withdraw consent. To exercise any of these rights, contact us at support@althia.org.
+                Depending on your jurisdiction, you may have the right to access, correct, or delete your personal data, object to processing, request data portability, or withdraw consent. To exercise any of these rights, contact us at althiastudios@gmail.com.
               </p>
             </div>
 
@@ -137,7 +137,7 @@ export default function UnplugLeaguePrivacyPage() {
                 Contact us
               </h2>
               <p>
-                If you have any questions about this Privacy Policy or our data practices, contact us at <a href="mailto:support@althia.org" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">support@althia.org</a>.
+                If you have any questions about this Privacy Policy or our data practices, contact us at <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">althiastudios@gmail.com</a>.
               </p>
             </div>
           </div>

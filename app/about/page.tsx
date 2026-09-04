@@ -68,10 +68,10 @@ export default function AboutPage() {
               style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
             >
               <p>
-                General inquiries: <a href="mailto:hello@althia.org" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">hello@althia.org</a>
+                General inquiries: <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">althiastudios@gmail.com</a>
               </p>
               <p>
-                Support: <a href="mailto:support@althia.org" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">support@althia.org</a>
+                Support: <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">althiastudios@gmail.com</a>
               </p>
             </div>
           </div>
