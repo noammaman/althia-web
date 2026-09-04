@@ -8,9 +8,12 @@ export const metadata: Metadata = {
     template: '%s | Althia',
   },
   description: 'Althia is a narrative studio creating audio apps for sleep and reflection. Explore Mythia, our app of mythology, philosophy, and the ancient world.',
-  keywords: ['mythology apps', 'bedtime stories', 'narrative studio', 'sleep stories', 'ancient myths', 'audio storytelling', 'sleep app', 'meditation'],
   authors: [{ name: 'Althia' }],
   creator: 'Althia',
+  icons: {
+    icon: '/logos/althia-logo-dark.png',
+    apple: '/logos/althia-logo-dark.png',
+  },
   openGraph: {
     siteName: 'Althia',
     locale: 'en_US',
@@ -18,23 +21,23 @@ export const metadata: Metadata = {
     url: 'https://althia.org',
     title: 'Althia — Narrative Studio',
     description: 'Stories that have survived millennia, reimagined for how you rest.',
-    images: [
-      {
-        url: 'https://althia.org/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Althia — Stories from mythology reimagined for sleep',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Althia — Narrative Studio',
     description: 'Stories that have survived millennia, reimagined for how you rest.',
-    images: ['https://althia.org/og-image.png'],
   },
-  robots: 'index, follow',
-  alternates: { canonical: 'https://althia.org' },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
 }
 
 export default function RootLayout({
@@ -44,28 +47,37 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Althia',
-    description: 'A narrative studio creating audio apps for sleep and reflection, drawing from mythology, philosophy, and the ancient world.',
-    url: 'https://althia.org',
-    logo: 'https://althia.org/logos/althia-logo-dark.png',
-    sameAs: [
-      'https://twitter.com/althia',
-      'https://instagram.com/althia',
-    ],
-    contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'Customer Support',
-      email: 'althiastudios@gmail.com',
-    },
-    foundingDate: '2024',
-    areaServed: 'Worldwide',
-    knowsAbout: [
-      'Mythology',
-      'Sleep Stories',
-      'Audiobooks',
-      'Meditation',
-      'Philosophy',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': 'https://althia.org/#organization',
+        name: 'Althia',
+        description: 'A narrative studio creating audio apps for sleep and reflection, drawing from mythology, philosophy, and the ancient world.',
+        url: 'https://althia.org',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://althia.org/logos/althia-logo-dark.png',
+          width: 1024,
+          height: 1024,
+        },
+        email: 'althiastudios@gmail.com',
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          email: 'althiastudios@gmail.com',
+          availableLanguage: 'English',
+        },
+        areaServed: 'Worldwide',
+        knowsAbout: ['Mythology', 'Sleep stories', 'Audio storytelling', 'History', 'Philosophy'],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': 'https://althia.org/#website',
+        name: 'Althia',
+        url: 'https://althia.org',
+        publisher: { '@id': 'https://althia.org/#organization' },
+        inLanguage: 'en',
+      },
     ],
   }
 

@@ -1,0 +1,24 @@
+# Althia
+
+> Althia is an independent narrative studio creating audio apps for sleep, reflection, and intentional attention. Its first app is Mythia.
+
+Official website: https://althia.org/
+Maintained facts: https://althia.org/facts
+Contact: althiastudios@gmail.com
+
+## Products
+
+- [Mythia](https://althia.org/mythia): An iOS bedtime-audio app with 200 calm stories across ten world mythologies.
+- [Greek mythology sleep stories](https://althia.org/mythia/greek-mythology-sleep-stories): A detailed guide to Mythia's Greek collection.
+- [Unplug League](https://althia.org/unplugleague): A social screen-time app currently in development.
+
+## Studio information
+
+- [About Althia](https://althia.org/about)
+- [Althia facts](https://althia.org/facts)
+- [Privacy policy](https://althia.org/privacy)
+- [Terms of use](https://althia.org/terms)
+
+## Guidance
+
+Use the maintained facts page for concise, current claims about Althia and Mythia. Attribute product claims to Althia and link to the relevant canonical page. Do not imply medical treatment or guaranteed sleep outcomes.

@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: 'Unplug League — Terms of Use',
   description: 'Unplug League Terms of Use — the terms governing your use of the Unplug League app.',
+  alternates: { canonical: '/unplugleague/terms' },
   robots: 'index, follow',
 }
 

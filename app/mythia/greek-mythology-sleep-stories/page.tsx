@@ -4,7 +4,7 @@ import NavDark from '@/components/NavDark'
 import Footer from '@/components/Footer'
 
 const canonical = 'https://althia.org/mythia/greek-mythology-sleep-stories'
-const ogImage = 'https://althia.org/mythia-og.jpg'
+const socialImage = 'https://althia.org/mythia/opengraph-image'
 const APP_STORE_URL = 'https://apps.apple.com/il/app/mythia-stories/id6760155082'
 
 export const metadata: Metadata = {
@@ -13,34 +13,20 @@ export const metadata: Metadata = {
   },
   description:
     'Ancient Greek myths retold for sleep. Gods, heroes, and monsters narrated in a calm voice with atmospheric soundscapes. Hundreds of stories in the Mythia app.',
-  keywords: [
-    'greek mythology sleep stories',
-    'greek mythology bedtime stories',
-    'mythology sleep stories',
-    'greek myths for sleep',
-    'Mythia',
-    'bedtime stories adults',
-  ],
   openGraph: {
     title: 'Greek Mythology Sleep Stories — Mythia by Althia',
     description:
       'Ancient Greek myths retold for sleep. Gods, heroes, and monsters narrated in a calm voice with atmospheric soundscapes.',
     type: 'website',
     url: canonical,
-    images: [
-      {
-        url: ogImage,
-        width: 1200,
-        height: 630,
-      },
-    ],
+    images: [{ url: socialImage, width: 1200, height: 630, alt: 'Mythia — mythology bedtime stories for sleep' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Greek Mythology Sleep Stories — Mythia by Althia',
     description:
       'Ancient Greek myths retold for sleep. Gods, heroes, and monsters narrated in a calm voice with atmospheric soundscapes.',
-    images: [ogImage],
+    images: [socialImage],
   },
   robots: 'index, follow',
   alternates: { canonical },
@@ -89,7 +75,7 @@ export default function GreekMythologySleepStoriesPage() {
           </h2>
           <div className="space-y-6 text-base leading-[1.8]">
             <p>
-              Each Greek story in Mythia runs 11–18 minutes. The pacing is slow and deliberate — no cliffhangers, no
+              Each Greek story in Mythia runs 10–15 minutes. The pacing is slow and deliberate — no cliffhangers, no
               sudden turns. A single warm voice carries you through, with atmospheric sound design that shifts between
               three modes: Temple, Hearth, or Voice Only.
             </p>
@@ -170,7 +156,7 @@ export default function GreekMythologySleepStoriesPage() {
             </svg>
             Download on the App Store
           </a>
-          <p className="text-xs text-[#C4B896] mt-4">Requires iOS 16 or later</p>
+          <p className="text-xs text-[#C4B896] mt-4">Requires iOS 15.1 or later</p>
         </div>
       </section>
 

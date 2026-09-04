@@ -8,20 +8,12 @@ const APP_STORE_URL = 'https://apps.apple.com/il/app/mythia-stories/id6760155082
 export const metadata: Metadata = {
   title: 'Althia — Stories for the Ancient Mind',
   description: 'Althia builds audio apps rooted in mythology, philosophy, and the ancient world — designed for sleep, reflection, and the contemplative mind.',
-  keywords: 'mythology apps, bedtime stories, sleep stories, ancient myths, audio storytelling, mythology sleep app',
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     url: 'https://althia.org',
     title: 'Althia — Stories for the Ancient Mind',
     description: 'Stories that have survived millennia, reimagined for how you rest.',
-    images: [
-      {
-        url: 'https://althia.org/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Althia — Stories from mythology reimagined for sleep',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -31,27 +23,8 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Althia',
-    description: 'Althia builds audio apps rooted in mythology, philosophy, and the ancient world — designed for sleep, reflection, and the contemplative mind.',
-    url: 'https://althia.org',
-    logo: 'https://althia.org/logos/althia-logo-dark.png',
-    contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'Customer Support',
-      email: 'althiastudios@gmail.com',
-    },
-  }
-
   return (
     <main className="min-h-screen" style={{ backgroundColor: '#FDFCFA' }}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
       <NavLight />
 
       {/* Hero Section */}
@@ -165,7 +138,7 @@ export default function Home() {
               </h3>
 
               <p className="text-base text-[#444444] leading-relaxed flex-grow mb-6">
-                Bedtime stories drawn from ten world mythologies. Sleep inside a growing library of 200+ stories shaped by the oldest traditions.
+                Bedtime stories drawn from ten world mythologies. Sleep inside a growing library of 200 stories shaped by the oldest traditions.
               </p>
 
               <Link
@@ -317,7 +290,7 @@ export default function Home() {
             className="text-base text-[#444444] mb-8"
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
           >
-            Mythia is free to download on iOS — with 200+ stories across ten world mythologies.
+            Mythia is free to download on iOS — with 200 stories across ten world mythologies.
           </p>
 
           <a

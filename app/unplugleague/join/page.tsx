@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Unplug League — Win your week back',
   description:
     'Train your attention like a muscle, with your friends. Earn League Points for using your phone on purpose. No shame, no blockers — just a league.',
+  alternates: { canonical: '/unplugleague/join' },
   robots: 'index, follow',
   openGraph: {
     title: 'Unplug League — Win your week back',
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
       'A social fitness league for your attention. Beat your own baseline, not other people’s.',
     url: 'https://althia.org/unplugleague/join',
     type: 'website',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Althia — stories for the ancient mind' }],
   },
 }
 

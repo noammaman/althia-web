@@ -94,7 +94,7 @@ const flowSteps = [
   {
     number: '3',
     title: 'Fall asleep',
-    description: 'Settle in. A warm voice takes you into ancient worlds. Most listeners sleep before the end.',
+    description: 'Settle in. A warm voice takes you into ancient worlds at an unhurried bedtime pace.',
   },
 ]
 
@@ -108,8 +108,8 @@ const features = [
     description: 'Temple, Hearth, or Voice Only. Each story scores differently — choose your atmosphere.',
   },
   {
-    title: '11–18 minutes',
-    description: 'The perfect length to drift off. Long enough to settle in, calm enough to carry you toward sleep.',
+    title: '10–15 minutes',
+    description: 'A compact bedtime listen. Long enough to settle in, calm enough to carry you toward sleep.',
   },
   {
     title: 'No surprises',
@@ -121,7 +121,7 @@ const features = [
 const faqs = [
   {
     q: 'Is Mythia free?',
-    a: 'Mythia is free to download with select stories. Access the full library of 200+ stories across ten mythologies with a subscription or one-time mythology packs.',
+    a: 'Mythia is free to download with select stories. Access the full library of 200 stories across ten mythologies with a subscription or one-time mythology packs.',
   },
   {
     q: 'What mythologies are available?',
@@ -129,7 +129,7 @@ const faqs = [
   },
   {
     q: 'How long are the stories?',
-    a: 'Stories in Mythia are typically 11–18 minutes long, designed for a single sleep cycle. Most listeners fall asleep before the story ends.',
+    a: 'Stories in Mythia are typically 10–15 minutes long, with measured pacing designed for bedtime listening.',
   },
   {
     q: 'Do the stories have cliffhangers?',
@@ -137,7 +137,7 @@ const faqs = [
   },
   {
     q: 'Can mythology stories help you fall asleep?',
-    a: 'Yes. Mythology stories have a natural rhythm — slow builds, familiar archetypes, and resolved endings — that makes them ideal for sleep. Mythia\'s stories are paced specifically for bedtime, with calm narration and no sudden surprises.',
+    a: 'Mythia is designed to make bedtime listening calm and easy to follow. Its stories use measured pacing, familiar narrative patterns, resolved endings, gentle narration, and no sudden surprises. It is a relaxation product, not a medical treatment or a guaranteed sleep aid.',
   },
   {
     q: 'What makes Mythia different from other sleep story apps?',
@@ -239,13 +239,25 @@ export default function MythiaContent() {
   const jsonLdApp = {
     '@context': 'https://schema.org',
     '@type': 'MobileApplication',
+    '@id': 'https://althia.org/mythia#app',
     name: 'Mythia',
-    description: 'A bedtime audio app featuring 200+ stories across ten world mythologies.',
+    description: 'A bedtime audio app featuring 200 stories across ten world mythologies.',
     url: 'https://althia.org/mythia',
-    applicationCategory: 'HealthAndFitnessApplication',
-    operatingSystem: 'iOS',
+    applicationCategory: 'BookApplication',
+    operatingSystem: 'iOS 15.1 or later',
+    downloadUrl: APP_STORE_URL,
+    installUrl: APP_STORE_URL,
+    image: 'https://althia.org/logos/mythia-logo.png',
+    featureList: [
+      '200 mythology bedtime stories',
+      'Ten world mythologies',
+      '10–15 minute stories',
+      'Temple, Hearth, and Voice Only listening modes',
+      'No advertising',
+    ],
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    author: { '@type': 'Organization', name: 'Althia', url: 'https://althia.org' },
+    author: { '@id': 'https://althia.org/#organization' },
+    publisher: { '@id': 'https://althia.org/#organization' },
   }
 
   const jsonLdFaq = {
@@ -258,20 +270,10 @@ export default function MythiaContent() {
     })),
   }
 
-  const jsonLdOrg = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Althia',
-    url: 'https://althia.org',
-    description: 'Althia builds audio apps rooted in mythology, philosophy, and the ancient world — designed for sleep and reflection.',
-    contactPoint: { '@type': 'ContactPoint', email: 'althiastudios@gmail.com' },
-  }
-
   return (
     <main className="bg-[#0A0A0A] text-[#C4B49A]" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdApp) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }} />
 
       <NavDark />
 
@@ -472,7 +474,7 @@ export default function MythiaContent() {
 
                 <div className="bg-[rgba(241,224,181,0.05)] border border-[rgba(241,224,181,0.12)] rounded-2xl p-6">
                   <p className="text-base text-[#C4B49A] leading-[1.8]">
-                    Each story is 11–18 minutes long, carefully paced to help you fall asleep. No cliffhangers, no surprises — just gentle storytelling that honors the cultural traditions it comes from.
+                    Each story is 10–15 minutes long, carefully paced for bedtime. No cliffhangers, no surprises — just gentle storytelling that honors the cultural traditions it comes from.
                   </p>
                 </div>
 
@@ -628,10 +630,10 @@ export default function MythiaContent() {
             A Growing Library of Mythology Stories
           </h2>
           <p className="text-base text-[#C4B49A] mb-12 max-w-2xl mx-auto">
-            200+ stories across ten world mythologies, crafted as calm bedtime narrations with three listening modes.
+            200 stories across ten world mythologies, crafted as calm bedtime narrations with three listening modes.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {['200+ stories across 10 mythologies', '110 Greek stories including 8 epic journey series', '11–18 min each', 'Growing library'].map((stat) => (
+            {['200 stories across 10 mythologies', '110 Greek stories including 8 epic journey series', '10–15 min each', 'Growing library'].map((stat) => (
               <div
                 key={stat}
                 className="border rounded-full px-5 py-3 text-sm font-medium"
@@ -695,6 +697,13 @@ export default function MythiaContent() {
           >
             Explore Althia →
           </Link>
+          <span className="mx-3 text-[rgba(241,224,181,0.35)]">·</span>
+          <Link
+            href="/facts"
+            className="inline-flex text-[#F1E0B5] font-semibold text-sm border-b-2 border-[#F1E0B5] transition-all hover:border-[#F5F0E8]"
+          >
+            Read the facts →
+          </Link>
         </div>
       </section>
 
@@ -722,7 +731,7 @@ export default function MythiaContent() {
             Download on the App Store
           </a>
           <p className="text-xs text-[#C4B896]">
-            Requires iOS 16 or later
+            Requires iOS 15.1 or later
           </p>
         </div>
       </section>

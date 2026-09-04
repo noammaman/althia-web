@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: 'Terms of Use',
   description: 'Althia Terms of Use — the terms governing your use of Mythia and other Althia apps.',
+  alternates: { canonical: '/terms' },
   robots: 'index, follow',
 }
 

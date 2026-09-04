@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: 'Unplug League',
   description:
     'Unplug League is a social screen-time app: train your attention like a muscle, compete with friends, and win the week by using your phone on purpose.',
+  alternates: { canonical: '/unplugleague' },
   robots: 'index, follow',
   openGraph: {
     title: 'Unplug League',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
       'A social fitness league for your attention. Compete with friends to use your phone on purpose.',
     url: 'https://althia.org/unplugleague',
     type: 'website',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Althia — stories for the ancient mind' }],
   },
 }
 

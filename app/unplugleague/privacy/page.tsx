@@ -6,9 +6,10 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: 'Unplug League — Privacy Policy',
   description: 'Unplug League Privacy Policy — how we handle your data.',
+  alternates: { canonical: '/unplugleague/privacy' },
   robots: {
     index: false,
-    follow: false,
+    follow: true,
   },
 }
 
