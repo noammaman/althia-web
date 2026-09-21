@@ -15,10 +15,7 @@ export default function LegalPage({ title, children }: { title: string; children
       <Link href="/" className="text-sm text-[#57695E] mb-8 inline-block hover:underline">← Back to Althia</Link>
       <p className="text-xs tracking-[0.18em] text-[#39705C] mb-3">SENTHIA</p>
       <h1 className="text-[2rem] md:text-[2.75rem] text-[#203C34] mb-4 leading-tight" style={serif}>{title}</h1>
-      <p className="text-sm text-[#666666] mb-6">Draft prepared September 21, 2026</p>
-      <aside className="rounded-2xl bg-[#EAF2EC] border border-[#CBDCD0] p-5 mb-10 text-sm leading-relaxed text-[#395447]">
-        Draft for review — not yet the published policy. The final subscription implementation and policy wording are still under review.
-      </aside>
+      <p className="text-sm text-[#666666] mb-6">Effective September 21, 2026</p>
       <nav aria-label="Senthia legal documents" className="flex flex-wrap gap-6 mb-10 text-sm text-[#285E4D] underline underline-offset-4">
         <Link href="/senthia/terms">Terms of Use</Link><Link href="/senthia/privacy">Privacy Policy</Link>
       </nav>

@@ -20,3 +20,16 @@ References checked September 21, 2026:
 - Existing Althia /terms, /privacy and /unplugleague legal source pages.
 
 No Mythia legal text or routes changed. No production deployment or subscription purchase performed.
+
+## Publication update — September 21, 2026
+
+User requested publishing Senthia legal pages and enabling paywall hyperlinks.
+Updated policies to reflect automatic first-five selection, on-device selection
+storage, no account recovery, optional local reflections and current Firebase
+content delivery. Contact follows the latest website change: althiastudios@gmail.com.
+Apple standard EULA is linked. Policies state that purchases are not yet enabled;
+no StoreKit/RevenueCat data processing is represented as already active.
+Removed draft presentation, set effective date, added both routes to sitemap.
+Subscription processing disclosures must be revisited when checkout is wired.
+The user is creating subscription products; product IDs were proposed, not verified.
+These product-specific pages do not modify Mythia terms/privacy.
