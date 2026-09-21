@@ -7,7 +7,7 @@ Operator: user confirmed Althia Studios and explicitly requested no address. No 
 Implementation reviewed: preferences and reflections use AsyncStorage; catalogue uses published Firestore reads; artwork/audio use Cloud Storage; no initialized Authentication, Analytics, advertising or HealthKit in current app source. OS backup and provider request metadata are distinguished from in-app cloud sync. No promise that network downloads are anonymous. Heart-rate collection is not described as active.
 
 Review before release:
-- Actual subscription implementation, payment provider, entitlement storage, offline access and free-choice persistence. Free-access policy confirmed: user chooses any five distinct journeys; additional journeys require subscription. Whether selections can be swapped is awaiting confirmation. No trials, lifetime access or ownership packs assumed.
+- Actual subscription implementation, payment provider, entitlement storage, offline access and free-choice persistence. Free-access policy confirmed: user chooses any five distinct journeys; additional journeys require subscription. User confirmed permanent choices, with explicit confirmation before committing each journey. Current implementation stores choices on-device; durable identity and server enforcement remain required before paid launch. No trials, lifetime access or ownership packs assumed.
 - Applicable privacy processing bases, provider regions/transfers, log and support retention, intended audience age and required rights disclosures. Do not import Mythia account/analytics claims.
 - Confirm support@althia.org is the monitored contact for Senthia.
 - Spanish legal translation before a fully localized Spanish launch. Current draft pages are English.
