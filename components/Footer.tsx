@@ -1,4 +1,4 @@
-/* Footer component */
+import Link from 'next/link'
 
 interface FooterProps {
   variant: 'light' | 'dark'
@@ -44,19 +44,23 @@ export default function Footer({ variant, showMythiaNote = false, privacyHref = 
           </div>
 
           <div
-            className="flex items-center gap-6 text-xs"
+            className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-xs"
             style={{
               color: isDark ? 'rgba(241, 224, 181, 0.4)' : '#999999',
               fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif',
             }}
           >
-            <a href="mailto:support@althia.org" className="transition-colors hover:opacity-80">
-              support@althia.org
+            <a href="mailto:althiastudios@gmail.com" className="transition-colors hover:opacity-80">
+              althiastudios@gmail.com
             </a>
             <span>·</span>
-            <a href={privacyHref} className="transition-colors hover:opacity-80">
+            <Link href="/facts" className="transition-colors hover:opacity-80">
+              Facts
+            </Link>
+            <span>·</span>
+            <Link href={privacyHref} className="transition-colors hover:opacity-80">
               Privacy Policy
-            </a>
+            </Link>
           </div>
         </div>
 

@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: 'About Althia',
   description: 'Althia is a small studio making audio apps rooted in mythology, philosophy, and history — designed for sleep and reflection.',
+  alternates: { canonical: '/about' },
   robots: 'index, follow',
 }
 
@@ -54,6 +55,10 @@ export default function AboutPage() {
             <p>
               More apps are coming. Ethia will explore history. Senthia will focus on contemplative and meditative experiences. Each one follows the same principle: timeless source material, adapted with respect, designed around a specific moment in your day.
             </p>
+
+            <p>
+              For a concise, maintained overview of the studio and its products, see the <Link href="/facts" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">Althia facts page</Link>.
+            </p>
           </div>
 
           <div className="mt-16 pt-12" style={{ borderTop: '1px solid #E5E5E5' }}>
@@ -68,10 +73,10 @@ export default function AboutPage() {
               style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
             >
               <p>
-                General inquiries: <a href="mailto:hello@althia.org" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">hello@althia.org</a>
+                General inquiries: <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">althiastudios@gmail.com</a>
               </p>
               <p>
-                Support: <a href="mailto:support@althia.org" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">support@althia.org</a>
+                Support: <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">althiastudios@gmail.com</a>
               </p>
             </div>
           </div>

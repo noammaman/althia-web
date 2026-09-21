@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 export const metadata: Metadata = {
   title: 'Unplug League — Terms of Use',
   description: 'Unplug League Terms of Use — the terms governing your use of the Unplug League app.',
+  alternates: { canonical: '/unplugleague/terms' },
   robots: 'index, follow',
 }
 
@@ -160,8 +161,8 @@ export default function UnplugLeagueTermsPage() {
               </h2>
               <p>
                 If you have any questions about these Terms, contact us at{' '}
-                <a href="mailto:support@althia.org" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">
-                  support@althia.org
+                <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">
+                  althiastudios@gmail.com
                 </a>
                 .
               </p>
