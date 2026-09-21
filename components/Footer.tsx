@@ -3,9 +3,10 @@
 interface FooterProps {
   variant: 'light' | 'dark'
   showMythiaNote?: boolean
+  privacyHref?: string
 }
 
-export default function Footer({ variant, showMythiaNote = false }: FooterProps) {
+export default function Footer({ variant, showMythiaNote = false, privacyHref = '/privacy' }: FooterProps) {
   const isDark = variant === 'dark'
 
   return (
@@ -53,7 +54,7 @@ export default function Footer({ variant, showMythiaNote = false }: FooterProps)
               support@althia.org
             </a>
             <span>·</span>
-            <a href="/privacy" className="transition-colors hover:opacity-80">
+            <a href={privacyHref} className="transition-colors hover:opacity-80">
               Privacy Policy
             </a>
           </div>
