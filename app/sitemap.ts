@@ -4,6 +4,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date('2026-09-04')
 
   return [
+    { url: 'https://althia.org/senthia/terms', lastModified: new Date('2026-09-21'), changeFrequency: 'yearly', priority: 0.2 },
+    { url: 'https://althia.org/senthia/privacy', lastModified: new Date('2026-09-21'), changeFrequency: 'yearly', priority: 0.2 },
     {
       url: 'https://althia.org',
       lastModified,

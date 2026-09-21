@@ -3,9 +3,10 @@ import Link from 'next/link'
 interface FooterProps {
   variant: 'light' | 'dark'
   showMythiaNote?: boolean
+  privacyHref?: string
 }
 
-export default function Footer({ variant, showMythiaNote = false }: FooterProps) {
+export default function Footer({ variant, showMythiaNote = false, privacyHref = '/privacy' }: FooterProps) {
   const isDark = variant === 'dark'
 
   return (
@@ -57,7 +58,7 @@ export default function Footer({ variant, showMythiaNote = false }: FooterProps)
               Facts
             </Link>
             <span>·</span>
-            <Link href="/privacy" className="transition-colors hover:opacity-80">
+            <Link href={privacyHref} className="transition-colors hover:opacity-80">
               Privacy Policy
             </Link>
           </div>
