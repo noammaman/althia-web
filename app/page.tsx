@@ -196,7 +196,7 @@ export default function Home() {
 
             {/* Senthia - Coming Soon */}
             <div
-              className="rounded-3xl p-10 flex flex-col border-2 opacity-75"
+              className="rounded-3xl p-10 flex flex-col border-2"
               style={{
                 backgroundColor: '#FFFFFF',
                 borderColor: '#E5E5E5',
@@ -212,7 +212,7 @@ export default function Home() {
               </div>
 
               <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#999999] mb-3">
-                Meditation · Contemplation
+                Guided Imagination · Relaxation
               </p>
 
               <h3
@@ -226,16 +226,16 @@ export default function Home() {
                 className="inline-block text-xs font-semibold uppercase tracking-[0.1em] bg-[#F5F5F5] text-[#666666] px-3 py-1 rounded-md mb-4 w-fit"
                 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
               >
-                Coming 2027
+                Coming to iOS
               </span>
 
               <p className="text-base text-[#444444] leading-relaxed flex-grow mb-6">
-                Guided contemplative experiences for stillness and clarity, drawing wisdom from philosophical traditions.
+                Narrated journeys into vivid, imagined places. A little space to settle and unwind, in English and Spanish.
               </p>
 
-              <span className="text-sm text-[#666666]" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}>
-                Coming Soon
-              </span>
+              <Link href="/senthia" className="text-sm text-[#285E4D] hover:underline" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}>
+                Explore Senthia →
+              </Link>
             </div>
           </div>
         </div>

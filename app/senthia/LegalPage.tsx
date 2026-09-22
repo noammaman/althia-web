@@ -17,7 +17,7 @@ export default function LegalPage({ title, children, showEffectiveDate = true }:
       <h1 className="text-[2rem] md:text-[2.75rem] text-[#203C34] mb-4 leading-tight" style={serif}>{title}</h1>
       {showEffectiveDate && <p className="text-sm text-[#666666] mb-6">Effective September 21, 2026</p>}
       <nav aria-label="Senthia support and legal" className="flex flex-wrap gap-6 mb-10 text-sm text-[#285E4D] underline underline-offset-4">
-        <Link href="/senthia/support">Support</Link><Link href="/senthia/terms">Terms of Use</Link><Link href="/senthia/privacy">Privacy Policy</Link>
+        <Link href="/senthia">About Senthia</Link><Link href="/senthia/support">Support</Link><Link href="/senthia/terms">Terms of Use</Link><Link href="/senthia/privacy">Privacy Policy</Link>
       </nav>
       <div className="space-y-8 text-base text-[#444444] leading-[1.8] [&_a]:underline [&_a]:underline-offset-4">{children}</div>
     </article>
