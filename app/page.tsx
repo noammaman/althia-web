@@ -3,7 +3,7 @@ import Link from 'next/link'
 import NavLight from '@/components/NavLight'
 import Footer from '@/components/Footer'
 
-const MYTHIA_APP_STORE_URL = 'https://apps.apple.com/il/app/mythia-stories/id6760155082'
+const MYTHIA_APP_STORE_URL = 'https://apps.apple.com/us/app/mythia-stories/id6760155082'
 const SENTHIA_APP_STORE_URL = 'https://apps.apple.com/il/app/senthia/id6814469115'
 
 export const metadata: Metadata = {
@@ -138,17 +138,31 @@ export default function Home() {
                 Mythia
               </h3>
 
+              <span
+                className="inline-block text-xs font-semibold uppercase tracking-[0.1em] bg-[#F8F1DE] text-[#8B6914] px-3 py-1 rounded-md mb-4 w-fit"
+                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
+              >
+                Available on iOS
+              </span>
+
               <p className="text-base text-[#444444] leading-relaxed flex-grow mb-6">
                 Bedtime stories drawn from ten world mythologies. Sleep inside a growing library of 200 stories shaped by the oldest traditions.
               </p>
 
-              <Link
-                href="/mythia"
-                className="text-[#8B6914] font-semibold text-sm inline-flex items-center gap-1 transition-all hover:gap-2"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-              >
-                Explore Mythia →
-              </Link>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+                <a
+                  href={MYTHIA_APP_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-5 py-2.5 bg-[#8B6914] text-white rounded-full text-sm font-semibold transition-colors hover:bg-[#6F5410]"
+                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
+                >
+                  Download Mythia ↗
+                </a>
+                <Link href="/mythia" className="text-sm text-[#8B6914] hover:underline" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}>
+                  Learn more →
+                </Link>
+              </div>
             </div>
 
             {/* Ethia - Coming Soon */}
