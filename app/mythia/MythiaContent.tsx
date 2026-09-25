@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import NavDark from '@/components/NavDark'
+import styles from '@/components/product.module.css'
 import Footer from '@/components/Footer'
 import { useEffect, useRef, useState, useCallback } from 'react'
 
@@ -142,7 +143,7 @@ const faqs = [
   },
   {
     q: 'What makes Mythia different from other sleep story apps?',
-    a: 'Most sleep apps offer generic content — rain sounds, made-up fiction, or recycled fairy tales. Mythia is built entirely around real mythology from ancient cultures, adapted faithfully and narrated in a warm, unhurried voice designed for sleep.',
+    a: 'Mythia focuses on mythology from ten cultural traditions, adapted as self-contained bedtime stories with warm narration and three listening modes. The stories are creative retellings, not scholarly or religious texts.',
   },
   {
     q: 'Is Mythia available on Android?',
@@ -246,446 +247,85 @@ export default function MythiaContent() {
   }
 
   return (
-    <main className="bg-[#0A0A0A] text-[#C4B49A]" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}>
+    <main className={styles.page}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdApp) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
-
       <NavDark />
-
-      {/* Hero Section */}
-      <section className="min-h-[95vh] flex flex-col items-center justify-center text-center px-6 py-32 relative overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(circle, rgba(241, 224, 181, 0.15) 0%, rgba(241, 224, 181, 0.08) 35%, transparent 70%)',
-            width: '600px',
-            height: '600px',
-            left: '50%',
-            top: '50%',
-            transform: 'translate(-50%, -50%)',
-          }}
-        />
-
-        <div className="relative z-10 flex flex-col items-center gap-8 max-w-3xl">
-          {/* Mythia App Icon */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <Image
-            src="/logos/mythia-logo.png"
-            alt="Mythia"
-            width={88}
-            height={88}
-            className="object-cover rounded-[20px]"
-            style={{ boxShadow: '0 8px 32px rgba(241, 224, 181, 0.15)' }}
-          />
-
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C4B896]">
-            An App by Althia
-          </p>
-
-          <h1
-            className="text-[44px] md:text-[72px] leading-[1.1] text-[#F5F0E8]"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-          >
-            Sleep inside a myth.
-          </h1>
-
-          <p className="text-[18px] text-[#C4B49A] max-w-2xl leading-[1.8]">
-            Ancient stories from ten world mythologies — narrated for the end of your day.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6">
-            <a
-              href={APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-3 bg-[#F5F0E8] text-[#0A0A0A] rounded-xl font-semibold transition-all hover:bg-[#F1E0B5] hover:translate-y-[-2px]"
-            >
-              <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-              </svg>
-              Download on the App Store
-            </a>
-            <button
-              onClick={handlePreviewClick}
-              className="inline-flex items-center justify-center px-8 py-3 border-2 border-[#F1E0B5] text-[#F1E0B5] rounded-full font-semibold transition-all hover:bg-[rgba(241,224,181,0.1)] hover:border-[#F5F0E8]"
-            >
-              Listen to a preview
-            </button>
+      <section className={`${styles.hero} ${styles.mythiaHero}`}>
+        <Image className={styles.heroImage} src="/mythia/the-norns-at-urds-well.png" alt="" fill priority sizes="100vw" />
+        <div className={styles.heroInner}>
+          <p className={styles.eyebrow}>Mythology for the end of your day</p>
+          <h1>Mythia</h1>
+          <p className={styles.tagline}>Sleep inside a myth.</p>
+          <p className={styles.description}>Ancient worlds, gently told. Hundreds of bedtime stories from ten world mythologies, with a warm voice to carry you into the evening.</p>
+          <div className={styles.actions}>
+            <a className={styles.button} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">Download Mythia <span aria-hidden="true">↗</span></a>
+            <button className={styles.textLink} onClick={handlePreviewClick}>Listen to a preview</button>
           </div>
-
-          <p className="text-xs text-[#C4B896] tracking-[1px]">
-            <span className="inline-block mx-3">Free to download</span>
-            <span>·</span>
-            <span className="inline-block mx-3">No ads</span>
-          </p>
-
-          {/* Scroll Indicator */}
-          <div className="mt-12 relative">
-            <div
-              className="w-6 h-6 border-2 border-[rgba(241,224,181,0.3)] rounded-full relative"
-              style={{ animation: 'pulse-scroll 2s infinite' }}
-            >
-              <div
-                className="absolute w-[2px] h-2 bg-[#F1E0B5] top-[6px] left-1/2 transform -translate-x-1/2 rounded-[1px]"
-                style={{ animation: 'scroll-dot 2s infinite' }}
-              />
-            </div>
-          </div>
+          <p className={styles.small}>Available on iOS · Free to download · No ads</p>
         </div>
       </section>
-
-      {/* Audio Preview Section */}
-      <section id="preview" className="py-20 px-6" style={{ backgroundColor: '#0A0A0A' }}>
-        <div className="max-w-2xl mx-auto">
-          <audio ref={audioRef} src="/audio/preview.wav" preload="metadata" />
-
-          <div
-            className="rounded-2xl p-8 border"
-            style={{
-              backgroundColor: 'rgba(26, 26, 26, 0.8)',
-              borderColor: 'rgba(241, 224, 181, 0.15)',
-            }}
-          >
-            <div className="flex items-center gap-5 mb-6">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <Image
-                src="/logos/mythia-logo.png"
-                alt="Mythia"
-                width={56}
-                height={56}
-                className="rounded-[14px] object-cover"
-                style={{ boxShadow: '0 4px 16px rgba(241, 224, 181, 0.12)' }}
-              />
-              <div>
-                <p
-                  className="text-lg text-[#F5F0E8]"
-                  style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-                >
-                  Preview
-                </p>
-                <p className="text-xs text-[#C4B896] mt-0.5">
-                  A taste of how Mythia sounds
-                </p>
-              </div>
+      <div className={styles.facts}><span>Hundreds of stories</span><span>Ten world mythologies</span><span>10–15 minute listens</span><span>English narration</span></div>
+      <section className={styles.section} id="preview">
+        <div className={`${styles.wrap} ${styles.intro}`}>
+          <div data-fade-in="what-is">
+            <p className={styles.eyebrow}>Hear a little of it</p>
+            <h2>A story to settle into.</h2>
+            <p>Mythia is a bedtime audio app that brings ancient mythology to life. Unhurried narration, gentle sound, and endings that let you rest. No cliffhangers or sudden surprises.</p>
+          </div>
+          <div className={styles.player}>
+            <audio ref={audioRef} src="/audio/preview.wav" preload="metadata" />
+            <div className={styles.playerTop}>
+              <Image src="/logos/mythia-logo.png" alt="" width={52} height={52} />
+              <div><h3>A moment with Mythia</h3><p>A preview of the narration</p></div>
             </div>
-
-            <div className="flex items-center gap-4">
-              <button
-                onClick={togglePlay}
-                className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-all hover:scale-105"
-                style={{
-                  background: 'linear-gradient(135deg, #F1E0B5 0%, #C4B49A 100%)',
-                }}
-                aria-label={isPlaying ? 'Pause' : 'Play'}
-              >
-                {isPlaying ? (
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="#0A0A0A">
-                    <rect x="4" y="3" width="3.5" height="12" rx="1" />
-                    <rect x="10.5" y="3" width="3.5" height="12" rx="1" />
-                  </svg>
-                ) : (
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="#0A0A0A">
-                    <path d="M5 3.5v11l10-5.5z" />
-                  </svg>
-                )}
+            <div className={styles.controls}>
+              <button className={styles.play} onClick={togglePlay} aria-label={isPlaying ? 'Pause' : 'Play'} title={isPlaying ? 'Pause preview' : 'Play preview'}>
+                <span aria-hidden="true">{isPlaying ? 'Ⅱ' : '▶'}</span>
               </button>
-
-              <div className="flex-1">
+              <div className={styles.timeline}>
                 <input type="range" min="0" max={duration || 1} step="0.1" value={currentTime} disabled={!duration}
                   aria-label="Preview playback position" aria-valuetext={`${formatTime(currentTime)} of ${formatTime(duration)}`}
-                  className="w-full h-6 cursor-pointer accent-[#F1E0B5]"
                   onChange={(event) => { const value = Number(event.target.value); if (audioRef.current) { audioRef.current.currentTime = value; setCurrentTime(value) } }} />
-                <div className="flex justify-between mt-1.5 text-[11px] text-[#C4B896] tabular-nums">
-                  <span>{formatTime(currentTime)}</span>
-                  <span>{duration ? formatTime(duration) : '--:--'}</span>
-                </div>
+                <div className={styles.times}><span>{formatTime(currentTime)}</span><span>{duration ? formatTime(duration) : '--:--'}</span></div>
               </div>
             </div>
-          </div>
-          {audioError && <p role="status" className="text-sm text-[#F1E0B5] mt-4">{audioError}</p>}
-        </div>
-      </section>
-
-      {/* What is Mythia Section */}
-      <section className="py-24 px-6" style={{ backgroundColor: '#131110' }}>
-        <div className="max-w-5xl mx-auto">
-          <div
-            className="grid grid-cols-1 gap-12"
-            data-fade-in="what-is"
-          >
-            <div>
-              <h2
-                className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-8 leading-[1.2]"
-                style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-              >
-                Mythology Bedtime Stories for Sleep
-              </h2>
-
-              <div className="space-y-6">
-                <p className="text-base text-[#F1E0B5] font-medium">
-                  Mythia is a bedtime audio app that brings ancient mythology to life through immersive storytelling.
-                </p>
-
-                <div className="bg-[rgba(241,224,181,0.05)] border border-[rgba(241,224,181,0.12)] rounded-2xl p-6">
-                  <p className="text-base text-[#C4B49A] leading-[1.8]">
-                    Each story is 10–15 minutes long, carefully paced for bedtime. No cliffhangers, no surprises — just gentle storytelling that honors the cultural traditions it comes from.
-                  </p>
-                </div>
-
-                <div className="bg-[rgba(241,224,181,0.05)] border border-[rgba(241,224,181,0.12)] rounded-2xl p-6">
-                  <p className="text-base text-[#C4B49A] leading-[1.8]">
-                    Choose your mythology and your mood. A single, warm narrator guides you through tales of gods, monsters, heroes, and the forces that shaped ancient understanding of the world.
-                  </p>
-                </div>
-              </div>
-            </div>
-
+            {audioError && <p role="status">{audioError}</p>}
           </div>
         </div>
       </section>
-
-      {/* Mythology Worlds Section */}
-      <section className="py-24 px-6" style={{ backgroundColor: '#0A0A0A' }}>
-        <div className="max-w-5xl mx-auto">
-          <h2
-            className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-16 text-center leading-[1.2]"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-          >
-            Ten World Mythologies, Fully Live
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {mythologyWorlds.map((world) => (
-              <div
-                key={world.name}
-                className="rounded-2xl p-8 relative overflow-hidden transition-all hover:translate-y-[-4px]"
-                style={{
-                  backgroundColor: '#1A1A1A',
-                  borderTop: `4px solid ${world.primary}`,
-                  border: `1px solid ${world.primary}`,
-                  borderTopWidth: '4px',
-                  backgroundImage: `radial-gradient(circle at top, ${world.glow} 0%, transparent 60%)`,
-                }}
-                data-fade-in={`world-${world.name.toLowerCase()}`}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#C4B896]">
-                    {world.name}
-                  </p>
-                </div>
-                <h3
-                  className="text-2xl text-[#F5F0E8] mb-4"
-                  style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-                >
-                  {world.title}
-                </h3>
-                <p className="text-sm text-[#C4B49A] leading-[1.8]">
-                  {world.description}
-                </p>
-              </div>
-            ))}
+      <section className={`${styles.section} ${styles.tint}`}>
+        <div className={styles.wrap}>
+          <div className={styles.heading}><div><p className={styles.eyebrow}>A library of ancient worlds</p><h2>Where the evening takes you.</h2></div><p>Different traditions. Distinct imaginations. A gentler pace for every one.</p></div>
+          <div className={styles.gallery}>
+            <article><div className={styles.art}><Image src="/mythia/the-dance-of-eurynome.png" alt="Mythia artwork of Eurynome dancing above the waves" fill sizes="(max-width: 760px) 90vw, 360px" /></div><p className={styles.eyebrow}>Greek mythology</p><h3>The Dance of Eurynome</h3><p>Creation, movement, and the beginnings of a world.</p><Link className={styles.textLink} href="/mythia/greek-mythology-sleep-stories">Explore Greek sleep stories →</Link></article>
+            <article><div className={styles.art}><Image src="/mythia/the-norns-at-urds-well.png" alt="Mythia artwork of the Norns beneath the world tree" fill sizes="(max-width: 760px) 90vw, 360px" /></div><p className={styles.eyebrow}>Norse mythology</p><h3>The Norns at Urd’s Well</h3><p>At the roots of the world tree, the threads of fate are tended.</p></article>
+            <article><div className={styles.art}><Image src="/mythia/amaterasu-and-the-cave.png" alt="Mythia artwork of Amaterasu emerging from the cave" fill sizes="(max-width: 760px) 90vw, 360px" /></div><p className={styles.eyebrow}>Japanese mythology</p><h3>Amaterasu and the Cave</h3><p>A hidden sun, a gathering of spirits, and the return of light.</p></article>
           </div>
+          <div className={styles.worlds}>{mythologyWorlds.map(world => <article key={world.name}><h3>{world.name} · {world.title}</h3><p>{world.description}</p></article>)}</div>
         </div>
       </section>
-
-      {/* How It Works Section */}
-      <section className="py-24 px-6" style={{ backgroundColor: '#131110' }}>
-        <div className="max-w-5xl mx-auto">
-          <h2
-            className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-20 text-center leading-[1.2]"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-          >
-            How Mythology Becomes a Sleep Story
-          </h2>
-
-          {/* Flow Steps */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-            {flowSteps.map((step, idx) => (
-              <div
-                key={idx}
-                className="text-center"
-                data-fade-in={`flow-step-${idx}`}
-              >
-                <div
-                  className="w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center text-xl font-semibold"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(241, 224, 181, 0.2) 0%, rgba(241, 224, 181, 0.08) 100%)',
-                    border: '1px solid rgba(241, 224, 181, 0.25)',
-                    color: '#F1E0B5',
-                    fontFamily: '"Playfair Display", Georgia, serif',
-                  }}
-                >
-                  {step.number}
-                </div>
-                <h3
-                  className="text-xl text-[#F5F0E8] mb-2"
-                  style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-                >
-                  {step.title}
-                </h3>
-                <p className="text-sm text-[#C4B49A] leading-[1.7]">
-                  {step.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Feature Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {features.map((feature, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl p-7 border"
-                style={{
-                  backgroundColor: 'rgba(26, 26, 26, 0.6)',
-                  borderColor: 'rgba(241, 224, 181, 0.12)',
-                }}
-                data-fade-in={`feature-${idx}`}
-              >
-                <h3
-                  className="text-lg text-[#F1E0B5] mb-2"
-                  style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-                >
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-[#C4B49A] leading-[1.7]">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
+      <section className={styles.section}>
+        <div className={styles.wrap}>
+          <p className={styles.eyebrow}>Your evening, your atmosphere</p><h2>One small ritual.</h2>
+          <div className={styles.steps}>{flowSteps.map(step => <article key={step.number}><span>0{step.number}</span><h3>{step.title}</h3><p>{step.description}</p></article>)}</div>
+          <div className={styles.features}>{features.map(feature => <article key={feature.title}><h3>{feature.title}</h3><p>{feature.description}</p></article>)}</div>
         </div>
       </section>
-
-      {/* Pull Quote Section */}
-      <section className="py-24 px-6 flex flex-col items-center text-center" style={{ backgroundColor: '#0A0A0A' }}>
-        <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#F1E0B5] to-transparent mb-12" />
-        <blockquote
-          className="text-[28px] md:text-[44px] italic text-[#F5F0E8] max-w-2xl leading-[1.4]"
-          style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-        >
-          &ldquo;Close your eyes. The gods are still awake.&rdquo;
-        </blockquote>
-        <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#F1E0B5] to-transparent mt-12" />
+      <section className={`${styles.section} ${styles.tint}`}>
+        <div className={styles.wrap}><div className={styles.faq}><p className={styles.eyebrow}>Before you settle in</p><h2>A few things to know.</h2>
+          {faqs.map(faq => <details key={faq.q}><summary>{faq.q}</summary><p>{faq.a}</p></details>)}
+        </div></div>
       </section>
-
-      {/* Growing Library Stats */}
-      <section className="py-24 px-6 text-center" style={{ backgroundColor: '#131110' }}>
-        <div className="max-w-5xl mx-auto">
-          <h2
-            className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-4 leading-[1.2]"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-          >
-            A Growing Library of Mythology Stories
-          </h2>
-          <p className="text-base text-[#C4B49A] mb-12 max-w-2xl mx-auto">
-            Hundreds of stories across ten world mythologies, crafted as calm bedtime narrations with three listening modes.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {['Hundreds of stories across 10 mythologies', 'Greek myths, epic journeys, and more', '10–15 min each', 'Growing library'].map((stat) => (
-              <div
-                key={stat}
-                className="border rounded-full px-5 py-3 text-sm font-medium"
-                style={{ borderColor: 'rgba(241, 224, 181, 0.2)', color: '#F1E0B5' }}
-              >
-                {stat}
-              </div>
-            ))}
-          </div>
+      <section id="download" className={`${styles.section} ${styles.closing}`}>
+        <div className={styles.wrap}>
+          <Image src="/logos/mythia-logo.png" alt="" width={64} height={64} style={{ margin: '0 auto 24px', borderRadius: 14 }} />
+          <h2>Let the day end with a story.</h2><p>Choose a world. Find a comfortable spot. The rest can wait.</p>
+          <div className={styles.actions}><a className={styles.button} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">Download Mythia ↗</a><Link className={styles.textLink} href="/senthia">Discover Senthia →</Link></div>
+          <p className={styles.small}>Free to download. Optional paid access. Requires iOS 15.1 or later.</p>
         </div>
       </section>
-
-
-      {/* FAQ Section */}
-      <section className="py-24 px-6" style={{ backgroundColor: '#131110' }}>
-        <div className="max-w-2xl mx-auto">
-          <h2
-            className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-12 text-center leading-[1.2]"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-          >
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-4">
-            {faqs.map((faq, idx) => (
-              <details
-                key={idx}
-                className="group rounded-2xl p-6 border cursor-pointer transition-all"
-                style={{
-                  backgroundColor: 'rgba(26, 26, 26, 0.6)',
-                  borderColor: 'rgba(241, 224, 181, 0.12)',
-                }}
-              >
-                <summary className="flex justify-between items-center font-semibold text-[#F1E0B5] text-base list-none">
-                  {faq.q}
-                  <span className="transform transition-transform group-open:rotate-180 text-xs">▼</span>
-                </summary>
-                <p className="text-sm text-[#C4B49A] leading-[1.8] mt-4">
-                  {faq.a}
-                </p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Part of Althia */}
-      <section className="py-24 px-6 text-center" style={{ backgroundColor: '#0A0A0A' }}>
-        <div className="max-w-2xl mx-auto">
-          <h2
-            className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-4 leading-[1.2]"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-          >
-            Part of Althia.
-          </h2>
-          <p className="text-base text-[#C4B49A] leading-relaxed mb-8">
-            Mythia is made by Althia, an independent audio studio. Also discover <Link href="/senthia" className="underline underline-offset-4">Senthia</Link>, our guided-imagination app for relaxation, available in English and Spanish.
-          </p>
-          <Link
-            href="/"
-            className="inline-flex text-[#F1E0B5] font-semibold text-sm border-b-2 border-[#F1E0B5] transition-all hover:border-[#F5F0E8]"
-          >
-            Explore Althia →
-          </Link>
-          <span className="mx-3 text-[rgba(241,224,181,0.35)]">·</span>
-          <Link
-            href="/facts"
-            className="inline-flex text-[#F1E0B5] font-semibold text-sm border-b-2 border-[#F1E0B5] transition-all hover:border-[#F5F0E8]"
-          >
-            Read the facts →
-          </Link>
-        </div>
-      </section>
-
-      {/* Final Download CTA */}
-      <section id="download" className="py-24 px-6 text-center" style={{ backgroundColor: '#131110' }}>
-        <div className="max-w-2xl mx-auto">
-          <h2
-            className="text-[32px] md:text-[56px] text-[#F5F0E8] mb-4 leading-[1.2]"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-          >
-            Begin your mythology tonight.
-          </h2>
-          <p className="text-base text-[#C4B49A] mb-12">
-            Free to download. No ads. A growing library across ten mythologies.
-          </p>
-          <a
-            href={APP_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-8 py-3 bg-[#F5F0E8] text-[#0A0A0A] rounded-xl font-semibold transition-all hover:bg-[#F1E0B5] hover:translate-y-[-2px] mb-4"
-          >
-            <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-            </svg>
-            Download on the App Store
-          </a>
-          <p className="text-xs text-[#C4B896]">
-            Requires iOS 15.1 or later
-          </p>
-        </div>
-      </section>
-
-      <Footer variant="dark" showMythiaNote={true} />
+      <Footer variant="light" showMythiaNote />
     </main>
   )
 }

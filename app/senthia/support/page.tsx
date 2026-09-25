@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function SenthiaSupport() {
   return <LegalPage title="Senthia Support" showEffectiveDate={false}>
     <p>A little help, whenever you need it. Contact Althia Studios with a question, a problem or an idea for Senthia.</p>
-    <div className="rounded-2xl bg-[#EAF2EC] p-6">
+    <div className="border-y border-[#d9e1dc] py-8">
       <h2 className="text-xl text-[#203C34] mb-3" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>Get in touch</h2>
       <a href="mailto:althiastudios@gmail.com?subject=Senthia%20Support" className="text-[#285E4D] break-words">althiastudios@gmail.com</a>
       <p className="mt-3">Please include your device model, iOS version and what happened. A screenshot can help. There’s no need to send passwords, payment details or private reflections.</p>
