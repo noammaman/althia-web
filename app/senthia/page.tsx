@@ -4,6 +4,8 @@ import Link from 'next/link'
 import Footer from '@/components/Footer'
 import styles from './senthia.module.css'
 
+const APP_STORE_URL = 'https://apps.apple.com/il/app/senthia/id6814469115'
+
 export const metadata: Metadata = {
   title: 'Senthia — A Little Room for You | Guided Imagination',
   description: 'Narrated journeys into vivid, imagined places. Explore ten guided-imagination journeys in English and Spanish, with five free journeys to choose.',
@@ -25,6 +27,19 @@ const journeys = [
 
 export default function SenthiaPage() {
   return <main className={styles.page}>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'MobileApplication',
+        name: 'Senthia',
+        operatingSystem: 'iOS',
+        applicationCategory: 'HealthApplication',
+        description: 'Guided-imagination journeys for relaxation in English and Spanish.',
+        url: APP_STORE_URL,
+        downloadUrl: APP_STORE_URL,
+      }) }}
+    />
     <nav className={styles.nav} aria-label="Senthia navigation">
       <Link href="/senthia" className={styles.brand}>senthia</Link>
       <div><Link href="/">Althia</Link><Link href="/senthia/support">Support</Link></div>
@@ -35,8 +50,8 @@ export default function SenthiaPage() {
         <h1>A little room<br />for you.</h1>
         <p className={styles.lead}>Let a voice guide you somewhere quiet.</p>
         <p className={styles.body}>A meadow in the sunlight. A hidden pool in the jungle. A cabin with a fire burning. Senthia takes you into vivid, imagined places and gives you time to simply be there.</p>
-        <a className={styles.button} href="#journeys">Explore the journeys <span aria-hidden="true">↗</span></a>
-        <p className={styles.launch}>Coming to iOS · English &amp; Spanish</p>
+        <a className={styles.button} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">Download on the App Store <span aria-hidden="true">↗</span></a>
+        <p className={styles.launch}>Now available on iOS · English &amp; Spanish</p>
       </div>
       <div className={styles.heroArt}><Image src="/senthia/meadow.jpg" alt="Senthia’s Summer Meadow: a sunlit path through grasses and wildflowers" fill priority sizes="(max-width: 700px) 75vw, 400px" /><span>A place to arrive.</span></div>
     </section>
