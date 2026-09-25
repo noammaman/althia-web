@@ -8,7 +8,7 @@ Contact: althiastudios@gmail.com
 
 ## Products
 
-- [Mythia](https://althia.org/mythia): An iOS bedtime-audio app with 200 calm stories across ten world mythologies.
+- [Mythia](https://althia.org/mythia): An iOS bedtime-audio app with hundreds of calm stories across ten world mythologies.
 - [Greek mythology sleep stories](https://althia.org/mythia/greek-mythology-sleep-stories): A detailed guide to Mythia's Greek collection.
 - [Unplug League](https://althia.org/unplugleague): A social screen-time app currently in development.
 

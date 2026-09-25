@@ -43,7 +43,7 @@ export default function OpenGraphImage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '22px', maxWidth: '980px' }}>
           <div style={{ fontFamily: 'Georgia', fontSize: '76px', lineHeight: 1.05 }}>Sleep inside a myth.</div>
           <div style={{ fontSize: '28px', color: '#C4B49A', lineHeight: 1.4 }}>
-            200 bedtime stories across ten world mythologies, narrated for the end of your day.
+            Hundreds of bedtime stories across ten world mythologies, narrated for the end of your day.
           </div>
         </div>
       </div>

@@ -121,7 +121,7 @@ const features = [
 const faqs = [
   {
     q: 'Is Mythia free?',
-    a: 'Mythia is free to download with select stories. Access the full library of 200 stories across ten mythologies with a subscription or one-time mythology packs.',
+    a: 'Mythia is free to download with select stories. Access the full library of hundreds of stories across ten mythologies with a subscription or one-time mythology packs.',
   },
   {
     q: 'What mythologies are available?',
@@ -241,7 +241,7 @@ export default function MythiaContent() {
     '@type': 'MobileApplication',
     '@id': 'https://althia.org/mythia#app',
     name: 'Mythia',
-    description: 'A bedtime audio app featuring 200 stories across ten world mythologies.',
+    description: 'A bedtime audio app featuring hundreds of stories across ten world mythologies.',
     url: 'https://althia.org/mythia',
     applicationCategory: 'BookApplication',
     operatingSystem: 'iOS 15.1 or later',
@@ -249,7 +249,7 @@ export default function MythiaContent() {
     installUrl: APP_STORE_URL,
     image: 'https://althia.org/logos/mythia-logo.png',
     featureList: [
-      '200 mythology bedtime stories',
+      'hundreds of mythology bedtime stories',
       'Ten world mythologies',
       '10–15 minute stories',
       'Temple, Hearth, and Voice Only listening modes',
@@ -630,10 +630,10 @@ export default function MythiaContent() {
             A Growing Library of Mythology Stories
           </h2>
           <p className="text-base text-[#C4B49A] mb-12 max-w-2xl mx-auto">
-            200 stories across ten world mythologies, crafted as calm bedtime narrations with three listening modes.
+            Hundreds of stories across ten world mythologies, crafted as calm bedtime narrations with three listening modes.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {['200 stories across 10 mythologies', '110 Greek stories including 8 epic journey series', '10–15 min each', 'Growing library'].map((stat) => (
+            {['Hundreds of stories across 10 mythologies', 'Greek myths, epic journeys, and more', '10–15 min each', 'Growing library'].map((stat) => (
               <div
                 key={stat}
                 className="border rounded-full px-5 py-3 text-sm font-medium"
