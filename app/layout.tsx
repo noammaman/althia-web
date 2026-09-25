@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     default: 'Althia — Narrative Studio for Sleep & Reflection',
     template: '%s | Althia',
   },
-  description: 'Althia is a narrative studio creating audio apps for sleep and reflection. Explore Mythia, our app of mythology, philosophy, and the ancient world.',
+  description: 'Althia creates audio apps for sleep, relaxation, and reflection. Explore Mythia mythology bedtime stories and Senthia guided-imagination journeys.',
   authors: [{ name: 'Althia' }],
   creator: 'Althia',
   icons: {
@@ -52,7 +52,7 @@ export default function RootLayout({
         '@type': 'Organization',
         '@id': 'https://althia.org/#organization',
         name: 'Althia',
-        description: 'A narrative studio creating audio apps for sleep and reflection, drawing from mythology, philosophy, and the ancient world.',
+        description: 'An independent studio creating audio apps for sleep, relaxation, and reflection, including Mythia and Senthia.',
         url: 'https://althia.org',
         logo: {
           '@type': 'ImageObject',

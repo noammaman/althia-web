@@ -32,12 +32,18 @@ export default function SenthiaPage() {
       dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'MobileApplication',
+        '@id': 'https://althia.org/senthia#app',
         name: 'Senthia',
         operatingSystem: 'iOS',
         applicationCategory: 'HealthApplication',
         description: 'Guided-imagination journeys for relaxation in English and Spanish.',
-        url: APP_STORE_URL,
+        url: 'https://althia.org/senthia',
         downloadUrl: APP_STORE_URL,
+        installUrl: APP_STORE_URL,
+        inLanguage: ['en', 'es'],
+        image: 'https://althia.org/logos/senthia-logo.png',
+        publisher: { '@id': 'https://althia.org/#organization' },
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free download with optional in-app subscription.' },
       }) }}
     />
     <nav className={styles.nav} aria-label="Senthia navigation">

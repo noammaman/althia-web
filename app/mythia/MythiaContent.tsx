@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import NavDark from '@/components/NavDark'
 import Footer from '@/components/Footer'
 import { useEffect, useRef, useState, useCallback } from 'react'
@@ -145,37 +146,14 @@ const faqs = [
   },
   {
     q: 'Is Mythia available on Android?',
-    a: 'Mythia is currently available on iOS. An Android version is planned — sign up at althia.org to be notified when it launches.',
+    a: 'Mythia is currently available on iOS. There is no Android version available at this time. Contact althiastudios@gmail.com with questions about availability.',
   },
 ]
 
 export default function MythiaContent() {
-  const [visible, setVisible] = useState<Set<string>>(new Set())
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('data-fade-in')
-            if (id) {
-              setVisible((prev) => new Set(prev).add(id))
-            }
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    document.querySelectorAll('[data-fade-in]').forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
-
-  const isVisible = (id: string) => visible.has(id)
-
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [progress, setProgress] = useState(0)
+  const [audioError, setAudioError] = useState('')
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
 
@@ -185,51 +163,48 @@ export default function MythiaContent() {
     return `${m}:${sec.toString().padStart(2, '0')}`
   }
 
-  const togglePlay = useCallback(() => {
+  const togglePlay = useCallback(async () => {
     const audio = audioRef.current
     if (!audio) return
     if (audio.paused) {
-      audio.play()
-      setIsPlaying(true)
+      try {
+        await audio.play()
+        setAudioError('')
+      } catch {
+        setAudioError('The preview could not play. Please try again.')
+      }
     } else {
       audio.pause()
-      setIsPlaying(false)
     }
   }, [])
 
   const handlePreviewClick = useCallback(() => {
     const el = document.getElementById('preview')
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
-    setTimeout(() => {
-      const audio = audioRef.current
-      if (audio && audio.paused) {
-        audio.play()
-        setIsPlaying(true)
-      }
-    }, 600)
-  }, [])
-
-  const handleSeek = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    const audio = audioRef.current
-    if (!audio || !duration) return
-    const rect = e.currentTarget.getBoundingClientRect()
-    const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width))
-    audio.currentTime = pct * duration
-  }, [duration])
+    if (el) el.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+    if (audioRef.current?.paused) void togglePlay()
+  }, [togglePlay])
 
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
     const onTime = () => {
       setCurrentTime(audio.currentTime)
-      setProgress(audio.duration ? audio.currentTime / audio.duration : 0)
     }
-    const onMeta = () => setDuration(audio.duration)
-    const onEnd = () => { setIsPlaying(false); setProgress(0); setCurrentTime(0) }
+    const onMeta = () => setDuration(Number.isFinite(audio.duration) ? audio.duration : 0)
+    const onEnd = () => { setIsPlaying(false); setCurrentTime(0) }
+    const onPlay = () => setIsPlaying(true)
+    const onPause = () => setIsPlaying(false)
+    const onError = () => { setIsPlaying(false); setAudioError('The preview could not load. Please try again later.') }
+    audio.addEventListener('play', onPlay)
+    audio.addEventListener('pause', onPause)
+    audio.addEventListener('error', onError)
     audio.addEventListener('timeupdate', onTime)
     audio.addEventListener('loadedmetadata', onMeta)
     audio.addEventListener('ended', onEnd)
     return () => {
+      audio.removeEventListener('play', onPlay)
+      audio.removeEventListener('pause', onPause)
+      audio.removeEventListener('error', onError)
       audio.removeEventListener('timeupdate', onTime)
       audio.removeEventListener('loadedmetadata', onMeta)
       audio.removeEventListener('ended', onEnd)
@@ -294,7 +269,7 @@ export default function MythiaContent() {
         <div className="relative z-10 flex flex-col items-center gap-8 max-w-3xl">
           {/* Mythia App Icon */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/logos/mythia-logo.png"
             alt="Mythia"
             width={88}
@@ -373,7 +348,7 @@ export default function MythiaContent() {
           >
             <div className="flex items-center gap-5 mb-6">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/logos/mythia-logo.png"
                 alt="Mythia"
                 width={56}
@@ -416,27 +391,10 @@ export default function MythiaContent() {
               </button>
 
               <div className="flex-1">
-                <div
-                  className="w-full h-2 rounded-full cursor-pointer relative group"
-                  style={{ backgroundColor: 'rgba(241, 224, 181, 0.12)' }}
-                  onClick={handleSeek}
-                >
-                  <div
-                    className="h-full rounded-full transition-all"
-                    style={{
-                      width: `${progress * 100}%`,
-                      background: 'linear-gradient(90deg, #F1E0B5 0%, #C4B49A 100%)',
-                    }}
-                  />
-                  <div
-                    className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                    style={{
-                      left: `calc(${progress * 100}% - 7px)`,
-                      backgroundColor: '#F1E0B5',
-                      boxShadow: '0 0 8px rgba(241, 224, 181, 0.4)',
-                    }}
-                  />
-                </div>
+                <input type="range" min="0" max={duration || 1} step="0.1" value={currentTime} disabled={!duration}
+                  aria-label="Preview playback position" aria-valuetext={`${formatTime(currentTime)} of ${formatTime(duration)}`}
+                  className="w-full h-6 cursor-pointer accent-[#F1E0B5]"
+                  onChange={(event) => { const value = Number(event.target.value); if (audioRef.current) { audioRef.current.currentTime = value; setCurrentTime(value) } }} />
                 <div className="flex justify-between mt-1.5 text-[11px] text-[#C4B896] tabular-nums">
                   <span>{formatTime(currentTime)}</span>
                   <span>{duration ? formatTime(duration) : '--:--'}</span>
@@ -444,6 +402,7 @@ export default function MythiaContent() {
               </div>
             </div>
           </div>
+          {audioError && <p role="status" className="text-sm text-[#F1E0B5] mt-4">{audioError}</p>}
         </div>
       </section>
 
@@ -453,11 +412,6 @@ export default function MythiaContent() {
           <div
             className="grid grid-cols-1 gap-12"
             data-fade-in="what-is"
-            style={{
-              opacity: isVisible('what-is') ? 1 : 0,
-              transform: isVisible('what-is') ? 'translateY(0)' : 'translateY(20px)',
-              transition: 'all 0.8s ease',
-            }}
           >
             <div>
               <h2
@@ -551,11 +505,6 @@ export default function MythiaContent() {
                 key={idx}
                 className="text-center"
                 data-fade-in={`flow-step-${idx}`}
-                style={{
-                  opacity: isVisible(`flow-step-${idx}`) ? 1 : 0,
-                  transform: isVisible(`flow-step-${idx}`) ? 'translateY(0)' : 'translateY(20px)',
-                  transition: 'all 0.8s ease',
-                }}
               >
                 <div
                   className="w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center text-xl font-semibold"
@@ -689,7 +638,7 @@ export default function MythiaContent() {
             Part of Althia.
           </h2>
           <p className="text-base text-[#C4B49A] leading-relaxed mb-8">
-            Mythia is the first app from Althia — a studio building narrative experiences for the contemplative mind. History, meditation, and more are coming.
+            Mythia is made by Althia, an independent audio studio. Also discover <Link href="/senthia" className="underline underline-offset-4">Senthia</Link>, our guided-imagination app for relaxation, available in English and Spanish.
           </p>
           <Link
             href="/"

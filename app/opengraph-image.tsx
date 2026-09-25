@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'Althia — stories for the ancient mind'
+export const alt = 'Althia — Mythia and Senthia, audio apps for sleep and reflection'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -16,9 +16,9 @@ export default function OpenGraphImage() {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '76px 84px',
-          background: '#FDFCFA',
-          color: '#111111',
-          borderTop: '18px solid #8B6914',
+          background: '#EEF3F0',
+          color: '#203C34',
+          borderTop: '18px solid #285E4D',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '22px' }}>
@@ -42,10 +42,10 @@ export default function OpenGraphImage() {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '920px' }}>
           <div style={{ fontFamily: 'Georgia', fontSize: '70px', lineHeight: 1.08 }}>
-            Stories for the ancient mind.
+            A little more room for your mind.
           </div>
           <div style={{ fontSize: '28px', color: '#555555', lineHeight: 1.4 }}>
-            Audio experiences rooted in mythology, philosophy, and history.
+            Mythia & Senthia. Audio apps for sleep, relaxation, and reflection.
           </div>
         </div>
       </div>

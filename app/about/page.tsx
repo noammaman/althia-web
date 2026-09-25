@@ -5,8 +5,9 @@ import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'About Althia',
-  description: 'Althia is a small studio making audio apps rooted in mythology, philosophy, and history — designed for sleep and reflection.',
+  description: 'Meet Althia, the independent studio behind Mythia bedtime stories and Senthia guided imagination. Learn about our approach to audio, AI, and creative direction.',
   alternates: { canonical: '/about' },
+  openGraph: { title: 'About Althia', description: 'The independent studio behind Mythia and Senthia.', url: 'https://althia.org/about' },
   robots: 'index, follow',
 }
 
@@ -53,7 +54,7 @@ export default function AboutPage() {
             </p>
 
             <p>
-              More apps are coming. Ethia will explore history. Senthia now offers contemplative guided-imagination experiences for relaxation. Each one follows the same principle: timeless source material, adapted with respect, designed around a specific moment in your day.
+              <Link href="/senthia" className="text-[#111111] underline underline-offset-2">Senthia</Link> offers guided-imagination experiences for relaxation in English and Spanish. Mythia and Senthia are both available on iOS. Ethia, our exploration of history and culture, is in development. Each app is designed around a specific moment in your day.
             </p>
 
             <p>

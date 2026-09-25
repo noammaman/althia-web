@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface FooterProps {
   variant: 'light' | 'dark'
@@ -20,22 +21,29 @@ export default function Footer({ variant, showMythiaNote = false, privacyHref = 
         paddingBottom: '48px',
       }}
     >
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-[1184px] mx-auto px-6">
+        <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-6 gap-y-3 mb-8 text-sm" style={{ color: isDark ? '#C4B49A' : '#444444' }}>
+          <Link href="/mythia">Mythia</Link>
+          <Link href="/senthia">Senthia</Link>
+          <Link href="/about">About the studio</Link>
+          <Link href="/senthia/support">Senthia Support</Link>
+          <Link href="/terms">Terms of Use</Link>
+        </nav>
         <div className="flex flex-col sm:flex-row items-center justify-between gap-8 mb-4">
           <div className="flex items-center gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={isDark ? '/logos/althia-logo-dark.png' : '/logos/althia-logo-light.svg'}
+            <Image
+              src="/logos/althia-logo-dark.png"
               alt="Althia"
               width={20}
               height={20}
               className="object-contain"
-              style={{ opacity: isDark ? 0.6 : 0.4 }}
+              style={{ borderRadius: 4 }}
             />
             <span
               className="text-xs"
               style={{
-                color: isDark ? 'rgba(241, 224, 181, 0.4)' : '#999999',
+                color: isDark ? '#C4B49A' : '#666666',
                 fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif',
               }}
             >
@@ -46,7 +54,7 @@ export default function Footer({ variant, showMythiaNote = false, privacyHref = 
           <div
             className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-xs"
             style={{
-              color: isDark ? 'rgba(241, 224, 181, 0.4)' : '#999999',
+              color: isDark ? '#C4B49A' : '#666666',
               fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif',
             }}
           >
@@ -67,7 +75,7 @@ export default function Footer({ variant, showMythiaNote = false, privacyHref = 
         {showMythiaNote && (
           <p
             className="text-[10px] text-center mt-6"
-            style={{ color: 'rgba(241, 224, 181, 0.25)' }}
+            style={{ color: '#C4B49A' }}
           >
             Mythia is a product of Althia
           </p>

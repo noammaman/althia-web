@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import LegalPage, { LegalSection as Section } from '../LegalPage'
-export const metadata: Metadata = { title: 'Senthia — Terms of Use', description: 'Terms for Senthia guided-imagination journeys and subscriptions.' }
+export const metadata: Metadata = { title: 'Senthia — Terms of Use', description: 'Terms for Senthia guided-imagination journeys and subscriptions.', alternates: { canonical: '/senthia/terms' } }
 export default function SenthiaTerms() {
   return <LegalPage title="Senthia Terms of Use">
     <Section title="About Senthia"><p>Senthia is a guided-imagination relaxation app operated by Althia Studios. It offers narrated imagined places, artwork and listening features. These terms apply to Senthia, not to purchases in other Althia apps.</p></Section>

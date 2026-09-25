@@ -1,8 +1,10 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function NavLight() {
   return (
     <nav
+      aria-label="Main navigation"
       className="sticky top-0 z-50 border-b"
       style={{
         backgroundColor: 'rgba(253, 252, 250, 0.95)',
@@ -10,17 +12,17 @@ export default function NavLight() {
         borderColor: '#E5E5E5',
       }}
     >
-      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-[1184px] mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logos/althia-logo-light.svg"
-            alt="Althia"
+          <Image
+            src="/logos/althia-logo-dark.png"
+            alt=""
             width={28}
             height={28}
-            className="object-contain"
+            className="object-contain rounded-md"
           />
-          <span className="text-xs font-semibold tracking-widest uppercase text-[#111111]" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>
+          <span className="text-xl text-[#111111]" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>
             Althia
           </span>
         </Link>
