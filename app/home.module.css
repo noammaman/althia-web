@@ -21,7 +21,7 @@
 .mythia { background: #f1eff6; color: #373345; }
 .senthia { background: #eaf1eb; color: #244b3e; }
 .appTop { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 32px; }
-.appTop img { border-radius: 14px; }
+.appTop img { width: 64px; height: 64px; flex-shrink: 0; object-fit: cover; border-radius: 14px; }
 .appTop span { font-size: 12px; }
 .app .eyebrow { margin-bottom: 9px; }
 .app h3 { font-size: 42px; }
