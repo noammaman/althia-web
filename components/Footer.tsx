@@ -74,8 +74,8 @@ export default function Footer({ variant, showMythiaNote = false, privacyHref = 
 
         {showMythiaNote && (
           <p
-            className="text-[10px] text-center mt-6"
-            style={{ color: '#C4B49A' }}
+            className="text-xs text-center mt-6"
+            style={{ color: isDark ? '#C4B49A' : '#666666' }}
           >
             Mythia is a product of Althia
           </p>

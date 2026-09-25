@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
+import ReadingNav from '@/components/ReadingNav'
+import reading from '@/components/reading.module.css'
 import Link from 'next/link'
+import Image from 'next/image'
 import NavDark from '@/components/NavDark'
 import Footer from '@/components/Footer'
 
@@ -34,11 +37,9 @@ export const metadata: Metadata = {
 
 export default function GreekMythologySleepStoriesPage() {
   return (
-    <main
-      className="bg-[#0A0A0A] text-[#C4B49A] min-h-screen"
-      style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-    >
+    <main className={reading.page}>
       <NavDark />
+      <ReadingNav product="Mythia" />
 
       <article className="py-24 px-6">
         <div className="max-w-[720px] mx-auto">
@@ -57,6 +58,7 @@ export default function GreekMythologySleepStoriesPage() {
             Greek Mythology Sleep Stories
           </h1>
 
+          <div className={reading.banner}><Image src="/mythia/the-dance-of-eurynome.png" alt="Eurynome dancing above the waves, from Mythia's Greek collection" fill priority sizes="(max-width: 900px) 90vw, 760px" /></div>
           <div className="space-y-6 text-base leading-[1.8]">
             <p>
               The Greeks told stories about gods who loved badly, heroes who suffered for knowledge, and monsters born
@@ -143,7 +145,7 @@ export default function GreekMythologySleepStoriesPage() {
         </div>
       </article>
 
-      <section id="download" className="py-24 px-6 text-center" style={{ backgroundColor: '#131110' }}>
+      <section id="download" className={reading.download}>
         <div className="max-w-2xl mx-auto">
           <a
             href={APP_STORE_URL}
@@ -160,7 +162,7 @@ export default function GreekMythologySleepStoriesPage() {
         </div>
       </section>
 
-      <Footer variant="dark" showMythiaNote={true} />
+      <Footer variant="light" showMythiaNote={true} />
     </main>
   )
 }

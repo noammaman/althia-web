@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import ReadingNav from '@/components/ReadingNav'
+import reading from '@/components/reading.module.css'
 import Link from 'next/link'
 import NavLight from '@/components/NavLight'
 import Footer from '@/components/Footer'
@@ -69,9 +71,10 @@ export default function FactsPage() {
   }
 
   return (
-    <main className="min-h-screen" style={{ backgroundColor: '#FDFCFA' }}>
+    <main className={reading.page}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <NavLight />
+      <ReadingNav product="Althia" />
       <article className="py-20 md:py-24 px-6">
         <div className="max-w-[760px] mx-auto">
           <p className="text-xs font-semibold uppercase text-[#8B6914] mb-4" style={{ letterSpacing: '0.12em' }}>
@@ -81,7 +84,7 @@ export default function FactsPage() {
             Althia facts
           </h1>
           <p className="text-lg text-[#555555] leading-relaxed mb-4">
-            A concise source of truth about Althia and its products, written for people, search engines, and answer systems.
+            The essentials about our studio, our apps, and how we work.
           </p>
           <p className="text-sm text-[#666666] mb-14">Last reviewed September 25, 2026.</p>
 

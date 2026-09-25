@@ -53,13 +53,13 @@ export default function SenthiaPage() {
     <section className={styles.hero}>
       <div className={styles.heroCopy}>
         <p className={styles.eyebrow}>GUIDED IMAGINATION FOR RELAXATION</p>
-        <h1>A little room<br />for you.</h1>
-        <p className={styles.lead}>Let a voice guide you somewhere quiet.</p>
+        <h1>Senthia</h1>
+        <p className={styles.lead}>A little room for you.</p>
         <p className={styles.body}>A meadow in the sunlight. A hidden pool in the jungle. A cabin with a fire burning. Senthia takes you into vivid, imagined places and gives you time to simply be there.</p>
         <a className={styles.button} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">Download on the App Store <span aria-hidden="true">↗</span></a>
         <p className={styles.launch}>Now available on iOS · English &amp; Spanish</p>
       </div>
-      <div className={styles.heroArt}><Image src="/senthia/meadow.jpg" alt="Senthia’s Summer Meadow: a sunlit path through grasses and wildflowers" fill priority sizes="(max-width: 700px) 75vw, 400px" /><span>A place to arrive.</span></div>
+      <div className={styles.heroArt}><Image src="/senthia/cenote.jpg" alt="" fill priority sizes="100vw" /></div>
     </section>
     <div className={styles.facts}><span>10 founding journeys</span><span>About 10–18 minutes</span><span>Narrated by Eve</span><span>No ads</span></div>
     <section className={styles.intro}>

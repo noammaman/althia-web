@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
+import ReadingNav from '@/components/ReadingNav'
+import reading from '@/components/reading.module.css'
 import Link from 'next/link'
+import Image from 'next/image'
 import NavLight from '@/components/NavLight'
 import Footer from '@/components/Footer'
 
@@ -13,8 +16,9 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen" style={{ backgroundColor: '#FDFCFA' }}>
+    <main className={reading.page}>
       <NavLight />
+      <ReadingNav product="Althia" />
 
       <section className="py-24 px-6">
         <div className="max-w-[720px] mx-auto">
@@ -33,6 +37,8 @@ export default function AboutPage() {
             About Althia
           </h1>
 
+          <p className={reading.lede}>An independent studio. A little more room for your mind.</p>
+          <div className={reading.banner}><Image src="/senthia/meadow.jpg" alt="A sunlit path through the meadow, illustrated for Senthia" fill priority sizes="(max-width: 900px) 90vw, 760px" /></div>
           <div
             className="space-y-6 text-base text-[#444444] leading-[1.8]"
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
@@ -45,10 +51,12 @@ export default function AboutPage() {
               We started Althia because we noticed something missing. There are plenty of apps for white noise, rain sounds, and generic sleep content. But very few that offer real stories — the kind that civilizations were built on — adapted for the one moment of the day when your mind is actually open to them.
             </p>
 
+            <h2>Old stories, treated with care.</h2>
             <p>
               We take the source material seriously. Greek myths arrive with their drama and moral complexity intact. Norse tales carry the weight of a world that knows it ends. Egyptian stories move to the rhythm of cycles and natural law. Slavic tales feel like something whispered at the edge of a forest. We don&apos;t flatten these traditions into one generic voice — each mythology gets its own treatment.
             </p>
 
+            <h2>Made with AI. Directed by people.</h2>
             <p>
               We also believe in being transparent about how we work. We use AI as a core part of our production process — for writing, adaptation, and narration. What stays human is the creative direction: which stories get told, how each tradition is treated, the quality standard every piece is held to, and the overall experience design. We think this is the right way to bring a large library of culturally rich content to life without cutting corners on what matters.
             </p>

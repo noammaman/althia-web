@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import ReadingNav from '@/components/ReadingNav'
+import reading from '@/components/reading.module.css'
 import Link from 'next/link'
 import NavLight from '@/components/NavLight'
 import Footer from '@/components/Footer'
@@ -12,8 +14,9 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <main className="min-h-screen" style={{ backgroundColor: '#FDFCFA' }}>
+    <main className={reading.page}>
       <NavLight />
+      <ReadingNav product="Mythia" />
 
       <section className="py-24 px-6">
         <div className="max-w-[720px] mx-auto">

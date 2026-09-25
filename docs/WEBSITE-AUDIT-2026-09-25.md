@@ -46,3 +46,22 @@ Local production-build Lighthouse mobile run: Performance 98, Accessibility 100,
 - Real app screenshots and verified listener reviews could strengthen the product pages when available.
 
 Automated accessibility checks do not replace a complete manual assistive-technology audit.
+
+## Full-site design follow-through
+
+The visual refresh now extends beyond the homepage to every public HTML route.
+
+| Before | After | Why |
+| --- | --- | --- |
+| Mythia had a separate dark, card-heavy visual identity | Light editorial layout, original story artwork, prominent audio preview, and a compact mythology directory | Connects the product to Althia while showing the actual library artwork |
+| Senthia used a split hero and arched image cards | Full-width illustrated opening, matching typography, simple image gallery, and consistent section spacing | Makes both released apps feel like one studio family |
+| About and reference pages were isolated prose columns | Shared reading layout with related-page navigation, stronger headings, and studio artwork | Improves orientation and reading hierarchy |
+| Support and legal pages had inconsistent layouts | Common responsive reference navigation, readable text contrast, and flat content sections | Makes important information easy to find without changing policy wording |
+| Unplug League's beta page used neon cards and a separate footer | An editorial beta overview with shared navigation and an explicit in-development label | Preserves its distinct proposition without suggesting the app is already released |
+| Mythia footer note retained a light-on-light dark-theme color | Theme-aware accessible label color | Corrects the contrast regression discovered during testing |
+
+Verification: production build, TypeScript, and lint passed. All 15 HTML routes were checked at 320, 768, and 1440 pixels (45 page/viewport combinations): HTTP status, metadata, canonicals, H1 count, structured data, image loading, horizontal overflow, screenshots, and automated WCAG A/AA checks. No browser errors or automated accessibility violations remained. Audio playback/pause, keyboard seeking, FAQ expansion, reduced motion, and no-JavaScript content passed.
+
+Local mobile Lighthouse: Mythia 98 performance / 100 accessibility / 100 best practices / 100 SEO; Senthia 97 / 100 / 100 / 100. Both recorded zero layout shift and zero total blocking time. These are lab results, not production field measurements.
+
+The three new Mythia images are existing studio artwork from the local Althia artwork library, delivered through Next Image. Homepage styling, the square Senthia icon fix, canonical URLs, and existing legal policy wording are preserved.
