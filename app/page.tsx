@@ -1,347 +1,87 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import NavLight from '@/components/NavLight'
 import Footer from '@/components/Footer'
+import styles from './home.module.css'
 
-const MYTHIA_APP_STORE_URL = 'https://apps.apple.com/us/app/mythia-stories/id6760155082'
-const SENTHIA_APP_STORE_URL = 'https://apps.apple.com/il/app/senthia/id6814469115'
+const MYTHIA = 'https://apps.apple.com/us/app/mythia-stories/id6760155082'
+const SENTHIA = 'https://apps.apple.com/il/app/senthia/id6814469115'
+const questions = [
+  ['What is Althia?', 'Althia is an independent studio making audio apps for sleep, relaxation, and reflection. Mythia brings ancient mythology to bedtime. Senthia guides you through vivid, imagined places.'],
+  ['Which app should I start with?', 'Choose Mythia if you enjoy following a story at bedtime. Choose Senthia if you would like a narrated journey through an imagined place, with room to notice, settle, and reflect.'],
+  ['Are the apps free to try?', 'Both apps are free to download on iOS, with paid options inside the apps. Mythia includes select free stories. In Senthia, the first five distinct journeys you start become your free collection; those choices cannot be swapped later.'],
+  ['Which languages can I listen in?', 'Mythia offers stories in English. Senthia offers guided-imagination journeys in English and Spanish.'],
+  ['How are the stories and journeys made?', 'We use AI in writing, adaptation, and narration, guided by human creative direction and review. For Mythia, that includes attention to the source traditions. For Senthia, it means shaping a clear, gentle experience of an imagined place.'],
+] as const
 
 export const metadata: Metadata = {
-  title: 'Althia — Stories for the Ancient Mind',
-  description: 'Althia builds audio apps rooted in mythology, philosophy, and the ancient world — designed for sleep, reflection, and the contemplative mind.',
+  title: { absolute: 'Althia | Audio Apps for Sleep, Relaxation & Reflection' },
+  description: 'Meet Mythia and Senthia by Althia. Discover hundreds of mythology bedtime stories and guided-imagination journeys. Free to download on iOS.',
   alternates: { canonical: '/' },
-  openGraph: {
-    type: 'website',
-    url: 'https://althia.org',
-    title: 'Althia — Stories for the Ancient Mind',
-    description: 'Stories that have survived millennia, reimagined for how you rest.',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Althia — Stories for the Ancient Mind',
-    description: 'Stories that have survived millennia, reimagined for how you rest.',
-  },
+  openGraph: { type: 'website', url: 'https://althia.org', title: 'Althia | A little more room for your mind', description: 'Mythology for bedtime. Guided imagination for a quiet moment. Discover Mythia and Senthia.' },
+  twitter: { card: 'summary_large_image', title: 'Althia | Audio Apps for Sleep & Reflection', description: 'Discover Mythia and Senthia. Stories to rest with. Places to escape into.' },
 }
 
 export default function Home() {
+  const jsonLd = {
+    '@context': 'https://schema.org', '@type': 'CollectionPage', '@id': 'https://althia.org/#page',
+    url: 'https://althia.org/', name: 'Althia audio apps for sleep, relaxation, and reflection',
+    isPartOf: { '@id': 'https://althia.org/#website' }, about: { '@id': 'https://althia.org/#organization' },
+    mainEntity: { '@type': 'ItemList', itemListElement: [
+      { '@type': 'ListItem', position: 1, item: { '@id': 'https://althia.org/mythia#app', name: 'Mythia', url: 'https://althia.org/mythia' } },
+      { '@type': 'ListItem', position: 2, item: { '@id': 'https://althia.org/senthia#app', name: 'Senthia', url: 'https://althia.org/senthia' } },
+    ] },
+  }
   return (
-    <main className="min-h-screen" style={{ backgroundColor: '#FDFCFA' }}>
+    <main className={styles.page}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <NavLight />
-
-      {/* Hero Section */}
-      <section
-        className="min-h-[90vh] flex flex-col items-center justify-center text-center px-6 py-24 relative overflow-hidden"
-        style={{ backgroundColor: '#FDFCFA' }}
-      >
-        <div className="flex flex-col items-center gap-8 max-w-3xl relative z-10">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logos/althia-logo-dark.png"
-            alt="Althia"
-            width={80}
-            height={80}
-            className="object-contain rounded-2xl"
-          />
-          <p
-            className="text-xs font-semibold uppercase tracking-[0.15em] text-[#666666] mb-4"
-            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-          >
-            Stories for the Ancient Mind
-          </p>
-
-          <h1
-            className="text-[2.25rem] md:text-[3.75rem] leading-tight text-[#111111]"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-          >
-            Stories that have survived millennia, reimagined for how you rest.
-          </h1>
-
-          <p
-            className="text-[1.125rem] text-[#444444] max-w-2xl leading-relaxed"
-            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-          >
-            Althia builds audio apps that draw from mythology, philosophy, and the ancient world — designed for sleep, reflection, and the contemplative mind.
-          </p>
-
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4">
-            <Link
-              href="#apps"
-              className="inline-flex items-center justify-center px-8 py-3 bg-[#111111] text-white rounded-full font-semibold transition-all hover:bg-[#333333] hover:translate-y-[-2px]"
-              style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-            >
-              Explore our apps →
-            </Link>
-            <Link
-              href="#philosophy"
-              className="inline-flex items-center justify-center px-8 py-3 border-2 border-[#111111] text-[#111111] rounded-full font-semibold transition-all hover:bg-[#F5F5F5]"
-              style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-            >
-              Our Approach ↓
-            </Link>
-          </div>
+      <section className={styles.hero} aria-labelledby="home-title">
+        <Image className={styles.heroImage} src="/senthia/meadow.jpg" alt="" fill priority sizes="100vw" />
+        <div className={styles.heroContent}>
+          <p className={styles.eyebrow}>An independent audio studio</p>
+          <h1 id="home-title">Althia</h1>
+          <p className={styles.heroLine}>A little more room<br />for your mind.</p>
+          <p className={styles.heroDescription}>Stories to rest with. Places to escape into.<br />Audio apps for sleep, relaxation, and reflection.</p>
+          <Link className={styles.button} href="#apps">Find your quiet <span aria-hidden="true">↓</span></Link>
         </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-float">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.6" color="#111111">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </div>
+        <p className={styles.artCredit}>A glimpse of Summer Meadow, from Senthia</p>
       </section>
-
-      {/* Apps Section */}
-      <section id="apps" className="py-24 px-6" style={{ backgroundColor: '#FFFFFF' }}>
-        <div className="max-w-5xl mx-auto">
-          <p
-            className="text-xs font-semibold uppercase tracking-[0.15em] text-[#111111] mb-4"
-            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-          >
-            Our Apps
-          </p>
-
-          <h2
-            className="text-[1.875rem] md:text-[2.5rem] text-[#111111] mb-16 leading-tight"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-          >
-            Apps for the Contemplative Mind
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Mythia - Featured */}
-            <div
-              className="rounded-3xl p-10 transition-all duration-300 hover:translate-y-[-4px] flex flex-col border-2"
-              style={{
-                backgroundColor: 'linear-gradient(135deg, #FDFCFA 0%, rgba(241, 224, 181, 0.15) 100%)',
-                background: 'linear-gradient(135deg, #FDFCFA 0%, rgba(241, 224, 181, 0.15) 100%)',
-                borderColor: 'rgba(139, 105, 20, 0.2)',
-                boxShadow: '0 8px 32px rgba(139, 105, 20, 0.08)',
-              }}
-            >
-              <div className="w-16 h-16 mb-6 rounded-2xl overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/logos/mythia-logo.png"
-                  alt="Mythia lyre icon"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#8B6914] mb-3">
-                Mythology · Sleep
-              </p>
-
-              <h3
-                className="text-2xl text-[#111111] mb-4"
-                style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-              >
-                Mythia
-              </h3>
-
-              <span
-                className="inline-block text-xs font-semibold uppercase tracking-[0.1em] bg-[#F8F1DE] text-[#8B6914] px-3 py-1 rounded-md mb-4 w-fit"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-              >
-                Available on iOS
-              </span>
-
-              <p className="text-base text-[#444444] leading-relaxed flex-grow mb-6">
-                Bedtime stories drawn from ten world mythologies. Sleep inside a growing library of hundreds of stories shaped by the oldest traditions.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-                <a
-                  href={MYTHIA_APP_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-5 py-2.5 bg-[#8B6914] text-white rounded-full text-sm font-semibold transition-colors hover:bg-[#6F5410]"
-                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-                >
-                  Download Mythia ↗
-                </a>
-                <Link href="/mythia" className="text-sm text-[#8B6914] hover:underline" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}>
-                  Learn more →
-                </Link>
-              </div>
-            </div>
-
-            {/* Ethia - Coming Soon */}
-            <div
-              className="rounded-3xl p-10 flex flex-col border-2 opacity-75"
-              style={{
-                backgroundColor: '#FFFFFF',
-                borderColor: '#E5E5E5',
-              }}
-            >
-              <div className="w-16 h-16 mb-6 rounded-2xl overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/logos/ethia-logo.png"
-                  alt="Ethia vase icon"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#999999] mb-3">
-                History · Culture
-              </p>
-
-              <h3
-                className="text-2xl text-[#111111] mb-4"
-                style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-              >
-                Ethia
-              </h3>
-
-              <span
-                className="inline-block text-xs font-semibold uppercase tracking-[0.1em] bg-[#F5F5F5] text-[#666666] px-3 py-1 rounded-md mb-4 w-fit"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-              >
-                Coming 2026
-              </span>
-
-              <p className="text-base text-[#444444] leading-relaxed flex-grow mb-6">
-                Calm explorations of history&apos;s most compelling moments, told with precision and care for cultural context.
-              </p>
-
-              <span className="text-sm text-[#666666]" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}>
-                Coming Soon
-              </span>
-            </div>
-
-            {/* Senthia - Available on iOS */}
-            <div
-              className="rounded-3xl p-10 flex flex-col border-2"
-              style={{
-                backgroundColor: '#FFFFFF',
-                borderColor: '#E5E5E5',
-              }}
-            >
-              <div className="w-16 h-16 mb-6 rounded-2xl overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/logos/senthia-logo.png"
-                  alt="Senthia leaf icon"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#999999] mb-3">
-                Guided Imagination · Relaxation
-              </p>
-
-              <h3
-                className="text-2xl text-[#111111] mb-4"
-                style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-              >
-                Senthia
-              </h3>
-
-              <span
-                className="inline-block text-xs font-semibold uppercase tracking-[0.1em] bg-[#F5F5F5] text-[#666666] px-3 py-1 rounded-md mb-4 w-fit"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-              >
-                Available on iOS
-              </span>
-
-              <p className="text-base text-[#444444] leading-relaxed flex-grow mb-6">
-                Narrated journeys into vivid, imagined places. A little space to settle and unwind, in English and Spanish.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-                <a
-                  href={SENTHIA_APP_STORE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-5 py-2.5 bg-[#285E4D] text-white rounded-full text-sm font-semibold transition-colors hover:bg-[#203C34]"
-                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-                >
-                  Download Senthia ↗
-                </a>
-                <Link href="/senthia" className="text-sm text-[#285E4D] hover:underline" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}>
-                  Learn more →
-                </Link>
-              </div>
-            </div>
-          </div>
+      <section id="apps" className={styles.apps} aria-labelledby="apps-title">
+        <div className={styles.sectionHead}><div><p className={styles.eyebrow}>Made for your quieter moments</p><h2 id="apps-title">Two ways to wander.</h2></div><p>Choose a story.<br />Or simply somewhere to be.</p></div>
+        <div className={styles.appGrid}>
+          <article className={`${styles.app} ${styles.mythia}`}>
+            <div className={styles.appTop}><Image src="/logos/mythia-logo.png" alt="" width={64} height={64} /><span>Available on iOS</span></div>
+            <p className={styles.eyebrow}>Mythology · Sleep</p><h3>Mythia</h3><p className={styles.appTagline}>Sleep inside a myth.</p>
+            <p className={styles.appDescription}>Ancient worlds, gently told. Settle into hundreds of bedtime stories drawn from ten world mythologies, from the heights of Olympus to the forests of the north.</p>
+            <ul className={styles.appFacts}><li>10–15 minute stories</li><li>English</li><li>No ads</li></ul>
+            <div className={styles.actions}><a className={styles.button} href={MYTHIA} target="_blank" rel="noopener noreferrer">Download Mythia <span aria-hidden="true">↗</span></a><Link className={styles.textLink} href="/mythia">Explore Mythia <span aria-hidden="true">→</span></Link></div>
+          </article>
+          <article className={`${styles.app} ${styles.senthia}`}>
+            <div className={styles.appTop}><Image src="/logos/senthia-logo.png" alt="" width={64} height={64} /><span>Available on iOS</span></div>
+            <p className={styles.eyebrow}>Guided imagination · Relaxation</p><h3>Senthia</h3><p className={styles.appTagline}>A little room for you.</p>
+            <p className={styles.appDescription}>A sunlit meadow. A hidden pool. A cabin in the snow. Follow a voice into vivid, imagined places, with time to notice the small things and settle into the moment.</p>
+            <ul className={styles.appFacts}><li>10–18 minute journeys</li><li>English &amp; Spanish</li><li>No ads</li></ul>
+            <div className={styles.actions}><a className={styles.button} href={SENTHIA} target="_blank" rel="noopener noreferrer">Download Senthia <span aria-hidden="true">↗</span></a><Link className={styles.textLink} href="/senthia">Explore Senthia <span aria-hidden="true">→</span></Link></div>
+          </article>
         </div>
+        <div className={styles.upcoming}><Image src="/logos/ethia-logo.png" alt="" width={40} height={40} /><p><strong>On the horizon: Ethia.</strong> Calm explorations of history and culture. In development.</p><Link href="/about">Meet the studio <span aria-hidden="true">→</span></Link></div>
       </section>
-
-      {/* Philosophy Section */}
-      <section id="philosophy" className="py-24 px-6" style={{ backgroundColor: '#FDFCFA' }}>
-        <div className="max-w-2xl mx-auto">
-          <p
-            className="text-xs font-semibold uppercase tracking-[0.15em] text-[#666666] mb-4"
-            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-          >
-            Our Approach
-          </p>
-
-          <h2
-            className="text-[1.875rem] md:text-[2.5rem] text-[#111111] mb-12 leading-tight"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-          >
-            What we care about
-          </h2>
-
-          <div className="space-y-6">
-            <p
-              className="text-base text-[#444444] leading-relaxed"
-              style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-            >
-              Althia exists because the best stories ever told — myths, parables, the narratives civilizations were built on — deserve a place in your evening. We curate from the source traditions, adapt with care for cultural context, and design every experience around a single purpose: helping you rest well.
-            </p>
-
-            <p
-              className="text-base text-[#444444] leading-relaxed"
-              style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-            >
-              We use modern tools, including AI, to bring these ancient stories to life at a pace and scale that wouldn&apos;t otherwise be possible. What stays human is the taste — what gets made, how traditions are honored, and the standard every story is held to before it reaches your ears.
-            </p>
-          </div>
-        </div>
+      <section className={styles.listen} aria-labelledby="listen-title"><div className={styles.listenInner}>
+        <div><p className={styles.eyebrow}>A moment with Mythia</p><h2 id="listen-title">Let the day<br />end in a story.</h2><p>Hear a little of what awaits. A gentle voice,<br className={styles.desktopBreak} /> an ancient story, and nowhere else to be.</p></div>
+        <div className={styles.player}><Image src="/logos/mythia-logo.png" alt="" width={52} height={52} /><div><h3>A taste of Mythia</h3><p>Bedtime audio preview</p></div><audio controls preload="none" aria-label="Listen to a Mythia bedtime story sample" src="/audio/preview.wav">Your browser does not support audio. <a href="/audio/preview.wav">Listen to the sample.</a></audio><Link href="/mythia/greek-mythology-sleep-stories">Discover the Greek collection <span aria-hidden="true">→</span></Link></div>
+      </div></section>
+      <section className={styles.places} aria-labelledby="places-title">
+        <div className={styles.sectionHead}><div><p className={styles.eyebrow}>Inside Senthia</p><h2 id="places-title">Where would you like to be?</h2></div><Link className={styles.textLink} href="/senthia#journeys">Explore the journeys <span aria-hidden="true">→</span></Link></div>
+        <div className={styles.placeGrid}>{[
+          ['meadow', 'Summer Meadow', 'Warm sunlight. A path through the grasses.'],
+          ['cenote', 'Hidden Cenote', 'Still water. A world beneath the leaves.'],
+          ['cabin', 'Snow Cabin', 'A fire inside. Snow beyond the window.'],
+        ].map(([image, name, description]) => <Link key={image} href="/senthia#journeys" className={styles.place}><div className={styles.placeImage}><Image src={`/senthia/${image}.jpg`} alt={`${name}, an illustrated setting from Senthia`} fill sizes="(max-width: 640px) 90vw, 33vw" /></div><h3>{name} <span aria-hidden="true">↗</span></h3><p>{description}</p></Link>)}</div>
       </section>
-
-      {/* Final CTA Section */}
-      <section className="py-24 px-6 text-center" style={{ backgroundColor: '#FFFFFF' }}>
-        <div className="max-w-2xl mx-auto">
-          <h2
-            className="text-[1.875rem] md:text-[2.5rem] text-[#111111] mb-4 leading-tight"
-            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-          >
-            Find the place you need.
-          </h2>
-
-          <p
-            className="text-base text-[#444444] mb-8"
-            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-          >
-            Enter an ancient story with Mythia, or step into a quiet imagined place with Senthia. Both are now available on iOS.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href={MYTHIA_APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-3 bg-[#111111] text-white rounded-full font-semibold transition-all hover:bg-[#333333] hover:translate-y-[-2px]"
-              style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-            >
-              Download Mythia
-            </a>
-            <a
-              href={SENTHIA_APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-3 bg-[#285E4D] text-white rounded-full font-semibold transition-all hover:bg-[#203C34] hover:translate-y-[-2px]"
-              style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-            >
-              Download Senthia
-            </a>
-          </div>
-        </div>
-      </section>
-
+      <section id="philosophy" className={styles.philosophy}><div><p className={styles.eyebrow}>The thought behind Althia</p><h2>Made with care.<br />Listened to at your pace.</h2></div><div><p>We believe a few minutes of listening can be a lovely part of your day. A story before sleep. An imagined place in the middle of a busy afternoon. Something that gives your attention a place to rest.</p><p>We use AI in writing, adaptation, and narration, with human creative direction shaping the work. The choices matter: the traditions we draw from, the words we keep, and how it feels to listen.</p><Link className={styles.textLink} href="/about">More about our approach <span aria-hidden="true">→</span></Link></div></section>
+      <section className={styles.faq} aria-labelledby="questions-title"><div><p className={styles.eyebrow}>Before you begin</p><h2 id="questions-title">A few good questions.</h2><Link className={styles.textLink} href="/facts">All the details <span aria-hidden="true">→</span></Link></div><div>{questions.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}<p className={styles.help}>Something else on your mind? <a href="mailto:althiastudios@gmail.com">Get in touch.</a></p></div></section>
       <Footer variant="light" />
     </main>
   )

@@ -9,11 +9,11 @@ const SOCIAL_IMAGE = '/opengraph-image'
 export const metadata: Metadata = {
   title: 'Althia Facts — Studio, Products, and Contact',
   description:
-    'A concise, maintained reference to Althia: what the studio makes, how Mythia works, current products, production approach, and official contact details.',
+    'Official facts about Althia, Mythia, and Senthia: app availability, free access, listening experiences, production approach, and contact details.',
   alternates: { canonical: '/facts' },
   openGraph: {
     title: 'Althia Facts — Studio, Products, and Contact',
-    description: 'A concise reference to Althia and Mythia, maintained by Althia.',
+    description: 'Official information about Althia, Mythia, and Senthia, maintained by the studio.',
     url: 'https://althia.org/facts',
     type: 'article',
     images: [{ url: SOCIAL_IMAGE, width: 1200, height: 630, alt: 'Althia — stories for the ancient mind' }],
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Althia Facts — Studio, Products, and Contact',
-    description: 'A concise reference to Althia and Mythia, maintained by Althia.',
+    description: 'Official information about Althia, Mythia, and Senthia, maintained by the studio.',
     images: [SOCIAL_IMAGE],
   },
 }
@@ -32,6 +32,9 @@ const facts = [
   ['What does Mythia include?', 'Mythia offers hundreds of stories across ten mythological traditions. Stories generally run 10–15 minutes and offer Temple, Hearth, and Voice Only listening modes. The app also supports offline listening and read-along text.'],
   ['Who is Mythia for?', 'Mythia is designed for adults and other listeners who want a story-led alternative to white noise, generic meditation, or conventional sleep podcasts.'],
   ['Is Mythia free?', 'Mythia is free to download on iOS, contains no advertising, and offers optional paid access within the app.'],
+  ['What is Senthia?', 'Senthia is Althia’s iOS app for guided imagination and relaxation. A voice guides listeners through vivid, imagined places such as a summer meadow, a hidden cenote, and a snow cabin. Journeys are available in English and Spanish.'],
+  ['Is Senthia free?', 'Senthia is free to download. The first five distinct journeys you start become your free collection and can be replayed; those selections cannot be swapped later. An optional monthly or annual subscription unlocks the remaining collection while active.'],
+  ['Are these apps medical treatments?', 'No. Mythia and Senthia are designed for relaxation and listening. They do not diagnose or treat medical conditions or guarantee sleep outcomes.'],
   ['Does Althia use AI?', 'Yes. Althia uses AI in writing, adaptation, and narration. Human creative direction determines which stories are told, how traditions are treated, and the quality and experience standards.'],
   ['How can I contact Althia?', 'Use althiastudios@gmail.com for support and general inquiries.'],
 ] as const
@@ -45,13 +48,14 @@ export default function FactsPage() {
         '@id': 'https://althia.org/facts#page',
         url: 'https://althia.org/facts',
         name: 'Althia Facts — Studio, Products, and Contact',
-        description: 'A concise reference to Althia and Mythia, maintained by Althia.',
+        description: 'Official information about Althia, Mythia, and Senthia, maintained by the studio.',
         about: [
           { '@id': 'https://althia.org/#organization' },
           { '@id': 'https://althia.org/mythia#app' },
+          { '@id': 'https://althia.org/senthia#app' },
         ],
         isPartOf: { '@id': 'https://althia.org/#website' },
-        dateModified: '2026-09-04',
+        dateModified: '2026-09-25',
         inLanguage: 'en',
       },
       {
@@ -79,7 +83,7 @@ export default function FactsPage() {
           <p className="text-lg text-[#555555] leading-relaxed mb-4">
             A concise source of truth about Althia and its products, written for people, search engines, and answer systems.
           </p>
-          <p className="text-sm text-[#777777] mb-14">Last reviewed September 4, 2026.</p>
+          <p className="text-sm text-[#666666] mb-14">Last reviewed September 25, 2026.</p>
 
           <dl className="divide-y divide-[#E5E5E5] border-y border-[#E5E5E5]">
             {facts.map(([question, answer]) => (
@@ -98,6 +102,7 @@ export default function FactsPage() {
             </h2>
             <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
               <Link href="/mythia" className="text-[#8B6914] underline underline-offset-4">Mythia product page</Link>
+              <Link href="/senthia" className="text-[#8B6914] underline underline-offset-4">Senthia product page</Link>
               <Link href="/about" className="text-[#8B6914] underline underline-offset-4">About Althia</Link>
               <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="text-[#8B6914] underline underline-offset-4">Mythia on the App Store</a>
               <a href="mailto:althiastudios@gmail.com" className="text-[#8B6914] underline underline-offset-4">Contact Althia</a>

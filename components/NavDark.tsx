@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const APP_STORE_URL = 'https://apps.apple.com/il/app/mythia-stories/id6760155082'
 
@@ -15,7 +16,7 @@ export default function NavDark() {
       <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/mythia" className="flex items-center gap-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/logos/mythia-logo.png"
             alt="Mythia"
             width={28}

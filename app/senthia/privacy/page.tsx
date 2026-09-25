@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import LegalPage, { LegalSection as Section } from '../LegalPage'
-export const metadata: Metadata = { title: 'Senthia — Privacy Policy', description: 'How Senthia handles preferences, reflections and content downloads.' }
+export const metadata: Metadata = { title: 'Senthia — Privacy Policy', description: 'How Senthia handles preferences, reflections and content downloads.', alternates: { canonical: '/senthia/privacy' } }
 export default function SenthiaPrivacy() {
   return <LegalPage title="Senthia Privacy Policy">
     <Section title="About this policy"><p>This policy describes the Senthia guided-imagination relaxation app operated by Althia Studios. It is specific to Senthia; other Althia apps may handle information differently.</p><p>Contact Althia Studios at <a href="mailto:althiastudios@gmail.com">althiastudios@gmail.com</a>.</p></Section>
