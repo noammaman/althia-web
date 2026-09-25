@@ -108,7 +108,7 @@ export default function GreekMythologySleepStoriesPage() {
           </h2>
           <p className="text-base leading-[1.8]">
             Mythia&apos;s Greek collection spans the full tradition — from the birth of the gods to the journeys of
-            mortals who walked among them. The library now includes 110 Greek stories, including eight epic journey
+            mortals who walked among them. The library includes hundreds of Greek stories, including epic journey
             series.
           </p>
 

@@ -146,7 +146,7 @@ export default function Home() {
               </span>
 
               <p className="text-base text-[#444444] leading-relaxed flex-grow mb-6">
-                Bedtime stories drawn from ten world mythologies. Sleep inside a growing library of 200 stories shaped by the oldest traditions.
+                Bedtime stories drawn from ten world mythologies. Sleep inside a growing library of hundreds of stories shaped by the oldest traditions.
               </p>
 
               <div className="flex flex-wrap items-center gap-x-4 gap-y-3">

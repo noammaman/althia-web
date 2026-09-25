@@ -3,7 +3,7 @@ import MythiaContent from './MythiaContent'
 
 export const metadata: Metadata = {
   title: 'Mythia – Sleep Inside a Myth | Bedtime Stories App',
-  description: 'Mythia is a bedtime audio app with 200 stories across 10 world mythologies. Stories are 10–15 minutes each, ad-free, and designed for the end of your day.',
+  description: 'Mythia is a bedtime audio app with hundreds of stories across 10 world mythologies. Stories are 10–15 minutes each, ad-free, and designed for the end of your day.',
   openGraph: {
     title: 'Mythia – Sleep Inside a Myth',
     description: 'Ancient stories from 10 world mythologies — narrated for the end of your day.',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Mythia – Sleep Inside a Myth',
-    description: 'Ancient mythology. 10–15 minutes. 200 stories across 10 mythologies.',
+    description: 'Ancient mythology. 10–15 minutes. Hundreds of stories across 10 mythologies.',
   },
   robots: 'index, follow',
   alternates: { canonical: 'https://althia.org/mythia' },

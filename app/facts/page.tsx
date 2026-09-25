@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 const facts = [
   ['What is Althia?', 'Althia is an independent narrative studio creating audio apps for sleep, reflection, and intentional attention. Its work draws from mythology, philosophy, and history.'],
   ['What is Mythia?', 'Mythia is Althia’s iOS bedtime-audio app. It retells ancient myths as calm, self-contained sleep stories.'],
-  ['What does Mythia include?', 'Mythia currently offers 200 stories across ten mythological traditions. Stories generally run 10–15 minutes and offer Temple, Hearth, and Voice Only listening modes. The app also supports offline listening and read-along text.'],
+  ['What does Mythia include?', 'Mythia offers hundreds of stories across ten mythological traditions. Stories generally run 10–15 minutes and offer Temple, Hearth, and Voice Only listening modes. The app also supports offline listening and read-along text.'],
   ['Who is Mythia for?', 'Mythia is designed for adults and other listeners who want a story-led alternative to white noise, generic meditation, or conventional sleep podcasts.'],
   ['Is Mythia free?', 'Mythia is free to download on iOS, contains no advertising, and offers optional paid access within the app.'],
   ['Does Althia use AI?', 'Yes. Althia uses AI in writing, adaptation, and narration. Human creative direction determines which stories are told, how traditions are treated, and the quality and experience standards.'],
