@@ -3,7 +3,8 @@ import Link from 'next/link'
 import NavLight from '@/components/NavLight'
 import Footer from '@/components/Footer'
 
-const APP_STORE_URL = 'https://apps.apple.com/il/app/mythia-stories/id6760155082'
+const MYTHIA_APP_STORE_URL = 'https://apps.apple.com/il/app/mythia-stories/id6760155082'
+const SENTHIA_APP_STORE_URL = 'https://apps.apple.com/il/app/senthia/id6814469115'
 
 export const metadata: Metadata = {
   title: 'Althia — Stories for the Ancient Mind',
@@ -69,7 +70,7 @@ export default function Home() {
               className="inline-flex items-center justify-center px-8 py-3 bg-[#111111] text-white rounded-full font-semibold transition-all hover:bg-[#333333] hover:translate-y-[-2px]"
               style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
             >
-              Explore Mythia →
+              Explore our apps →
             </Link>
             <Link
               href="#philosophy"
@@ -194,7 +195,7 @@ export default function Home() {
               </span>
             </div>
 
-            {/* Senthia - Coming Soon */}
+            {/* Senthia - Available on iOS */}
             <div
               className="rounded-3xl p-10 flex flex-col border-2"
               style={{
@@ -226,16 +227,27 @@ export default function Home() {
                 className="inline-block text-xs font-semibold uppercase tracking-[0.1em] bg-[#F5F5F5] text-[#666666] px-3 py-1 rounded-md mb-4 w-fit"
                 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
               >
-                Coming to iOS
+                Available on iOS
               </span>
 
               <p className="text-base text-[#444444] leading-relaxed flex-grow mb-6">
                 Narrated journeys into vivid, imagined places. A little space to settle and unwind, in English and Spanish.
               </p>
 
-              <Link href="/senthia" className="text-sm text-[#285E4D] hover:underline" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}>
-                Explore Senthia →
-              </Link>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+                <a
+                  href={SENTHIA_APP_STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-5 py-2.5 bg-[#285E4D] text-white rounded-full text-sm font-semibold transition-colors hover:bg-[#203C34]"
+                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
+                >
+                  Download Senthia ↗
+                </a>
+                <Link href="/senthia" className="text-sm text-[#285E4D] hover:underline" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}>
+                  Learn more →
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -283,25 +295,36 @@ export default function Home() {
             className="text-[1.875rem] md:text-[2.5rem] text-[#111111] mb-4 leading-tight"
             style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
           >
-            Begin with the oldest stories.
+            Find the place you need.
           </h2>
 
           <p
             className="text-base text-[#444444] mb-8"
             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
           >
-            Mythia is free to download on iOS — with 200 stories across ten world mythologies.
+            Enter an ancient story with Mythia, or step into a quiet imagined place with Senthia. Both are now available on iOS.
           </p>
 
-          <a
-            href={APP_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-8 py-3 bg-[#111111] text-white rounded-full font-semibold transition-all hover:bg-[#333333] hover:translate-y-[-2px]"
-            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
-          >
-            Download on the App Store
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={MYTHIA_APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-8 py-3 bg-[#111111] text-white rounded-full font-semibold transition-all hover:bg-[#333333] hover:translate-y-[-2px]"
+              style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
+            >
+              Download Mythia
+            </a>
+            <a
+              href={SENTHIA_APP_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-8 py-3 bg-[#285E4D] text-white rounded-full font-semibold transition-all hover:bg-[#203C34] hover:translate-y-[-2px]"
+              style={{ fontFamily: '-apple-system, BlinkMacSystemFont, Inter, sans-serif' }}
+            >
+              Download Senthia
+            </a>
+          </div>
         </div>
       </section>
 

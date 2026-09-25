@@ -53,7 +53,7 @@ export default function AboutPage() {
             </p>
 
             <p>
-              More apps are coming. Ethia will explore history. Senthia will focus on contemplative and meditative experiences. Each one follows the same principle: timeless source material, adapted with respect, designed around a specific moment in your day.
+              More apps are coming. Ethia will explore history. Senthia now offers contemplative guided-imagination experiences for relaxation. Each one follows the same principle: timeless source material, adapted with respect, designed around a specific moment in your day.
             </p>
 
             <p>
