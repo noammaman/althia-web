@@ -25,8 +25,10 @@ export default function Footer({ variant, showMythiaNote = false, privacyHref = 
         <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-6 gap-y-3 mb-8 text-sm" style={{ color: isDark ? '#C4B49A' : '#444444' }}>
           <Link href="/mythia">Mythia</Link>
           <Link href="/senthia">Senthia</Link>
+          <Link href="/ethia">Ethia</Link>
           <Link href="/about">About the studio</Link>
           <Link href="/senthia/support">Senthia Support</Link>
+          <Link href="/ethia/support">Ethia Support</Link>
           <Link href="/terms">Terms of Use</Link>
         </nav>
         <div className="flex flex-col sm:flex-row items-center justify-between gap-8 mb-4">

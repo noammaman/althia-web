@@ -1,0 +1,12 @@
+import type { Metadata } from 'next'
+import LegalPage, { LegalSection as Section } from '../LegalPage'
+export const metadata: Metadata = { title: 'Ethia — Privacy Policy', description: 'How Ethia handles reading, listening and catalogue data.', alternates: { canonical: '/ethia/privacy' } }
+export default function Page(){return <LegalPage title="Ethia Privacy Policy">
+  <Section title="What Ethia stores on your device"><p>Ethia stores saved stories, reading position, listening position and interface preferences locally on your device. The current app does not require an account and does not upload those choices as a personal listening profile.</p></Section>
+  <Section title="Catalogue and media requests"><p>Ethia uses Google Firebase Cloud Firestore and Cloud Storage to retrieve the published story catalogue, artwork and narration. These requests necessarily share connection information such as your IP address and the requested resource with the service delivering the content. A request for a particular story file can reveal which content is being retrieved.</p><p>Google describes its processing in <a href="https://firebase.google.com/support/privacy">Firebase’s privacy documentation</a>.</p></Section>
+  <Section title="Analytics and advertising"><p>Ethia does not include advertising or a behavioural analytics SDK in the current release. Althia does not sell your reading or listening activity.</p></Section>
+  <Section title="Support"><p>If you email <a href="mailto:althiastudios@gmail.com">althiastudios@gmail.com</a>, we receive your email address and the information you choose to send. We use it to answer and troubleshoot your request. Do not send passwords or payment details.</p></Section>
+  <Section title="Deleting information"><p>You can remove saved items inside Ethia. Removing the app deletes its local Ethia data, subject to your device and backup settings. Firebase and hosting providers may retain operational logs according to their own retention practices.</p></Section>
+  <Section title="Children and educational use"><p>Ethia is a general-audience history app. It is not directed specifically to children under 13 and does not knowingly ask children to create accounts or submit personal information.</p></Section>
+  <Section title="Changes and contact"><p>We will update this policy when Ethia’s data practices materially change. Contact <a href="mailto:althiastudios@gmail.com">althiastudios@gmail.com</a> with privacy questions or applicable data-rights requests.</p></Section>
+</LegalPage>}

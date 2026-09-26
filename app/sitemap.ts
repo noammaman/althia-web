@@ -10,6 +10,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: 'https://althia.org/senthia/support', lastModified: new Date('2026-09-21'), changeFrequency: 'monthly', priority: 0.4 },
     { url: 'https://althia.org/senthia/terms', lastModified: new Date('2026-09-21'), changeFrequency: 'yearly', priority: 0.2 },
     { url: 'https://althia.org/senthia/privacy', lastModified: new Date('2026-09-21'), changeFrequency: 'yearly', priority: 0.2 },
+    { url: 'https://althia.org/ethia', lastModified: new Date('2026-09-26'), changeFrequency: 'monthly', priority: 0.8 },
+    { url: 'https://althia.org/ethia/support', lastModified: new Date('2026-09-26'), changeFrequency: 'monthly', priority: 0.4 },
+    { url: 'https://althia.org/ethia/terms', lastModified: new Date('2026-09-26'), changeFrequency: 'yearly', priority: 0.2 },
+    { url: 'https://althia.org/ethia/privacy', lastModified: new Date('2026-09-26'), changeFrequency: 'yearly', priority: 0.2 },
     {
       url: 'https://althia.org',
       lastModified,

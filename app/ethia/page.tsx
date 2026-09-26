@@ -1,0 +1,16 @@
+import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import Footer from '@/components/Footer'
+import styles from './ethia.module.css'
+export const metadata: Metadata={title:'Ethia — History, placed in time',description:'Read and listen to formative stories that shaped peoples, places and nations.',alternates:{canonical:'https://althia.org/ethia'},openGraph:{title:'Ethia — History, placed in time',description:'A globe, a timeline, and the stories that shaped the world.',url:'https://althia.org/ethia',type:'website',images:[{url:'/ethia/athens.jpg'}]}}
+const stories=[['athens','A City Without a King','Athens, 508–507 BC'],['baghdad','The House of Translation','Baghdad, ninth century'],['brahmagupta','The Number with an Empty Place','Bhillamāla, AD 628']]
+export default function Page(){return <main className={styles.page}>
+ <nav className={styles.nav}><Link href="/ethia" className={styles.brand}>ethia</Link><div><Link href="#stories">Stories</Link><Link href="/ethia/support">Support</Link></div></nav>
+ <section className={styles.hero}><div className={styles.heroArt}><Image src="/ethia/athens.jpg" alt="" fill priority sizes="100vw"/></div><div className={styles.heroCopy}><p className={styles.eyebrow}>A NEW ALTHIA APP</p><h1>History,<br/>placed in time.</h1><p className={styles.lead}>Turn the globe. Move through an era.<br/>Read or listen to what happened there.</p><p className={styles.body}>Ethia tells formative stories that shaped peoples and places—from civic institutions and scientific ideas to translation, independence and cultural continuity.</p><p className={styles.status}>In development for iPhone and iPad.</p></div></section>
+ <section className={styles.intro}><p className={styles.eyebrow}>A DIFFERENT WAY INTO HISTORY</p><h2>The map and timeline are part of the story.</h2><p>Explore where an event happened, move through time, or follow a people and polity through the Atlas. Each chapter separates documented history, interpretation and disclosed reconstruction, with sources and historical context close at hand.</p></section>
+ <section className={styles.stories} id="stories"><p className={styles.eyebrow}>FIRST CHAPTERS</p><h2>Ideas, institutions and turning points.</h2><div className={styles.grid}>{stories.map(([image,title,place])=><article key={image}><div className={styles.cardArt}><Image src={`/ethia/${image}.jpg`} alt={`Editorial illustration for ${title}`} fill sizes="(max-width:760px) 92vw, 33vw"/></div><h3>{title}</h3><p>{place}</p></article>)}</div></section>
+ <section className={styles.formats}><p className={styles.eyebrow}>PLAIN AND FOCUSED</p><h2>One story. Two ways in.</h2><div className={styles.formatGrid}><article><h3>Read</h3><p>Settle into the complete narrative, then open its context, sources and reconstruction notes.</p></article><article><h3>Listen</h3><p>A single spoken narration. No music, soundscape or ambient mode—just the story and the voice.</p></article></div></section>
+ <div className={styles.legal}><Link href="/ethia/support">Support</Link><Link href="/ethia/terms">Ethia Terms of Use</Link><Link href="/ethia/privacy">Privacy Policy</Link><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Apple Standard EULA</a></div>
+ <Footer variant="light" privacyHref="/ethia/privacy"/>
+ </main>}

@@ -10,7 +10,9 @@ Contact: althiastudios@gmail.com
 
 - [Mythia](https://althia.org/mythia): An iOS bedtime-audio app with hundreds of calm stories across ten world mythologies.
 - [Senthia](https://althia.org/senthia): Guided-imagination journeys for relaxation, available on iOS in English and Spanish. The first five distinct journeys started become the free collection; a subscription unlocks the remainder while active.
+- [Ethia](https://althia.org/ethia): Formative history stories explored through a globe and timeline, available to read or hear as plain spoken narration. In development for iOS.
 - [Senthia support](https://althia.org/senthia/support): Help with listening, free journeys, subscriptions, and contact details.
+- [Ethia support](https://althia.org/ethia/support): Help with reading, narration, catalogue access, and historical corrections.
 - [Greek mythology sleep stories](https://althia.org/mythia/greek-mythology-sleep-stories): A detailed guide to Mythia's Greek collection.
 - [Unplug League](https://althia.org/unplugleague): A social screen-time app currently in development.
 
