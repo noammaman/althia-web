@@ -75,7 +75,7 @@ export default function UnplugLeaguePrivacyPage() {
                 <strong className="text-[#111111]">Account identifiers:</strong> Squad sync uses an anonymous account created automatically by Firebase Authentication. If you sign in with Apple or Google, we receive your name and email address from that provider.
               </p>
               <p>
-                <strong className="text-[#111111]">Everything else stays local:</strong> Your goals, coach tone, coaching check-in history, time windows, and locally added friends stay on your device. Synced squads include challenge counts and streak totals, but not coaching conversations. Blocking preferences stay on the device. If you report a player, we receive your account identifier, the reported player and squad identifiers, report category, and submission time to investigate abuse.
+                <strong className="text-[#111111]">Local preferences and safety reports:</strong> Your goals, coach tone, coaching check-in history, time windows, and locally added friends stay on your device. Synced squads include challenge counts and streak totals, but not coaching conversations. Blocking preferences stay on the device. If you report a player, we receive your account identifier, the reported player and squad identifiers, report category, and submission time to investigate abuse.
               </p>
             </div>
 
@@ -93,7 +93,7 @@ export default function UnplugLeaguePrivacyPage() {
                 Third-party services
               </h2>
               <p>
-                We use Google Firebase (Authentication and Cloud Firestore) for accounts and squad data, and Apple services for sign-in and app distribution. These providers process data on our behalf under their own privacy policies. We do not use third-party advertising or cross-app tracking SDKs.
+                We use Google Firebase (Authentication and Cloud Firestore) for accounts and squad data, and Apple services for sign-in and app distribution. These providers process data under their own privacy policies. Firebase also processes service diagnostics to maintain reliability. When you use Google Sign-In, its SDK may process account information (including name, email and phone number), identifiers, approximate location, usage information and other service data for sign-in, security and service analytics. These SDK disclosures are included in our App Store privacy label; we do not request access to your device location. We do not use third-party advertising or cross-app tracking SDKs.
               </p>
             </div>
 
