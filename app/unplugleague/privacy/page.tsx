@@ -39,7 +39,7 @@ export default function UnplugLeaguePrivacyPage() {
           </h1>
 
           <p className="text-sm text-[#999999] mb-12" style={sans}>
-            Last updated: July 6, 2026
+            Last updated: October 10, 2026
           </p>
 
           <div className="space-y-8 text-base text-[#444444] leading-[1.8]" style={sans}>
@@ -54,10 +54,10 @@ export default function UnplugLeaguePrivacyPage() {
 
             <div>
               <h2 className="text-xl text-[#111111] mb-3" style={serif}>
-                Screen Time data stays on your device
+                Selected apps stay on your device
               </h2>
               <p>
-                Unplug League uses Apple&apos;s Screen Time framework (Family Controls) to help you understand and improve your phone use. Your Screen Time authorization, the apps and categories you select, and your usage data are processed <strong className="text-[#111111]">entirely on your device</strong>. We never receive, transmit, or store your Screen Time data, your app list, or your browsing activity on our servers. Apple&apos;s framework is designed so that this information is not exposed to us.
+                Unplug League uses Apple&apos;s Screen Time framework (Family Controls) to help you understand and improve your phone use. Your Screen Time authorization and selected app, category, and website tokens are processed on your device. We do not upload those tokens, app names, or browsing history. If you join a synced squad, we upload daily usage totals in minutes, personal baselines, measurement readiness and time zone, and derived league scores so the squad can compare progress.
               </p>
             </div>
 
@@ -66,16 +66,16 @@ export default function UnplugLeaguePrivacyPage() {
                 Information we collect
               </h2>
               <p className="mb-3">
-                <strong className="text-[#111111]">Profile information:</strong> The display name, bio, and avatar you set in the App. This is stored on your device, and shared with our servers only if you join or create a synced squad.
+                <strong className="text-[#111111]">Profile information:</strong> Your display name and bio are shared with your synced squad. Your avatar color is shared; a profile photo you choose stays on your device. Your sign-in provider may also store your account display name.
               </p>
               <p className="mb-3">
-                <strong className="text-[#111111]">Squad and score data:</strong> If you create or join a squad, we sync your display name, bio, avatar color, personal baselines, streaks, and weekly League Point scores so your squad can see the standings. These are derived scores — not your underlying Screen Time data, app names, or activity.
+                <strong className="text-[#111111]">Squad and score data:</strong> If you create or join a squad, we sync your display name, bio, avatar color, personal baselines, streaks, and weekly League Point scores so your squad can see the standings. This includes daily usage totals in minutes and dated scores, but not app names, selected-app tokens, or browsing history.
               </p>
               <p className="mb-3">
                 <strong className="text-[#111111]">Account identifiers:</strong> Squad sync uses an anonymous account created automatically by Firebase Authentication. If you sign in with Apple or Google, we receive your name and email address from that provider.
               </p>
               <p>
-                <strong className="text-[#111111]">Everything else stays local:</strong> Your goals, coach tone, time windows, challenge history, and locally added friends are stored on your device and are not uploaded.
+                <strong className="text-[#111111]">Everything else stays local:</strong> Your goals, coach tone, coaching check-in history, time windows, and locally added friends stay on your device. Synced squads include challenge counts and streak totals, but not coaching conversations. Blocking preferences stay on the device. If you report a player, we receive your account identifier, the reported player and squad identifiers, report category, and submission time to investigate abuse.
               </p>
             </div>
 
@@ -102,7 +102,7 @@ export default function UnplugLeaguePrivacyPage() {
                 Data retention and deletion
               </h2>
               <p className="mb-3">
-                Squad data is retained while your account is active. You can delete your account and all associated server data at any time directly in the App: <strong className="text-[#111111]">Profile &rarr; Edit &rarr; Account &amp; data &rarr; Delete account &amp; data</strong>. This removes your squad membership, your synced scores, and your account.
+                Squad data is retained while your account is active. You can delete your account and all associated server data at any time directly in the App: <strong className="text-[#111111]">Profile &rarr; Edit &rarr; Account &amp; data &rarr; Delete account &amp; data</strong>. This removes your squad memberships, synced scores, and account. If you host a squad with other members, hosting passes to another member. Safety reports may be retained for up to 90 days for abuse investigation, then deleted.
               </p>
               <p>
                 You can also email <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">althiastudios@gmail.com</a> and we will process your deletion request within 30 days.
