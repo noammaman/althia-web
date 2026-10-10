@@ -102,7 +102,7 @@ export default function UnplugLeaguePrivacyPage() {
                 Data retention and deletion
               </h2>
               <p className="mb-3">
-                Squad data is retained while your account is active. You can delete your account and all associated server data at any time directly in the App: <strong className="text-[#111111]">Profile &rarr; Edit &rarr; Account &amp; data &rarr; Delete account &amp; data</strong>. This removes your squad memberships, synced scores, and account. If you host a squad with other members, hosting passes to another member. Safety reports may be retained for up to 90 days for abuse investigation, then deleted.
+                Squad data is retained while your account is active. You can delete your account and all associated server data at any time directly in the App: <strong className="text-[#111111]">Profile &rarr; Edit &rarr; Account &amp; data &rarr; Delete account &amp; data</strong>. This removes your squad memberships, synced scores, and account. If you host a squad with other members, hosting passes to another member. Safety reports may be retained for approximately 90 days for abuse investigation, then automatically deleted.
               </p>
               <p>
                 You can also email <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">althiastudios@gmail.com</a> and we will process your deletion request within 30 days.
