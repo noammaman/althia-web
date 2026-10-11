@@ -39,7 +39,7 @@ export default function UnplugLeaguePrivacyPage() {
           </h1>
 
           <p className="text-sm text-[#999999] mb-12" style={sans}>
-            Last updated: October 10, 2026
+            Last updated: October 11, 2026
           </p>
 
           <div className="space-y-8 text-base text-[#444444] leading-[1.8]" style={sans}>
@@ -74,8 +74,11 @@ export default function UnplugLeaguePrivacyPage() {
               <p className="mb-3">
                 <strong className="text-[#111111]">Account identifiers:</strong> Squad sync uses an anonymous account created automatically by Firebase Authentication. If you sign in with Apple or Google, we receive your name and email address from that provider.
               </p>
+              <p className="mb-3">
+                <strong className="text-[#111111]">Notifications:</strong> For signed-in accounts, we store reminder choices, time zone, blocked account identifiers, and the last settings refresh time. If you opt into remote notifications, Firebase Cloud Messaging and Apple Push Notification service process an app-installation identifier and delivery token to reach your device. Notification delivery records help prevent duplicates and respect daily limits. Alert text does not include your usage totals, ranking, or another player&apos;s name. You can turn reminders off in the App or in iPhone Settings.
+              </p>
               <p>
-                <strong className="text-[#111111]">Local preferences and safety reports:</strong> Your goals, coach tone, coaching check-in history, time windows, and locally added friends stay on your device. Synced squads include challenge counts and streak totals, but not coaching conversations. Blocking preferences stay on the device. If you report a player, we receive your account identifier, the reported player and squad identifiers, report category, and submission time to investigate abuse.
+                <strong className="text-[#111111]">Local preferences and safety reports:</strong> Your goals, coach tone, coaching check-in history, time windows, and locally added friends stay on your device. Synced squads include challenge counts and streak totals, but not coaching conversations. Blocking hides players on this device; blocked account identifiers also accompany your notification preferences so the server can suppress related alerts. If you report a player, we receive your account identifier, the reported player and squad identifiers, report category, and submission time to investigate abuse.
               </p>
             </div>
 
@@ -93,7 +96,7 @@ export default function UnplugLeaguePrivacyPage() {
                 Third-party services
               </h2>
               <p>
-                We use Google Firebase (Authentication and Cloud Firestore) for accounts and squad data, and Apple services for sign-in and app distribution. These providers process data under their own privacy policies. Firebase also processes service diagnostics to maintain reliability. When you use Google Sign-In, its SDK may process account information (including name, email and phone number), identifiers, approximate location, usage information and other service data for sign-in, security and service analytics. These SDK disclosures are included in our App Store privacy label; we do not request access to your device location. We do not use third-party advertising or cross-app tracking SDKs.
+                We use Google Firebase (Authentication, Cloud Firestore, Cloud Functions, and Cloud Messaging) for accounts and squad data, and Apple services for sign-in and app distribution. These providers process data under their own privacy policies. Firebase also processes service diagnostics to maintain reliability. When you use Google Sign-In, its SDK may process account information (including name, email and phone number), identifiers, approximate location, usage information and other service data for sign-in, security and service analytics. These SDK disclosures are included in our App Store privacy label; we do not request access to your device location. We do not use third-party advertising or cross-app tracking SDKs.
               </p>
             </div>
 
@@ -102,7 +105,7 @@ export default function UnplugLeaguePrivacyPage() {
                 Data retention and deletion
               </h2>
               <p className="mb-3">
-                Squad data is retained while your account is active. You can delete your account and all associated server data at any time directly in the App: <strong className="text-[#111111]">Profile &rarr; Edit &rarr; Account &amp; data &rarr; Delete account &amp; data</strong>. This removes your squad memberships, synced scores, and account. If you host a squad with other members, hosting passes to another member. Safety reports may be retained for approximately 90 days for abuse investigation, then automatically deleted.
+                Squad data, including saved season scores and results, is retained while your account is active. Saved seasons remain available to current squad members after a new roster starts. Notification jobs expire shortly after their delivery window; daily delivery-limit records expire after 35 days. Automatic cleanup may take additional time. Remote reminders stop after 28 days without a settings refresh, and optional daily check-ins stop after 14 days away. You can delete your account and all associated server data at any time directly in the App: <strong className="text-[#111111]">Profile &rarr; Edit &rarr; Account &amp; data &rarr; Delete account &amp; data</strong>. This removes your squad memberships, synced scores and historical profile details, notification tokens, and account. Other players&apos; saved places are preserved. A hashed deletion marker is retained to prevent delayed server events from recreating deleted records. If you host a squad with other members, hosting passes to another member. Safety reports may be retained for approximately 90 days for abuse investigation, then automatically deleted.
               </p>
               <p>
                 You can also email <a href="mailto:althiastudios@gmail.com" className="text-[#111111] underline underline-offset-2 hover:text-[#8B6914] transition-colors">althiastudios@gmail.com</a> and we will process your deletion request within 30 days.
