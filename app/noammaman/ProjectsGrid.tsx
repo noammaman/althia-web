@@ -31,7 +31,7 @@ const PROJECTS: Project[] = [
     description: 'Guided-imagination journeys for relaxation, in English and Spanish.',
     href: 'https://apps.apple.com/il/app/senthia/id6814469115',
     linkLabel: 'View on the App Store',
-    logo: '/logos/senthia-logo.png',
+    logo: '/logos/senthia-logo-square.png',
   },
   {
     name: 'Unplug League',
