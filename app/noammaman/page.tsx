@@ -130,7 +130,7 @@ export default function NoamMamanCV() {
             >
               noammaman17@gmail.com
             </a>
-            <span className="text-sm text-[#6E6E7A]">Based in Israel</span>
+            <span className="text-sm text-[#6E6E7A]">Based in Israel · able to legally work in Europe and Latin America</span>
           </div>
 
           <div
