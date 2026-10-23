@@ -3,7 +3,7 @@
 import { useState, useRef, MouseEvent } from 'react'
 import Image from 'next/image'
 
-type Status = 'Shipped' | 'In Development' | 'Paused'
+type Status = 'Shipped' | 'In Development' | 'Concept' | 'Paused'
 
 interface Project {
   name: string
@@ -47,13 +47,33 @@ const PROJECTS: Project[] = [
     description: 'An offline, location-aware heritage guide for historic sites. Geofencing triggers on-device semantic search — a Core ML embedding model running fully offline — to answer what you’re standing in front of, no connection required. Native iOS, Swift/SwiftUI.',
     logo: '/logos/fig-logo-square.png',
   },
+  {
+    name: 'Ethia',
+    status: 'In Development',
+    description: 'Althia’s third app: history told as audio stories. The writing system, story catalogue, and Firebase backend are live; the first stories are drafted.',
+    href: '/ethia',
+    linkLabel: 'See the project',
+    logo: '/logos/ethia-logo.png',
+  },
+  {
+    name: 'Fat Birds',
+    status: 'In Development',
+    description: 'A clothing brand built around a cast of plump, watercolor birds — illustration and product design, not a content business.',
+    logo: '/logos/fatbirds-logo-square.png',
+  },
+  {
+    name: 'Origo',
+    status: 'Concept',
+    description: 'An etymology and knowledge-exploration platform, tracing words back to their roots. Still at the concept stage — no code yet.',
+  },
 ]
 
-const FILTERS: Array<'All' | Status> = ['All', 'Shipped', 'In Development', 'Paused']
+const FILTERS: Array<'All' | Status> = ['All', 'Shipped', 'In Development', 'Concept', 'Paused']
 
 function statusStyle(status: Status) {
   if (status === 'Shipped') return { bg: 'rgba(100,255,180,0.12)', fg: '#5EFFB0', dot: '#5EFFB0' }
   if (status === 'In Development') return { bg: 'rgba(255,180,80,0.12)', fg: '#FFB450', dot: '#FFB450' }
+  if (status === 'Concept') return { bg: 'rgba(124,92,252,0.14)', fg: '#A392FF', dot: '#A392FF' }
   return { bg: 'rgba(160,160,175,0.12)', fg: '#A0A0AF', dot: '#A0A0AF' }
 }
 

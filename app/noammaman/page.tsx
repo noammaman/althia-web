@@ -138,7 +138,7 @@ export default function NoamMamanCV() {
             style={{ borderTop: '1px solid rgba(255,255,255,0.08)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}
           >
             <Stat value="4+ yrs" label="Turning ambiguous problems into shipped tools" />
-            <Stat value="4" label="Independent products — shipped and in motion" />
+            <Stat value="7" label="Independent products — shipped and in motion" />
             <Stat value="3" label="Analytics products architected at Placer.ai" />
             <Stat value="3.9" label="GPA, M.Sc. Business Analytics, Honors" />
           </div>
