@@ -7,11 +7,11 @@ const display = Space_Grotesk({ subsets: ['latin'], weight: ['500', '600', '700'
 const body = Inter({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-body' })
 
 export const metadata: Metadata = {
-  title: 'Noam Maman — CV',
+  title: 'Noam Maman — Living Résumé',
   description: 'Noam Maman — AI-native builder and data insights lead. Founder of Althia, Senior Marketing Insights Analyst at Placer.ai.',
   alternates: { canonical: '/noammaman' },
   openGraph: {
-    title: 'Noam Maman — CV',
+    title: 'Noam Maman — Living Résumé',
     description: 'AI-native builder and data insights lead. Founder of Althia, Senior Marketing Insights Analyst at Placer.ai.',
     url: 'https://althia.org/noammaman',
   },
@@ -111,7 +111,7 @@ export default function NoamMamanCV() {
           style={{ background: 'radial-gradient(ellipse at center, #35E6C8, transparent 60%)' }}
         />
         <div className="relative max-w-[840px] mx-auto">
-          <Eyebrow>Curriculum Vitae</Eyebrow>
+          <Eyebrow>Living Résumé</Eyebrow>
           <h1
             className="text-[3rem] md:text-[4.25rem] mb-4 leading-[1.02] font-semibold tracking-tight text-[#F5F5F7]"
             style={{ fontFamily: 'var(--font-display)' }}
@@ -279,7 +279,7 @@ export default function NoamMamanCV() {
       </Reveal>
 
       <footer className="px-6 py-10 text-center">
-        <p className="text-xs text-[#4A4A58]">Noam Maman · a living CV</p>
+        <p className="text-xs text-[#4A4A58]">Noam Maman · a living résumé, updated as the work moves</p>
       </footer>
     </main>
   )
