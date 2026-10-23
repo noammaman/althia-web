@@ -45,8 +45,7 @@ const PROJECTS: Project[] = [
     description: 'A digital-wellbeing app that mirrors real phone usage back to you and gamifies cutting down — a league, challenges, and a daily score.',
     href: '/unplugleague',
     linkLabel: 'See the project',
-    monogram: 'UL',
-    monogramBg: '#1C2B22',
+    logo: '/logos/unplugleague-logo.png',
   },
   {
     name: 'Fig',
