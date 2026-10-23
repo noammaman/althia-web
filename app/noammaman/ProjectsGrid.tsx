@@ -44,7 +44,7 @@ const PROJECTS: Project[] = [
   {
     name: 'Fig',
     status: 'In Development',
-    description: 'An offline, location-aware heritage guide for historic sites, piloting at Caesarea Maritima. Geofencing triggers on-device semantic search — a Core ML embedding model running fully offline — to answer what you’re standing in front of, no connection required. Native iOS, Swift/SwiftUI.',
+    description: 'An offline, location-aware heritage guide for historic sites. Geofencing triggers on-device semantic search — a Core ML embedding model running fully offline — to answer what you’re standing in front of, no connection required. Native iOS, Swift/SwiftUI.',
     logo: '/logos/fig-logo-square.png',
   },
 ]
