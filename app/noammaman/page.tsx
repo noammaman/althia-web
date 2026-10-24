@@ -148,12 +148,10 @@ export default function NoamMamanCV() {
       <div className="max-w-[840px] mx-auto px-6">
         <Reveal className="mb-24">
           <p className="text-base text-[#A5A5B2] leading-[1.9] max-w-[640px]">
-            The translation layer between raw data and the people who need to act on it without writing code. That
-            started with Hex — the self-service platform Placer&apos;s analysts and content writers use to pull
-            complex data with parameters instead of SQL — and public tools used for business development. Since
-            taking ownership of Placer.ai&apos;s marketing data and BI stack in 2026, the same work now extends to
-            growth: funnel and attribution analytics the CMO and RevOps run the business on, LLM features shipped
-            in production with tested guardrails, and the governed data platform underneath all of it.
+            Data and analytics leader with 4+ years building self-service platforms, growth analytics, and
+            production AI systems. Owns Placer.ai&apos;s marketing data and BI stack — ingestion, governance, and
+            the funnel and attribution analytics the CMO and RevOps use to run the business. Ships LLM features in
+            production with tested guardrails, not prototypes.
           </p>
         </Reveal>
 
@@ -175,24 +173,17 @@ export default function NoamMamanCV() {
           </h2>
 
           <Role
-            title="Senior Marketing Insights Analyst — Placer.ai · Growth Data &amp; BI Ownership"
-            dates="May 2026 – Present"
-            bullets={[
-              <>Moved onto the growth team by choice in May 2026 to learn growth from the inside; when the marketing-ops lead left that September, took over the full marketing data stack end to end — building new ingestion pipelines, on the team&apos;s existing Terraform/Vault/Jenkins/Kubernetes platform, for <strong className="text-[#D4D4DC]">Salesforce, HubSpot, LinkedIn Ads, GA4, Search Console, Bing Webmaster</strong>, and first-party web events, through a governed Databricks Unity Catalog semantic layer, to the dashboards leadership uses daily.</>,
-              <>Built the company&apos;s <strong className="text-[#D4D4DC]">MQL → meeting → qualified → closed-won</strong> funnel dashboard for the CMO on Databricks — pipeline/revenue tie-back, first-touch/last-touch/weighted multi-touch attribution, period-over-period comparison, deal size, and time-to-close.</>,
-              <>Partnered with RevOps to define what actually counts as an MQL vs. a re-engagement, validated it against Salesforce field history, and reconciled deal-to-lead attribution with RevOps&apos;s own 90-day rule — moving the org onto one documented definition instead of several conflicting ones.</>,
-              <>Shipped LLM features in production: a win-back email pipeline that grounds every line in a real, data-backed fact before an LLM writes it, with guardrails designed and tested end-to-end (length, tone, factual-direction matching, no negative claims); extended the pattern to an ABM pipeline for a commercial-real-estate pilot, and built skills that let the company&apos;s AI assistant generate reports directly — the next phase of self-service, replacing dashboards with conversation.</>,
-              <>Building the measurement layer for how the company shows up in AI answer engines (AEO), and prototyping agents that optimize existing content and surface keyword opportunities monthly.</>,
-            ]}
-          />
-
-          <Role
-            title="Senior Marketing Insights Analyst — Placer.ai · Insights &amp; Free Tools"
-            dates="June 2022 – April 2026"
+            title="Senior Marketing Insights Analyst — Placer.ai"
+            dates="June 2022 – Present"
             bullets={[
               <>Spotted a manual, one-off script and rebuilt it into the <strong className="text-[#D4D4DC]">Return to Office Index</strong> — a permanent, automated, company-wide tool that&apos;s now a public industry benchmark.</>,
               <>Architected and led the technical build of three freemium analytics products — <strong className="text-[#D4D4DC]">Placer 100, Industry Trends, Migration Trends</strong> — now standard benchmarks for retail performance tracking.</>,
               <>Built Hex into the self-service platform Placer&apos;s analysts and content writers use to pull complex data with parameters instead of SQL — infrastructure other teams run on daily, not a dashboard handed off.</>,
+              <>Own the full marketing data stack: ingestion pipelines for <strong className="text-[#D4D4DC]">Salesforce, HubSpot, LinkedIn Ads, GA4, Search Console, Bing Webmaster</strong>, and first-party web events, delivered on the team&apos;s Terraform/Vault/Jenkins/Kubernetes platform and governed through a Databricks Unity Catalog semantic layer, feeding the dashboards leadership uses daily.</>,
+              <>Built the CMO&apos;s <strong className="text-[#D4D4DC]">MQL → meeting → qualified → closed-won</strong> funnel dashboard on Databricks: pipeline/revenue tie-back, multi-touch attribution (first-touch, last-touch, weighted), period-over-period comparison, deal size, and time-to-close.</>,
+              <>Defined MQL and attribution criteria with RevOps, validated against Salesforce field history, and aligned deal-to-lead attribution with RevOps&apos;s 90-day rule — replaced several conflicting definitions with one documented standard.</>,
+              <>Shipped LLM features in production: a guardrailed win-back email personalization pipeline (data-grounded facts, tested tone/length/accuracy constraints), an ABM pipeline for a commercial-real-estate pilot, and report-generation skills for the company&apos;s AI assistant.</>,
+              <>Building the AEO measurement layer (search and AI-referral tracking) and agents that optimize existing content and surface keyword opportunities monthly.</>,
             ]}
           />
 
