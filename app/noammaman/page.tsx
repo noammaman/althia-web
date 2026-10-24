@@ -176,14 +176,14 @@ export default function NoamMamanCV() {
             title="Senior Marketing Insights Analyst — Placer.ai"
             dates="June 2022 – Present"
             bullets={[
-              <>Spotted a manual, one-off script and rebuilt it into the <strong className="text-[#D4D4DC]">Return to Office Index</strong> — a permanent, automated, company-wide tool that&apos;s now a public industry benchmark.</>,
-              <>Architected and led the technical build of three freemium analytics products — <strong className="text-[#D4D4DC]">Placer 100, Industry Trends, Migration Trends</strong> — now standard benchmarks for retail performance tracking.</>,
-              <>Built Hex into the self-service platform Placer&apos;s analysts and content writers use to pull complex data with parameters instead of SQL — infrastructure other teams run on daily, not a dashboard handed off.</>,
               <>Own the full marketing data stack: ingestion pipelines for <strong className="text-[#D4D4DC]">Salesforce, HubSpot, LinkedIn Ads, GA4, Search Console, Bing Webmaster</strong>, and first-party web events, delivered on the team&apos;s Terraform/Vault/Jenkins/Kubernetes platform and governed through a Databricks Unity Catalog semantic layer, feeding the dashboards leadership uses daily.</>,
               <>Built the CMO&apos;s <strong className="text-[#D4D4DC]">MQL → meeting → qualified → closed-won</strong> funnel dashboard on Databricks: pipeline/revenue tie-back, multi-touch attribution (first-touch, last-touch, weighted), period-over-period comparison, deal size, and time-to-close.</>,
               <>Defined MQL and attribution criteria with RevOps, validated against Salesforce field history, and aligned deal-to-lead attribution with RevOps&apos;s 90-day rule — replaced several conflicting definitions with one documented standard.</>,
               <>Shipped LLM features in production: a guardrailed win-back email personalization pipeline (data-grounded facts, tested tone/length/accuracy constraints), an ABM pipeline for a commercial-real-estate pilot, and report-generation skills for the company&apos;s AI assistant.</>,
               <>Building the AEO measurement layer (search and AI-referral tracking) and agents that optimize existing content and surface keyword opportunities monthly.</>,
+              <>Spotted a manual, one-off script and rebuilt it into the <strong className="text-[#D4D4DC]">Return to Office Index</strong> — a permanent, automated, company-wide tool that&apos;s now a public industry benchmark.</>,
+              <>Architected and led the technical build of three freemium analytics products — <strong className="text-[#D4D4DC]">Placer 100, Industry Trends, Migration Trends</strong> — now standard benchmarks for retail performance tracking.</>,
+              <>Built Hex into the self-service platform Placer&apos;s analysts and content writers use to pull complex data with parameters instead of SQL — infrastructure other teams run on daily, not a dashboard handed off.</>,
             ]}
           />
 
