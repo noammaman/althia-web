@@ -8,7 +8,7 @@ const body = Inter({ subsets: ['latin'], weight: ['400', '500', '600'], variable
 
 export const metadata: Metadata = {
   title: 'Noam Maman — Living Résumé',
-  description: 'Noam Maman — AI-native builder and data insights lead. Founder of Althia, Senior Marketing Insights Analyst at Placer.ai.',
+  description: 'Noam Maman — data & analytics leader in growth analytics, marketing data platforms, and AI in production. Senior Marketing Insights Analyst at Placer.ai, Founder of Althia.',
   alternates: { canonical: '/noammaman' },
   openGraph: {
     title: 'Noam Maman — Living Résumé',
@@ -119,7 +119,7 @@ export default function NoamMamanCV() {
             Noam Maman
           </h1>
           <p className="text-lg md:text-xl text-[#9A9AA8] mb-10 max-w-[560px]">
-            AI-native builder &amp; data insights lead — turning ambiguous problems into working products.
+            Data &amp; analytics leader — growth analytics, marketing data platforms, and AI in production.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 mb-16">
@@ -148,11 +148,12 @@ export default function NoamMamanCV() {
       <div className="max-w-[840px] mx-auto px-6">
         <Reveal className="mb-24">
           <p className="text-base text-[#A5A5B2] leading-[1.9] max-w-[640px]">
-            Builder with 4+ years turning ambiguous business problems into working tools — from a manual script that
-            became a company-wide, publicly cited industry benchmark, to self-built consumer apps shipped solo on
-            the App Store. Works fluently with LLM and agentic tooling (Cursor, Claude Code), owns Python/SQL data
-            pipelines end-to-end (Airflow, Databricks, BigQuery), and partners directly with product, operations,
-            and business stakeholders to find the problem worth solving before building anything.
+            The translation layer between raw data and the people who need to act on it without writing code. That
+            started with Hex — the self-service platform Placer&apos;s analysts and content writers use to pull
+            complex data with parameters instead of SQL — and public tools used for business development. Since
+            taking ownership of Placer.ai&apos;s marketing data and BI stack in 2026, the same work now extends to
+            growth: funnel and attribution analytics the CMO and RevOps run the business on, LLM features shipped
+            in production with tested guardrails, and the governed data platform underneath all of it.
           </p>
         </Reveal>
 
@@ -174,15 +175,24 @@ export default function NoamMamanCV() {
           </h2>
 
           <Role
-            title="Senior Marketing Insights Analyst — Placer.ai"
-            dates="June 2022 – Present"
+            title="Senior Marketing Insights Analyst — Placer.ai · Growth Data &amp; BI Ownership"
+            dates="May 2026 – Present"
+            bullets={[
+              <>Moved onto the growth team by choice in May 2026 to learn growth from the inside; when the marketing-ops lead left that September, took over the full marketing data stack end to end — building new ingestion pipelines, on the team&apos;s existing Terraform/Vault/Jenkins/Kubernetes platform, for <strong className="text-[#D4D4DC]">Salesforce, HubSpot, LinkedIn Ads, GA4, Search Console, Bing Webmaster</strong>, and first-party web events, through a governed Databricks Unity Catalog semantic layer, to the dashboards leadership uses daily.</>,
+              <>Built the company&apos;s <strong className="text-[#D4D4DC]">MQL → meeting → qualified → closed-won</strong> funnel dashboard for the CMO on Databricks — pipeline/revenue tie-back, first-touch/last-touch/weighted multi-touch attribution, period-over-period comparison, deal size, and time-to-close.</>,
+              <>Partnered with RevOps to define what actually counts as an MQL vs. a re-engagement, validated it against Salesforce field history, and reconciled deal-to-lead attribution with RevOps&apos;s own 90-day rule — moving the org onto one documented definition instead of several conflicting ones.</>,
+              <>Shipped LLM features in production: a win-back email pipeline that grounds every line in a real, data-backed fact before an LLM writes it, with guardrails designed and tested end-to-end (length, tone, factual-direction matching, no negative claims); extended the pattern to an ABM pipeline for a commercial-real-estate pilot, and built skills that let the company&apos;s AI assistant generate reports directly — the next phase of self-service, replacing dashboards with conversation.</>,
+              <>Building the measurement layer for how the company shows up in AI answer engines (AEO), and prototyping agents that optimize existing content and surface keyword opportunities monthly.</>,
+            ]}
+          />
+
+          <Role
+            title="Senior Marketing Insights Analyst — Placer.ai · Insights &amp; Free Tools"
+            dates="June 2022 – April 2026"
             bullets={[
               <>Spotted a manual, one-off script and rebuilt it into the <strong className="text-[#D4D4DC]">Return to Office Index</strong> — a permanent, automated, company-wide tool that&apos;s now a public industry benchmark.</>,
               <>Architected and led the technical build of three freemium analytics products — <strong className="text-[#D4D4DC]">Placer 100, Industry Trends, Migration Trends</strong> — now standard benchmarks for retail performance tracking.</>,
-              <>Own data products end-to-end: raw data → Python/SQL pipelines → KPIs → dashboards → a decision someone actually makes.</>,
-              <>Design and maintain Python ETL pipelines processing millions of records daily, with Airflow orchestration and automated data-quality validation — 100% data integrity on public-facing numbers.</>,
-              <>Build interactive Hex applications and executive dashboards that give non-technical product, GTM, and business stakeholders self-service access to data.</>,
-              <>Partner directly across product, operations, business, and engineering — translating messy, cross-functional problems into something buildable, and complex data back into decisions for C-suite and non-technical audiences.</>,
+              <>Built Hex into the self-service platform Placer&apos;s analysts and content writers use to pull complex data with parameters instead of SQL — infrastructure other teams run on daily, not a dashboard handed off.</>,
             ]}
           />
 
@@ -204,6 +214,36 @@ export default function NoamMamanCV() {
             Skills
           </h2>
           <div className="space-y-6">
+            <div>
+              <div className="text-[13px] text-[#6E6E7A] font-medium mb-2.5 uppercase tracking-wide">Growth &amp; Revenue Analytics</div>
+              <div className="flex flex-wrap gap-2">
+                {['Funnel & multi-touch attribution', 'Pipeline/revenue tie-back', 'RevOps data governance', 'CMO reporting cadence'].map((s) => <Pill key={s}>{s}</Pill>)}
+              </div>
+            </div>
+            <div>
+              <div className="text-[13px] text-[#6E6E7A] font-medium mb-2.5 uppercase tracking-wide">Marketing &amp; RevOps Data</div>
+              <div className="flex flex-wrap gap-2">
+                {['Salesforce', 'HubSpot', 'LinkedIn Ads', 'GA4', 'Google Search Console', 'Bing Webmaster Tools'].map((s) => <Pill key={s}>{s}</Pill>)}
+              </div>
+            </div>
+            <div>
+              <div className="text-[13px] text-[#6E6E7A] font-medium mb-2.5 uppercase tracking-wide">AI in Production</div>
+              <div className="flex flex-wrap gap-2">
+                {['LLM feature pipelines', 'Guardrail design & testing', 'AI analyst / report-generation agents', 'AEO'].map((s) => <Pill key={s}>{s}</Pill>)}
+              </div>
+            </div>
+            <div>
+              <div className="text-[13px] text-[#6E6E7A] font-medium mb-2.5 uppercase tracking-wide">Data Platform &amp; Governance</div>
+              <div className="flex flex-wrap gap-2">
+                {['Databricks Unity Catalog', 'Data-validation frameworks (Great Expectations, pointblank)', 'Dedup & enrichment pipelines'].map((s) => <Pill key={s}>{s}</Pill>)}
+              </div>
+            </div>
+            <div>
+              <div className="text-[13px] text-[#6E6E7A] font-medium mb-2.5 uppercase tracking-wide">Infrastructure (operate within)</div>
+              <div className="flex flex-wrap gap-2">
+                {['Terraform (Atlantis)', 'HashiCorp Vault', 'Jenkins CI', 'Kubernetes', 'GitHub PR workflow', 'Jira-driven delivery'].map((s) => <Pill key={s}>{s}</Pill>)}
+              </div>
+            </div>
             <div>
               <div className="text-[13px] text-[#6E6E7A] font-medium mb-2.5 uppercase tracking-wide">AI &amp; Agentic Dev</div>
               <div className="flex flex-wrap gap-2">
@@ -266,7 +306,7 @@ export default function NoamMamanCV() {
             <h2 className="text-[1.9rem] md:text-3xl text-[#F5F5F7] mb-4 font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
               Let&apos;s talk.
             </h2>
-            <p className="text-base text-[#9A9AA8] mb-8">Open to data insights, analytics, and AI-builder roles.</p>
+            <p className="text-base text-[#9A9AA8] mb-8">Open to growth/marketing analytics, data & analytics leadership, and AI-builder roles.</p>
             <a
               href="mailto:noammaman17@gmail.com"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-[#0B0B0F] transition-transform hover:scale-[1.03]"
