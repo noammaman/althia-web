@@ -1,36 +1,40 @@
-# Figleaf concept prospectus
+# Figleaf concept prospectus — v0.3
 
-Route: `/figleaf`. Existing Althia Next.js app, existing Fig logo, no new dependencies or hosting services. This route is marked noindex while under discussion. No existing page or global styles were changed.
+Public route: `/figleaf`. Independent Figleaf project hosted in the existing Althia Next.js/Vercel site. No Althia product affiliation. Route remains noindex for discussion. The original Fig fruit asset is preserved for unrelated pages; Figleaf uses its leaf mark.
 
-## Implemented
+## Product direction
 
-- Responsive prospectus with visitor plan/arrival/story screens, selectable fictional stops and contextual layers.
-- Institution workspace: content/evidence, geofence view, language/access/experience settings, simplified simulated review gate.
-- Context model, editorial/publishing/QA proposal, architecture and data-source considerations, pilot economics, risks, and role-specific feedback prompts.
-- Notes saved in browser localStorage with explicit user action, text export, and copyable review link. Notes are not submitted to a server or shared across devices.
+- Primary customers: managed sites, national parks, museums, heritage authorities, and private operators.
+- The context layer can exist independently of site participation. Figleaf baseline coverage, specialist contributions, and institutional contributions retain distinct provenance.
+- Expert credentials, sources, rights, editorial confidence, competing interpretations, and review status belong to specific records and revisions.
+- The visitor receives an AI-personalized journey from context, with an audio-first interface, text alternatives, location relevance, and conversational Q&A.
+- Full offline Q&A is a target requirement on supported devices, subject to empirical compatibility and quality validation. QR or pre-visit package acquisition requires connectivity first.
+- The site’s value includes aggregate visitor insight tied to editorial and operational actions. Default proposal: optional consent, minimization, delayed sync, and small-group suppression.
+- Cross-site recommendations and a consumer layer are phase two.
+
+## Implemented website interactions
+
+- Visitor profile, interests, and duration deterministically change the sample route and story text.
+- Simulated package readiness, offline scenario, arrival, silent audio controls, local scripted Q&A, context-gap responses, progress, and finish states.
+- Studio coverage view, POI record editor/provenance preview, curated seed-route editor, selectable synthetic visitor insights, and a simulated release gate. POI edits invalidate the gate’s checks.
+- Discussion prompts for archaeologist, CS specialist, and site manager. Explicit browser-local notes save, text export, and copyable review URL.
 
 ## Mock boundaries
 
-Olive Hill is fictional. There is no actual GPS, geofence monitoring, offline pack, audio, AR, AI retrieval, historical dataset, account system, shared comments, or institution publishing backend. Source attachment is a demo flag, not a scholarly citation. Editor settings illustrate proposed fields; they are not durable records. The review gate checks only a title, demo evidence flag, and demo reviewer approval; it is not a real release authorization system.
+Olive Hill and all claims, records, metrics, question examples, and approvals are illustrative. No real GPS, background tracking, AI model, speech recognition, audio generation, retrieval, downloading, package storage, analytics, authentication, institutional publishing, or shared comments were implemented. The offline toggle does not prove offline operation; it changes demo UI only. State is temporary except explicitly saved discussion notes. The source-labelled Q&A uses simple scripted cases, with an explicit unsupported-question fallback.
 
-## Validation
+## Architecture proposal
 
-Production build includes TypeScript and Next lint checks. Browser QA covered desktop composition, a 390px mobile iframe, visitor screen/layer/stop switching, blocked and successful simulated release, and notes retained after reload. This is not a device field test or full accessibility audit.
+Versioned context and evidence → validated package with POIs/route constraints/media/locale → local retrieval and on-device answer generation → text/audio interface. Model assets can be reused across site packages. Device availability, language assets, hallucination resistance, citations, latency, storage, battery, GPS/indoor alternatives, package expiry, and withdrawal/refresh rules require testing. The page links primary Apple and Google references and states these are feasibility inputs, not validation of Figleaf.
 
-## Deployment and future updates
+## Deployment
 
-The existing `noammaman/althia-web` repository deploys its `master` branch to Vercel Production. Use the existing integration; do not create a second Site or change DNS.
+Use the existing `noammaman/althia-web` repository and Vercel integration. Do not create a separate hosting service or change DNS.
 
-1. Work in an isolated checkout/branch. Run `npm ci` when needed, then `npm run build`.
-2. Review only the Figleaf changes. Fetch and rebase onto current `origin/master` immediately before pushing; never force push.
-3. Push the reviewed commit to `master` to trigger Vercel.
-4. Inspect the matching GitHub deployment/status for that commit and require success.
-5. Verify `https://althia.org/figleaf` returns HTTP 200 and the expected page. Check the existing home page still responds.
+1. Make scoped changes in an isolated checkout; install with `npm ci` if needed.
+2. Run `npm run build` (includes TypeScript and Next lint checks), inspect relevant interactions and responsive layout.
+3. Stage only intended files and inspect the staged diff. Rebase on current `origin/master` immediately before pushing; never force-push.
+4. Push the reviewed commit to `master`, wait for the matching Vercel commit status to succeed.
+5. Verify `https://althia.org/figleaf` returns 200 and expected content; check existing homepage response.
 
-Rollback: revert the Figleaf-only commit and deploy that revert through the same workflow, or restore the preceding Vercel deployment. Do not rewrite shared Git history.
-
-## v0.2 — Curated walks
-
-The core visitor experience is now a curator-authored walk with ordered chapters, optional depth at each stop, and a closing reflection. The demo supports walk details, manual arrival, three distinct fictional stories, completion progress, and restart. The studio's Experience settings tab includes editable walk title/audience, stop reordering, and a live sequence preview. Editor changes intentionally do not alter the visitor demo and reset when that tab unmounts. Route-level continuity, access, and source QA are described separately from the simplified publishing simulation.
-
-Browser checks: complete three-stop journey; completion count; chapter navigation; title and stop-order preview updates; disabled reorder bounds; desktop and narrow layout inspection. Production build passes.
+Rollback through a revert of the scoped commit or restore the prior Vercel deployment; do not rewrite shared history.
