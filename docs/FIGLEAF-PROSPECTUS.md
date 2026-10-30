@@ -28,3 +28,9 @@ The existing `noammaman/althia-web` repository deploys its `master` branch to Ve
 5. Verify `https://althia.org/figleaf` returns HTTP 200 and the expected page. Check the existing home page still responds.
 
 Rollback: revert the Figleaf-only commit and deploy that revert through the same workflow, or restore the preceding Vercel deployment. Do not rewrite shared Git history.
+
+## v0.2 — Curated walks
+
+The core visitor experience is now a curator-authored walk with ordered chapters, optional depth at each stop, and a closing reflection. The demo supports walk details, manual arrival, three distinct fictional stories, completion progress, and restart. The studio's Experience settings tab includes editable walk title/audience, stop reordering, and a live sequence preview. Editor changes intentionally do not alter the visitor demo and reset when that tab unmounts. Route-level continuity, access, and source QA are described separately from the simplified publishing simulation.
+
+Browser checks: complete three-stop journey; completion count; chapter navigation; title and stop-order preview updates; disabled reorder bounds; desktop and narrow layout inspection. Production build passes.
